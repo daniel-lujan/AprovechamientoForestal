@@ -46,6 +46,55 @@ public class ControladorSolicitud {
 
     public ControladorSolicitud() {
         request = new RequestModel("1");
+        principal = new Principal();
+        mostrarPrincipal();
+    }
+
+    public void instanciarVentanas() throws IOException {
+        seccion1 = new Seccion1(this);
+        seccion2 = new Seccion2(this);
+        seccion3 = new Seccion3(this);
+        seccion4_1 = new Seccion4_1(this);
+        seccion4_2 = new Seccion4_2(this);
+        seccion5_1 = new Seccion5_1(this);
+        seccion5_2 new Seccion5_2(this);
+        seccion6 = new Seccion6(this);
+    }
+    
+    public void mostrarPrincipal(){
+        principal.setVisible(true);
+    }
+    
+    public void mostrarSeccion1(){
+        seccion1.setVisible(true);
+    }
+    
+    public void mostrarSeccion2(){
+        seccion2.setVisible(true);
+    }
+    
+    public void mostrarSeccion3(){
+        seccion3.setVisible(true);
+    }
+    
+    public void mostrarSeccion4_1(){
+        seccion4_1.setVisible(true);
+    }
+    
+    public void mostrarSeccion4_2(){
+        seccion4_2.setVisible(true);
+    }
+    
+    public void mostrarSeccion5_1(){
+        seccion5_1.setVisible(true);
+    }
+    
+    public void mostrarSeccion5_2(){
+        seccion5_2.setVisible(true);
+    }
+    
+    public void mostrarSeccion6(){
+        seccion6.setVisible(true);
     }
 
     public void guardarInformacionSeccion1(String tipoSolicitud, String tipoPersonaInteresado, String nombreInteresado, String tipoIdInteresado,
@@ -167,15 +216,6 @@ public class ControladorSolicitud {
 
         }
     }
-
- 
-
-   
-    
-
-  
-
-   
 
     private static class LinkedLink<T> {
 
