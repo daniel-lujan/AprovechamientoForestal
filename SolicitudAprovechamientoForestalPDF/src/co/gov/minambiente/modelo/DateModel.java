@@ -50,4 +50,10 @@ public class DateModel {
         this.day = day;
     }
     
+    public String getDateWithFormat(){
+        
+        String result;
+        result = String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
+        return result; 
+    }
 }
