@@ -1,6 +1,9 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +17,7 @@ public class Seccion1 extends javax.swing.JFrame {
     public Seccion1() {
         initComponents();
         this.setLocationRelativeTo(null);
-        //this.controlador = new ControladorSolicitud();
+        this.controlador = new ControladorSolicitud();
         txtOtro.setEnabled(false);
         txtCosto.setEnabled(false);
         txtCostoLetras.setEnabled(false);
@@ -45,6 +48,23 @@ public class Seccion1 extends javax.swing.JFrame {
         } else {
             new Seccion3(this.controlador).setVisible(true);
         }
+    }
+
+    public void reescribirInformacion() {
+        cmbTipoSolicitud.getSelectedItem();
+        cmbTipoPersonaInteresado.getSelectedItem();
+        txtNombreInteresado.getText();
+        cmbTipoIdInteresado.getSelectedItem();
+        txtNumeroIdInteresado.getText();
+        txtNombreApoderado.getText();
+        cmbTipoIdApoderado.getSelectedItem();
+        txtNumeroIdApoderado.getText();
+        txtTPApoderado.getText();
+        cmbCalidad.getSelectedItem();
+        txtOtro.getText();
+        cmbTipoPredio.getSelectedItem();
+        txtCosto.getText();
+        txtCostoLetras.getText();
     }
 
     @SuppressWarnings("unchecked")
@@ -842,7 +862,7 @@ public class Seccion1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCostoLetrasKeyTyped
 
     private void txtTPApoderadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTPApoderadoKeyTyped
-         if (txtTPApoderado.getText().length() > 10) {
+        if (txtTPApoderado.getText().length() > 10) {
             evt.consume();
         } else {
             if (!Character.isAlphabetic(evt.getKeyChar()) && !Character.isDigit(evt.getKeyChar())) {

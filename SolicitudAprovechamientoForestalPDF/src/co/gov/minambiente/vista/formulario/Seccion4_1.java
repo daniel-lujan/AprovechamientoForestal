@@ -140,6 +140,11 @@ public class Seccion4_1 extends javax.swing.JFrame {
                 txtCedulaCatastralActionPerformed(evt);
             }
         });
+        txtCedulaCatastral.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCedulaCatastralKeyTyped(evt);
+            }
+        });
 
         txtSuperficie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -503,32 +508,64 @@ public class Seccion4_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtVeredaActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if (!Character.isAlphabetic(evt.getKeyChar())) {
+        if (txtNombre.getText().length() > 25) {
             evt.consume();
+        } else {
+            if (!Character.isAlphabetic(evt.getKeyChar())) {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
     private void txtSuperficieKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSuperficieKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
+        if (txtSuperficie.getText().length() > 25) {
             evt.consume();
+        } else {
+            if (!Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtSuperficieKeyTyped
 
     private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
-        if (!Character.isAlphabetic(evt.getKeyChar())) {
+        if (txtDireccion.getText().length() > 25) {
             evt.consume();
+        } else {
+            if (!Character.isAlphabetic(evt.getKeyChar()) && !Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtDireccionKeyTyped
 
     private void txtVeredaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVeredaKeyTyped
-        if (!Character.isAlphabetic(evt.getKeyChar())) {
+        if (txtVereda.getText().length() > 25) {
             evt.consume();
+        } else {
+            if (!Character.isAlphabetic(evt.getKeyChar())) {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtVeredaKeyTyped
 
     private void txtMatriculaInmobiliariaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatriculaInmobiliariaKeyTyped
-
+        if (txtMatriculaInmobiliaria.getText().length() > 12) {
+            evt.consume();
+        } else {
+            if (!Character.isAlphabetic(evt.getKeyChar()) && !Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
+        }
     }//GEN-LAST:event_txtMatriculaInmobiliariaKeyTyped
+
+    private void txtCedulaCatastralKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaCatastralKeyTyped
+        if (txtCedulaCatastral.getText().length() > 20) {
+            evt.consume();
+        } else {
+            if (!Character.isAlphabetic(evt.getKeyChar()) && !Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_txtCedulaCatastralKeyTyped
 
     /**
      * @param args the command line arguments

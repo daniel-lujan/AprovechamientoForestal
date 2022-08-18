@@ -527,14 +527,22 @@ public class Seccion3 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbClaseManejoActionPerformed
 
     private void txtIngresosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIngresosKeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
+        if (txtIngresos.getText().length() > 25) {
             evt.consume();
+        } else {
+            if (!Character.isDigit(evt.getKeyChar())) {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtIngresosKeyTyped
 
     private void txtIngresosLetrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIngresosLetrasKeyTyped
-        if (!Character.isAlphabetic(evt.getKeyChar())) {
+        if (txtIngresosLetras.getText().length() > 25) {
             evt.consume();
+        } else {
+            if (!Character.isAlphabetic(evt.getKeyChar())) {
+                evt.consume();
+            }
         }
     }//GEN-LAST:event_txtIngresosLetrasKeyTyped
 

@@ -10,6 +10,11 @@ import co.gov.minambiente.modelo.CategoryCModel;
 import co.gov.minambiente.modelo.CategoryDModel;
 import co.gov.minambiente.modelo.CategoryModel;
 import co.gov.minambiente.modelo.PropertyModel;
+import co.gov.minambiente.vista.formulario.Principal;
+import co.gov.minambiente.vista.formulario.Seccion1;
+import co.gov.minambiente.vista.formulario.Seccion2;
+import co.gov.minambiente.vista.formulario.Seccion3;
+import co.gov.minambiente.vista.formulario.Seccion4_1;
 import co.gov.minambiente.vista.formulario.Seccion4_2;
 import co.gov.minambiente.vista.formulario.Seccion5_1;
 import co.gov.minambiente.vista.formulario.Seccion5_2;
@@ -28,9 +33,20 @@ import javafx.scene.control.RadioButton;
  */
 public class ControladorSolicitud {
 
-    private RequestModel request = new RequestModel("1");
+    private RequestModel request;
+    private Principal principal;
+    private Seccion1 seccion1;
+    private Seccion2 seccion2;
+    private Seccion3 seccion3;
+    private Seccion4_1 seccion4_1;
+    private Seccion4_2 seccion4_2;
+    private Seccion5_1 seccion5_1;
+    private Seccion5_2 seccion5_2;
+    private Seccion6 seccion6;
 
-    
+    public ControladorSolicitud() {
+        request = new RequestModel("1");
+    }
 
     public void guardarInformacionSeccion1(String tipoSolicitud, String tipoPersonaInteresado, String nombreInteresado, String tipoIdInteresado,
             String numeroIdInteresado, boolean aplicaApoderado, String nombreApoderado, String tipoIdApoderado, String numeroIdApoderado,

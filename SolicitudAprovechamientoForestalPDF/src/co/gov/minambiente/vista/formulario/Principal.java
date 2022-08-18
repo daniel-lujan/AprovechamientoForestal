@@ -1,13 +1,24 @@
 package co.gov.minambiente.vista.formulario;
 
+import co.gov.minambiente.controlador.ControladorSolicitud;
+
 /**
  *
  * @author Natalia García
  */
 public class Principal extends javax.swing.JFrame {
-
+    
+    private ControladorSolicitud controlador;
+    
     public Principal() {
         initComponents();
+        controlador = new ControladorSolicitud();
+        this.setLocationRelativeTo(null);
+    }
+    
+    public Principal(ControladorSolicitud controlador) {
+        initComponents();
+        this.controlador = controlador;
         this.setLocationRelativeTo(null);
     }
 
