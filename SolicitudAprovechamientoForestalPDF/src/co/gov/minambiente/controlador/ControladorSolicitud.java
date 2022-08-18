@@ -1,5 +1,6 @@
 package co.gov.minambiente.controlador;
 
+import co.gov.minambiente.controlador.database.RequestsDatabase;
 import co.gov.minambiente.modelo.AddressModel;
 import co.gov.minambiente.modelo.DepartmentModel;
 import co.gov.minambiente.modelo.RequestModel;
@@ -31,7 +32,8 @@ import java.util.LinkedList;
  * @author Natalia García
  */
 public class ControladorSolicitud {
-
+    
+    private static RequestsDatabase requestsDatabase = new RequestsDatabase();
     private RequestModel request;
     private Principal principal;
     private Seccion1 seccion1;
@@ -44,7 +46,7 @@ public class ControladorSolicitud {
     private Seccion6 seccion6;
 
     public ControladorSolicitud() {
-        request = new RequestModel("1");
+        request = new RequestModel(requestsDatabase.getNewReference());
         principal = new Principal();
         mostrarPrincipal();
     }
