@@ -116,7 +116,7 @@ public class ControladorSolicitud {
         } else {
             request.getInterested().setInterestedQuality(calidad);
         }
-
+        
         request.addProperties(new PropertyModel(tipoPredio));
 
         if (aplicaCosto) {

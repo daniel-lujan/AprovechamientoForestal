@@ -98,7 +98,7 @@ public class RequestModel {
     }
 
     public void addProperties(PropertyModel property) {
-        this.properties.add(property);
+        this.properties.add(0, property);
     }
 
     public String getHowToAcquire() {
