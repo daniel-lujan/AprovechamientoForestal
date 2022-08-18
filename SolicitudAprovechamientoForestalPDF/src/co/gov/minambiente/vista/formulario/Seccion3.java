@@ -388,12 +388,8 @@ public class Seccion3 extends javax.swing.JFrame {
     }
 
     private void mostrarSiguienteVentana() {
-        try {
-            this.setVisible(false);
-            new Seccion4_1(controlador).setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Seccion3.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.setVisible(false);
+        controlador.mostrarSeccion4_1();
     }
 
     private void setEnabledHowToAcquire() {
@@ -493,12 +489,12 @@ public class Seccion3 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteMouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
-        new Seccion2(controlador).setVisible(true);
+        controlador.mostrarSeccion1();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void lbAutorizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbAutorizacionActionPerformed

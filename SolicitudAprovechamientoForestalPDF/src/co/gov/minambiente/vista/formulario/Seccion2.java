@@ -178,11 +178,7 @@ public class Seccion2 extends javax.swing.JFrame {
         if (!numeroExpediente.equals("") && !numeroActo.equals("")) {
             this.setVisible(false);
             controlador.guardarInformacionSeccion2(numeroExpediente, numeroActo);
-            try {
-                new Seccion6(controlador).setVisible(true);
-            } catch (IOException ex) {
-                Logger.getLogger(Seccion2.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            controlador.mostrarSeccion6();
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
         }
@@ -194,7 +190,7 @@ public class Seccion2 extends javax.swing.JFrame {
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
-        new Seccion1(controlador).setVisible(true);
+        controlador.mostrarSeccion1();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void txtNumeroExpedienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroExpedienteKeyTyped

@@ -44,9 +44,9 @@ public class Seccion1 extends javax.swing.JFrame {
     private void mostrarSiguienteVentana() {
         this.setVisible(false);
         if (cmbTipoSolicitud.getSelectedIndex() == 2) {
-            new Seccion2(this.controlador).setVisible(true);
+            controlador.mostrarSeccion2();
         } else {
-            new Seccion3(this.controlador).setVisible(true);
+            controlador.mostrarSeccion3();
         }
     }
 
@@ -726,7 +726,7 @@ public class Seccion1 extends javax.swing.JFrame {
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
-        new Principal().setVisible(true);
+        controlador.mostrarPrincipal();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void cmbTipoIdApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdApoderadoActionPerformed

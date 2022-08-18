@@ -143,9 +143,9 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
+            this.setVisible(false);
             controlador.instanciarVentanas();
             controlador.mostrarSeccion1();
-            this.setVisible(false);
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }

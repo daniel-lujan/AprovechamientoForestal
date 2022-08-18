@@ -51,7 +51,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
 
     private void mostrarSiguienteVentana() {
         this.setVisible(false);
-       // new Seccion4_2(controlador).setVisible(true);
+        controlador.mostrarSeccion4_2();
     }
 
     /**
@@ -464,7 +464,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
-        new Seccion3(controlador).setVisible(true);
+        controlador.mostrarSeccion3();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void rbSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSiActionPerformed
