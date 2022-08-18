@@ -57,12 +57,15 @@ public class ControladorSolicitud {
     public void instanciarVentanas() throws IOException {
         seccion1 = new Seccion1(this);
         seccion2 = new Seccion2(this);
-        seccion3 = new Seccion3(this);
         seccion4_1 = new Seccion4_1(this);
         seccion4_2 = new Seccion4_2(this);
         seccion5_1 = new Seccion5_1(this);
         seccion5_2 = new Seccion5_2(this);
         seccion6 = new Seccion6(this);
+    }
+    
+    public void instanciarVentana3(){
+        seccion3 = new Seccion3(this);
     }
 
     public void mostrarPrincipal() {
@@ -121,6 +124,7 @@ public class ControladorSolicitud {
         }
 
         request.addProperties(new PropertyModel(tipoPredio));
+        System.out.println(request.getProperties().size());
 
         if (aplicaCosto) {
             ArrayList<String> cost = new ArrayList<>();
@@ -163,13 +167,11 @@ public class ControladorSolicitud {
     public void guardarInformacionSeccion4_1(String nombre, String superficie, String direccion, String tipo, String departamento,
             String municipio, String vereda, String matriculaInmobiliaria, String cedulaCatastral) {
         LinkedList<PropertyModel> properties = request.getProperties();
-        for (PropertyModel property : properties) {
-            property.setName(nombre);
-            property.setSurface(superficie);
-            property.setAdress(new AddressModel(direccion, tipo, departamento, municipio, vereda));
-            property.setRealEstateRegistration(matriculaInmobiliaria);
-            property.setCadastralIdNumber(cedulaCatastral);
-        }
+        properties.get(0).setName(nombre);
+        properties.get(0).setSurface(superficie);
+        properties.get(0).setAdress(new AddressModel(direccion, tipo, departamento, municipio, vereda));
+        properties.get(0).setRealEstateRegistration(matriculaInmobiliaria);
+        properties.get(0).setCadastralIdNumber(cedulaCatastral);
     }
 
     public void guardarInformacionSeccion4_2() {
@@ -188,13 +190,8 @@ public class ControladorSolicitud {
 
     }
 
-    public String getTypeProperty() {
-        try {
-            LinkedList<PropertyModel> propertys = request.getProperties();
-            return propertys.getFirst().getTypeProperty();
-        } catch (Exception exception) {
-            return "";
-        }
+    public String verTypeProperty() {
+        return request.getProperties().get(0).getTypeProperty();
     }
 
     public LinkedList<String> cargarDepartamentos() throws IOException {
@@ -216,9 +213,4 @@ public class ControladorSolicitud {
         return null;
     }
 
-    private static class LinkedLink<T> {
-
-        public LinkedLink() {
-        }
-    }
 }

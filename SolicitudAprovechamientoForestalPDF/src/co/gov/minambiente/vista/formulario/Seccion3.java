@@ -393,7 +393,7 @@ public class Seccion3 extends javax.swing.JFrame {
     }
 
     private void setEnabledHowToAcquire() {
-        switch (controlador.getTypeProperty()) {
+        switch (controlador.verTypeProperty()) {
             case "Público":
                 lbAutorizacion.setEnabled(false);
                 break;
@@ -419,7 +419,7 @@ public class Seccion3 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbTerrenosDominioActionPerformed
 
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
-        String terrenosDominio = (controlador.getTypeProperty().equals("Público")) ? (String) cmbTerrenosDominio.getSelectedItem() : (lbAutorizacion.isSelected() ? "Autorización" : "Seleccione");
+        String terrenosDominio = (controlador.verTypeProperty().equals("Público")) ? (String) cmbTerrenosDominio.getSelectedItem() : (lbAutorizacion.isSelected() ? "Autorización" : "Seleccione");
         String tipoAprovechamientoA = (String) cmbTipoAprovechamientoA.getSelectedItem();
         String claseManejo = (String) cmbClaseManejo.getSelectedItem();
         String ingresos = txtIngresos.getText().trim();

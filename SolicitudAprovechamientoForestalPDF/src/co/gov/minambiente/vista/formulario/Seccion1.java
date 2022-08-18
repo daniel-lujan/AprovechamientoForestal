@@ -44,27 +44,12 @@ public class Seccion1 extends javax.swing.JFrame {
     private void mostrarSiguienteVentana() {
         this.setVisible(false);
         if (cmbTipoSolicitud.getSelectedIndex() == 2) {
+            controlador.instanciarVentana3();
             controlador.mostrarSeccion2();
         } else {
+            controlador.instanciarVentana3();
             controlador.mostrarSeccion3();
         }
-    }
-
-    public void reescribirInformacion() {
-        cmbTipoSolicitud.getSelectedItem();
-        cmbTipoPersonaInteresado.getSelectedItem();
-        txtNombreInteresado.getText();
-        cmbTipoIdInteresado.getSelectedItem();
-        txtNumeroIdInteresado.getText();
-        txtNombreApoderado.getText();
-        cmbTipoIdApoderado.getSelectedItem();
-        txtNumeroIdApoderado.getText();
-        txtTPApoderado.getText();
-        cmbCalidad.getSelectedItem();
-        txtOtro.getText();
-        cmbTipoPredio.getSelectedItem();
-        txtCosto.getText();
-        txtCostoLetras.getText();
     }
 
     @SuppressWarnings("unchecked")
