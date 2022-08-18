@@ -51,9 +51,9 @@ de 2019, Decreto 690 de 2021,
 -Tipo 1			 Tipo 2			 Cambio definitivo de uso del suelo			 Establecimiento y Manejo
 -4.		Información general del predio
 -4.1. Información del (los) predio(s) a intervenir:
--Nombre del predio:-			 Superficie (ha):-
--Dirección del predio-			 Urbano			 Rural
--Departamento:-			 Municipio:-			 Vereda:-
+-Nombre del predio:	--	Superficie (ha):	-
+-Dirección del predio:	--	Urbano			 Rural
+-Departamento:	--	 Municipio:	--	Vereda:	-
 -Número(s) de matrícula inmobiliaria:-
 -Cédula Catastral (solo si no dispone de la matrícula inmobiliaria)
 -Nota. En caso de que el área para el desarrollo del aprovechamiento forestal o manejo sostenible comprenda más de dos predios a intervenir, el interesado

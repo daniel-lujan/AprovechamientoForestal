@@ -212,7 +212,7 @@ public class PdfController {
                     solicitude.getProperties().get(0).getAdress().getMunicipality(),
                     solicitude.getProperties().get(0).getAdress().getSidewalk() + "\n");
 
-            if (!solicitude.getProperties().get(0).getRealEstateRegistration().equals(null)) {
+           /* if (!solicitude.getProperties().get(0).getRealEstateRegistration().equals(null)) {
                 lineCounter = addBodyLine(p, generatedDoc,
                         lineCounter, solicitude.getProperties().get(0).getRealEstateRegistration() + "\n");
             } else {
@@ -220,9 +220,9 @@ public class PdfController {
                 lineCounter = addBodyLine(p, generatedDoc,
                         lineCounter, solicitude.getProperties().get(0).getCadastralIdNumber() + "\n");
             }
-           /* lineCounter
-
-            setUpParagraph(p, generatedDoc, 27);*/
+           // lineCounter = addTitleLine(p,generatedDoc,lineCounter,8);
+*/
+            setUpParagraph(p, generatedDoc, 27);
 
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
