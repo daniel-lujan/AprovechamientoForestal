@@ -58,7 +58,7 @@ public class ControladorSolicitud {
         seccion4_1 = new Seccion4_1(this);
         seccion4_2 = new Seccion4_2(this);
         seccion5_1 = new Seccion5_1(this);
-        seccion5_2 new Seccion5_2(this);
+        seccion5_2 = new Seccion5_2(this);
         seccion6 = new Seccion6(this);
     }
     
@@ -207,15 +207,6 @@ public class ControladorSolicitud {
             }
         }
         return null;
-    }
-
-    public void guardarSeccion4_2() {
-        if (a.cblCoordenadasPlanas.isSelected()) {
-
-        }
-        if (a.cblCoordenadasGeograficas.isSelected()) {
-
-        }
     }
 
     private static class LinkedLink<T> {
