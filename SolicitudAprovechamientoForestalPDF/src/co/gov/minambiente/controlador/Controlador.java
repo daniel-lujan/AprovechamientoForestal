@@ -6,10 +6,12 @@
 package co.gov.minambiente.controlador;
 
 import static co.gov.minambiente.controlador.Utils.loadMunicipalities;
+import co.gov.minambiente.modelo.AddressModel;
 import co.gov.minambiente.modelo.AttorneyModel;
 import co.gov.minambiente.modelo.CategoryBModel;
 import co.gov.minambiente.modelo.DepartmentModel;
 import co.gov.minambiente.modelo.InterestedModel;
+import co.gov.minambiente.modelo.PropertyModel;
 import co.gov.minambiente.modelo.RequestModel;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
@@ -25,7 +27,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
+
 /**
  *
  * @author Andrés Güiza
@@ -54,9 +58,18 @@ public class Controlador {
         form1.setTypeRequest("nueva");
         form1.setInterested(interested);
         form1.setCategoryB(new CategoryBModel());
+        PropertyModel miCasita = new PropertyModel();
+        miCasita.setName("Casa de Andrés");
+        miCasita.setSurface("101");
+        miCasita.setCadastralIdNumber("55965-41UD4");
+        AddressModel  miDireccion  = new AddressModel();
+        miDireccion.setStreet("Calle de Patricio salvaje");
+        miDireccion.setMunicipality("Municipio de la soledad");
+        miDireccion.setSidewalk("Vereda de tu corason");
+        miDireccion.setDepartment("Departamento del mal");
+        miCasita.setAdress(miDireccion);
+        form1.addProperties(miCasita);
         
-        loadMunicipalities(new File("resources\\MunicipiosDepartamentosColombia.txt"));
-
         PdfController.generateCheckBoxes(generatedDoc, new DeviceRgb(212,216,210));
         PdfController.fillDocument(generatedDoc, form1);
 

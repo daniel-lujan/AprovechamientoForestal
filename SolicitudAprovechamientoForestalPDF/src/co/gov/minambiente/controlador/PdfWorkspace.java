@@ -247,8 +247,9 @@ public class PdfWorkspace {
     /**
      * 
      */
-    public void pasarPagina() {
+    public void pasarPagina(int i) {
         document.add(new AreaBreak());
+        canva =  new PdfCanvas(pdf.getPage(i));
     }
 
     

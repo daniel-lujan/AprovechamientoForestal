@@ -23,7 +23,9 @@ import com.itextpdf.layout.property.TextAlignment;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -43,19 +45,22 @@ public class PdfController {
 
     public static void fillDocument(PdfWorkspace generatedDoc, RequestModel solicitude) throws MalformedURLException, IOException {
 
-        fillPage1(generatedDoc, solicitude);
+        int lineCounter = drawPage1(generatedDoc, solicitude);
+        lineCounter = drawPage2(lineCounter, generatedDoc, solicitude);
+        generatedDoc.crearPdf();
     }
 
-    public static void fillPage1(PdfWorkspace generatedDoc, RequestModel solicitude) {
+    public static int drawPage1(PdfWorkspace generatedDoc, RequestModel solicitude) {
+
         try {
             texts = cargarBD();
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        int lineCounter = 3;
         try {
 
             addHeader(generatedDoc, texts);
-            int lineCounter = 3;
 
             lineCounter = addSingleTitle(generatedDoc, lineCounter, grayBg, 0);
             lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 9);
@@ -111,7 +116,6 @@ public class PdfController {
 
             p.setFixedLeading(20);
             p.setBorder(new SolidBorder(0.75f));
-            //p.setMarginLeft(-5);
             p.setMarginRight(-5);
             p.setPaddingLeft(5);
             p.setRelativePosition(0, -18, 0, 0);
@@ -171,11 +175,74 @@ public class PdfController {
             r.setPaddingTop(5);
             r.setRelativePosition(0, -54, 0, 0);
             generatedDoc.empujarParrafo(r);
-            generatedDoc.crearPdf();
 
         } catch (IOException ex) {
             System.out.println("Error de entrada y salida de datos" + espacio + ex);
         }
+        generatedDoc.pasarPagina(1);
+        return lineCounter;
+    }
+
+    public static int drawPage2(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
+
+        try {
+            addHeader(generatedDoc, texts);
+            Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter, 8);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            setUpParagraph(p, generatedDoc, 9);
+
+            lineCounter = addSingleTitle(generatedDoc, lineCounter, grayBg, 18);
+            p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                    solicitude.getProperties().get(0).getName(),
+                    solicitude.getProperties().get(0).getSurface() + "\n");
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                    solicitude.getProperties().get(0).getAdress().getStreet());
+
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                    solicitude.getProperties().get(0).getAdress().getDepartment(),
+                    solicitude.getProperties().get(0).getAdress().getMunicipality(),
+                    solicitude.getProperties().get(0).getAdress().getSidewalk() + "\n");
+
+            if (!solicitude.getProperties().get(0).getRealEstateRegistration().equals(null)) {
+                lineCounter = addBodyLine(p, generatedDoc,
+                        lineCounter, solicitude.getProperties().get(0).getRealEstateRegistration() + "\n");
+            } else {
+                lineCounter += 2;
+                lineCounter = addBodyLine(p, generatedDoc,
+                        lineCounter, solicitude.getProperties().get(0).getCadastralIdNumber() + "\n");
+            }
+           /* lineCounter
+
+            setUpParagraph(p, generatedDoc, 27);*/
+
+        } catch (IOException ex) {
+            Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lineCounter;
+    }
+
+    /**
+     *
+     * @param p
+     * @param generatedDoc
+     * @param relativePosition
+     */
+    public static void setUpParagraph(Paragraph p, PdfWorkspace generatedDoc, int relativePosition) {
+        p.setFixedLeading(20);
+        p.setBorder(new SolidBorder(0.75f));
+        p.setMarginRight(-5);
+        p.setPaddingLeft(5);
+        p.setRelativePosition(0, 0, 0, relativePosition);
+        generatedDoc.empujarParrafo(p);
     }
 
     /**
@@ -235,8 +302,15 @@ public class PdfController {
         generatedDoc.createRectangle(color, 562, y - 583, 18, 10);
         //Twelft
         generatedDoc.createRectangle(color, 295, y - 623, 18, 10);
-        generatedDoc.createRectangle(color, 351, y - 623, 18, 10);
-        
+        generatedDoc.createRectangle(color, 371, y - 623, 18, 10);
+        //Thirteenth
+        generatedDoc.createRectangle(color, 295, y - 623, 18, 10);
+        generatedDoc.createRectangle(color, 371, y - 623, 18, 10);
+        //Fourtheenth
+        generatedDoc.createRectangle(color, 94, y - 745, 18, 10);
+        generatedDoc.createRectangle(color, 176, y - 745, 18, 10);
+        generatedDoc.createRectangle(color, 252, y - 745, 18, 10);
+
     }
 
     public static int addBodyTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter) throws IOException {
@@ -252,6 +326,15 @@ public class PdfController {
         return lineCounter;
     }
 
+    /**
+     *
+     * @param p
+     * @param generatedDoc
+     * @param lineCounter
+     * @param datas
+     * @return
+     * @throws IOException
+     */
     public static int addBodyTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter, String... datas) throws IOException {
 
         try {
@@ -264,10 +347,29 @@ public class PdfController {
         return lineCounter;
     }
 
+    /**
+     *
+     * @param p
+     * @param generatedDoc
+     * @param lineCounter
+     * @return
+     * @throws IOException
+     */
     public static int addTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter) throws IOException {
 
         try {
             generatedDoc.pushText(p, texts.get(lineCounter), titleFont, 10f);
+            lineCounter++;
+        } catch (IOException e) {
+            System.out.println("Imposible generar la linea, la fuente no es válida");
+        }
+        return lineCounter;
+    }
+    
+    public static int addTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter, int fontSize) throws IOException {
+
+        try {
+            generatedDoc.pushText(p, texts.get(lineCounter), titleFont, 8f);
             lineCounter++;
         } catch (IOException e) {
             System.out.println("Imposible generar la linea, la fuente no es válida");
@@ -365,20 +467,5 @@ public class PdfController {
         encabezado.setTextAlignment(TextAlignment.CENTER);
         encabezado.setMarginRight(-5);
         generatedDoc.empujarParrafo(encabezado);
-    }
-
-    public static void allPagesHeader(PdfWorkspace generatedDoc) throws IOException {
-
-        for (int i = 0; i < 9; i++) {
-            addHeader(generatedDoc, texts);
-            generatedDoc.pasarPagina();
-        }
-        addHeader(generatedDoc, texts);
-
-        Paragraph p = new Paragraph("asdasdasd");
-        generatedDoc.empujarParrafo(p);
-        generatedDoc.getPdf().movePage(10, 9);
-        p = new Paragraph("ailummm");
-        generatedDoc.empujarParrafo(p);
     }
 }
