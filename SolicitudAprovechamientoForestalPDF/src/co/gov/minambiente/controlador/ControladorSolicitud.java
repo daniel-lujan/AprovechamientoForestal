@@ -32,7 +32,7 @@ import java.util.LinkedList;
  * @author Natalia García
  */
 public class ControladorSolicitud {
-    
+
     private static RequestsDatabase requestsDatabase = new RequestsDatabase();
     private RequestModel request;
     private Principal principal;
@@ -48,8 +48,8 @@ public class ControladorSolicitud {
     public ControladorSolicitud() {
         request = new RequestModel(requestsDatabase.getNewReference());
     }
-    
-    public void setPrincipal(Principal principal){
+
+    public void setPrincipal(Principal principal) throws IOException {
         this.principal = new Principal();
         mostrarPrincipal();
     }
@@ -64,40 +64,40 @@ public class ControladorSolicitud {
         seccion5_2 = new Seccion5_2(this);
         seccion6 = new Seccion6(this);
     }
-    
-    public void mostrarPrincipal(){
+
+    public void mostrarPrincipal() {
         principal.setVisible(true);
     }
-    
-    public void mostrarSeccion1(){
+
+    public void mostrarSeccion1() {
         seccion1.setVisible(true);
     }
-    
-    public void mostrarSeccion2(){
+
+    public void mostrarSeccion2() {
         seccion2.setVisible(true);
     }
-    
-    public void mostrarSeccion3(){
+
+    public void mostrarSeccion3() {
         seccion3.setVisible(true);
     }
-    
-    public void mostrarSeccion4_1(){
+
+    public void mostrarSeccion4_1() {
         seccion4_1.setVisible(true);
     }
-    
-    public void mostrarSeccion4_2(){
+
+    public void mostrarSeccion4_2() {
         seccion4_2.setVisible(true);
     }
-    
-    public void mostrarSeccion5_1(){
+
+    public void mostrarSeccion5_1() {
         seccion5_1.setVisible(true);
     }
-    
-    public void mostrarSeccion5_2(){
+
+    public void mostrarSeccion5_2() {
         seccion5_2.setVisible(true);
     }
-    
-    public void mostrarSeccion6(){
+
+    public void mostrarSeccion6() {
         seccion6.setVisible(true);
     }
 
@@ -119,7 +119,7 @@ public class ControladorSolicitud {
         } else {
             request.getInterested().setInterestedQuality(calidad);
         }
-        
+
         request.addProperties(new PropertyModel(tipoPredio));
 
         if (aplicaCosto) {
@@ -189,8 +189,12 @@ public class ControladorSolicitud {
     }
 
     public String getTypeProperty() {
-        LinkedList<PropertyModel> propertys = request.getProperties();
-        return propertys.getFirst().getTypeProperty();
+        try {
+            LinkedList<PropertyModel> propertys = request.getProperties();
+            return propertys.getFirst().getTypeProperty();
+        } catch (Exception exception) {
+            return "";
+        }
     }
 
     public LinkedList<String> cargarDepartamentos() throws IOException {

@@ -376,7 +376,7 @@ public class Seccion6 extends javax.swing.JFrame {
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         JOptionPane.showMessageDialog(null, "Solicitud terminada");
         this.setVisible(false);
-        new Principal().setVisible(true);
+        controlador.mostrarPrincipal();
     }//GEN-LAST:event_btnGuardarMouseClicked
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked

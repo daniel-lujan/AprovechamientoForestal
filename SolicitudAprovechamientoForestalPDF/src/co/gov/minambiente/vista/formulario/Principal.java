@@ -10,18 +10,20 @@ import java.util.logging.Logger;
  * @author Natalia García
  */
 public class Principal extends javax.swing.JFrame {
-    
+
     private ControladorSolicitud controlador;
-    
-    public Principal() {
+
+    public Principal() throws IOException {
         initComponents();
         controlador = new ControladorSolicitud();
+        controlador.instanciarVentanas();
         this.setLocationRelativeTo(null);
     }
-    
-    public Principal(ControladorSolicitud controlador) {
+
+    public Principal(ControladorSolicitud controlador) throws IOException {
         initComponents();
         this.controlador = controlador;
+        controlador.instanciarVentanas();
         this.setLocationRelativeTo(null);
     }
 
@@ -131,7 +133,6 @@ public class Principal extends javax.swing.JFrame {
         try {
             this.setVisible(false);
             controlador.setPrincipal(this);
-            controlador.instanciarVentanas();
             controlador.mostrarSeccion1();
         } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -148,7 +149,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
@@ -196,7 +197,11 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                try {
+                    new Principal().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
