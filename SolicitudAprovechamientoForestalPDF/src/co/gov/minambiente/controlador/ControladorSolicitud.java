@@ -47,7 +47,10 @@ public class ControladorSolicitud {
 
     public ControladorSolicitud() {
         request = new RequestModel(requestsDatabase.getNewReference());
-        principal = new Principal();
+    }
+    
+    public void setPrincipal(Principal principal){
+        this.principal = new Principal();
         mostrarPrincipal();
     }
 

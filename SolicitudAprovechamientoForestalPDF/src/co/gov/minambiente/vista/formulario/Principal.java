@@ -130,6 +130,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
         try {
             this.setVisible(false);
+            controlador.setPrincipal(this);
             controlador.instanciarVentanas();
             controlador.mostrarSeccion1();
         } catch (IOException ex) {
