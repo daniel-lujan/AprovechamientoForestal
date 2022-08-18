@@ -2,9 +2,14 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ButtonModel;
 import javax.swing.table.DefaultTableModel;
+import co.gov.minambiente.controlador.Utils;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +19,18 @@ public class Seccion4_2 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion4_2() {
+    public Seccion4_2(ControladorSolicitud controlador) {
         initComponents();
+        this.controlador = controlador;
     }
 
-   
+    private Object[] getRowPlane(int row){
+        Object[] array = new String[3];
+        array[0] = (short)jTable1.getValueAt(row, 0);
+        array[1] = (String)jTable1.getValueAt(row, 1);
+        array[2] = (String)jTable1.getValueAt(row, 2);
+        return array;
+    }
    
     
    
@@ -221,6 +233,11 @@ public class Seccion4_2 extends javax.swing.JFrame {
                 btnSiguienteMouseClicked(evt);
             }
         });
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
         jPanel5.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 630, -1, -1));
 
         btnAnterior.setText("Anterior");
@@ -391,6 +408,23 @@ public class Seccion4_2 extends javax.swing.JFrame {
         //        this.setVisible(false);
         //        new Seccion5_1(controlador).setVisible(true);
     }//GEN-LAST:event_btnSiguienteMouseClicked
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        ButtonModel selected = buttonGroup3.getSelection();
+        ArrayList<Object[]> list = new ArrayList();
+        Object[] row;
+        if (selected == null){
+            JOptionPane.showMessageDialog(null, "Seleccione un tipo de coordenadas", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (selected == cblCoordenadasPlanas){
+            for (int i = 0; i < 12; i++){
+                row = getRowPlane(i);
+                if ((Utils.stripSpaces((String)row[1])).equals("") || (Utils.stripSpaces((String)row[2])).equals("")){
+                    break;
+                }
+                list.add(row);
+            }
+        }
+    }//GEN-LAST:event_btnSiguienteActionPerformed
     private void setEnabledSection4_2(boolean state) {
         tblPlanas.setEnabled(state);
     }
@@ -436,7 +470,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seccion4_2().setVisible(true);
+                new Seccion4_2(new ControladorSolicitud()).setVisible(true);
             }
         });
     }
@@ -444,10 +478,10 @@ public class Seccion4_2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
-    private javax.swing.JButton btnSiguiente;
+    public javax.swing.JButton btnSiguiente;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JRadioButton cblCoordenadasGeograficas;
-    private javax.swing.JRadioButton cblCoordenadasPlanas;
+    public javax.swing.JRadioButton cblCoordenadasGeograficas;
+    public javax.swing.JRadioButton cblCoordenadasPlanas;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
@@ -491,7 +525,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTable tblGeograficas;
-    private javax.swing.JTable tblPlanas;
+    public javax.swing.JTable tblGeograficas;
+    public javax.swing.JTable tblPlanas;
     // End of variables declaration//GEN-END:variables
 }
