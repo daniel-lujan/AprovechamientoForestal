@@ -29,8 +29,8 @@ public class SpecieModel {
     }
 
     public SpecieModel(double quantity, String unit, String commonName,
-            String scientificName, String habit, String closure, 
-            String threatClassification, String partUsed) {
+            String scientificName, String partUsed, String habit, String closure, 
+            String threatClassification) {
         this.partUsed = partUsed;
         this.quantity = quantity;
         this.unit = unit;
