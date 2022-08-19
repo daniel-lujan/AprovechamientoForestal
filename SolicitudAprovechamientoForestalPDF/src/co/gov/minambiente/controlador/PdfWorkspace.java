@@ -161,7 +161,6 @@ public class PdfWorkspace {
         texto.setFont(auxiliar);
         texto.setFontSize(tamano);
         Paragraph parrafo = new Paragraph(texto);
-        parrafo.setFirstLineIndent(-5);
         parrafo.setFontColor(ColorConstants.BLACK);
         return parrafo;
     }
@@ -303,5 +302,14 @@ public class PdfWorkspace {
         return pdf;
     }
 
+    public Document getDocument() {
+        return document;
+    }
+
+    public void setDocument(Document document) {
+        this.document = document;
+    }
+
+    
 
 }

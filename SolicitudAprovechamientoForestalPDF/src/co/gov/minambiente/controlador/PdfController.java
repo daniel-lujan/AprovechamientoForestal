@@ -14,12 +14,17 @@ import co.gov.minambiente.modelo.RequestModel;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import static com.itextpdf.kernel.pdf.PdfName.Page;
+import static com.itextpdf.kernel.pdf.PdfName.Table;
+import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.borders.SolidBorder;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Tab;
 import com.itextpdf.layout.element.TabStop;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -41,6 +46,7 @@ public class PdfController {
     public static String bodyFont = "ArialMT.ttf";
     public static Color grayBg = new DeviceRgb(200, 188, 190);
     public static Color greenBg = new DeviceRgb(185, 229, 161);
+    public static Color whiteBg = new DeviceRgb(0, 0, 0);
     public static Color blueBg = new DeviceRgb(152, 228, 235);
 
     public static void fillDocument(PdfWorkspace generatedDoc, RequestModel solicitude) throws MalformedURLException, IOException {
@@ -117,6 +123,7 @@ public class PdfController {
             p.setFixedLeading(20);
             p.setBorder(new SolidBorder(0.75f));
             p.setMarginRight(-5);
+            p.setMarginLeft(-5);
             p.setPaddingLeft(5);
             p.setRelativePosition(0, -18, 0, 0);
             generatedDoc.empujarParrafo(p);
@@ -128,10 +135,10 @@ public class PdfController {
             lineCounter = addBodyLine(q, generatedDoc, lineCounter, solicitude.getFileNumber() + "\n");
             lineCounter = addBodyLine(q, generatedDoc, lineCounter, String.valueOf(solicitude.getActNumber()) + "\n");
             lineCounter = addBodyTitleLine(q, generatedDoc, lineCounter);
-
+            
             q.setFixedLeading(20);
             q.setBorder(new SolidBorder(0.75f));
-            //q.setMarginLeft(-5);
+            q.setMarginLeft(-5);
             q.setMarginRight(-5);
             q.setRelativePosition(0, -36, 0, 0);
             q.setPaddingTop(5);
@@ -169,7 +176,7 @@ public class PdfController {
             lineCounter = addTitleLine(r, generatedDoc, lineCounter);
             r.setFixedLeading(20);
             r.setBorder(new SolidBorder(0.75f));
-            //r.setMarginLeft(-5);
+            r.setMarginLeft(-5);
             r.setMarginRight(-5);
             r.setPaddingLeft(5);
             r.setPaddingTop(5);
@@ -179,69 +186,230 @@ public class PdfController {
         } catch (IOException ex) {
             System.out.println("Error de entrada y salida de datos" + espacio + ex);
         }
-        generatedDoc.pasarPagina(1);
+        generatedDoc.pasarPagina(2);
         return lineCounter;
     }
 
+    /**
+     * 
+     * @param lineCounter
+     * @param generatedDoc
+     * @param solicitude
+     * @return 
+     */
     public static int drawPage2(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
 
         try {
             addHeader(generatedDoc, texts);
             Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
-
+            
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter, 8);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-            setUpParagraph(p, generatedDoc, 9);
-
-            lineCounter = addSingleTitle(generatedDoc, lineCounter, grayBg, 18);
+            setUpParagraph(p, generatedDoc, 9, 20);
+            
+            lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 18);
             p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
+            p.add(new Text("\n"));
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
-
+            p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter,
                     solicitude.getProperties().get(0).getName(),
                     solicitude.getProperties().get(0).getSurface() + "\n");
+            p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter,
                     solicitude.getProperties().get(0).getAdress().getStreet());
-
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-
+            p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter,
                     solicitude.getProperties().get(0).getAdress().getDepartment(),
                     solicitude.getProperties().get(0).getAdress().getMunicipality(),
                     solicitude.getProperties().get(0).getAdress().getSidewalk() + "\n");
-
-           /* if (!solicitude.getProperties().get(0).getRealEstateRegistration().equals(null)) {
+            p.add(new Text("\n"));
+            
+            if (!solicitude.getProperties().get(0).getRealEstateRegistration().equals("")) {
                 lineCounter = addBodyLine(p, generatedDoc,
                         lineCounter, solicitude.getProperties().get(0).getRealEstateRegistration() + "\n");
-            } else {
-                lineCounter += 2;
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+                p.add(new Text("\n"));
+            } else{
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter, "\n");
+                p.add(new Text("\n"));
                 lineCounter = addBodyLine(p, generatedDoc,
                         lineCounter, solicitude.getProperties().get(0).getCadastralIdNumber() + "\n");
+                p.add(new Text("\n"));
             }
-           // lineCounter = addTitleLine(p,generatedDoc,lineCounter,8);
-*/
-            setUpParagraph(p, generatedDoc, 27);
+            
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
 
-        } catch (IOException ex) {
+            Table t = createTable1(generatedDoc);
+            p.add(t);      
+            p.add(new Text ("\n \n"));
+  
+            Table t2 = createTable2(generatedDoc);
+            p.add(t2);
+            p.add(new Text("\n \n"));
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
+
+            setUpParagraph(p, generatedDoc, 27, 10);
+            
+            generatedDoc.pasarPagina(3);
+            
+        } catch (IOException ex){
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
     }
+    
+    /**
+     * 
+     * @param generatedDoc
+     * @return
+     * @throws IOException 
+     */
+    private static Table createTable2(PdfWorkspace generatedDoc) throws IOException{
+        
+        Table table = new Table(UnitValue.createPercentArray(8)).setWidth(450).setRelativePosition(50, 0, 0, 0);
+        
+        Paragraph q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Coordenadas geograficas"), titleFont, 8.5f);
+        Cell cell = new Cell (1,8).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Punto"), titleFont, 8.5f);
+        Cell cell21 = new Cell(2,1).add(q).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell21).setTextAlignment(TextAlignment.CENTER);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Latitud"), titleFont, 8.5f);
+        Cell cell22 = new Cell(1,3).add(q).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell22).setTextAlignment(TextAlignment.CENTER);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Longitud"), titleFont, 8.5f);
+        Cell cell25 = new Cell(1,3).add(q).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell25).setTextAlignment(TextAlignment.CENTER);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Punto"), titleFont, 8.5f);
+        Cell cell28 = new Cell(2, 1).add(q).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell28).setTextAlignment(TextAlignment.CENTER);
 
+        String[] textFields = {"Grados", "Minutos", "Segundos", "Grados", "Minutos", "Segundos"};
+        for (String textField : textFields) {
+            q = new Paragraph();
+            generatedDoc.pushText(q, new Text(textField), titleFont, 8.5f);
+            Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
+            table.addHeaderCell(temporal);
+        }
+        
+        for (int i = 0; i < 96; i++) {
+            q = new Paragraph();
+            generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
+            Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER);
+            table.addCell(temporal).setMinHeight(175);
+        }
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Origen"), titleFont, 8.5f);
+        Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
+        table.addFooterCell(temporal).setMinHeight(175);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
+        Cell cellFinal = new Cell (1,7).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addFooterCell(cellFinal).setMinHeight(175);
+
+        return table;
+    }
+    
+    /**
+     * 
+     * @param generatedDoc
+     * @return 
+     */
+    public static Table createTable1(PdfWorkspace generatedDoc){
+        
+        Table table = new Table(UnitValue.createPercentArray(3)).setWidth(450).setRelativePosition(50, 0, 0, 0);
+        
+        try {
+            Paragraph q = new Paragraph();
+            generatedDoc.pushText(q, new Text("Coordenadas planas"), titleFont, 8.5f);
+            Cell cell = new Cell(1,3).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+            table.addHeaderCell(cell);
+            
+            Paragraph c = new Paragraph();
+            generatedDoc.pushText(c, new Text("Punto"), titleFont, 8.5f);
+            Cell cell21 = new Cell().add(c.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+            Paragraph x = new Paragraph();
+            generatedDoc.pushText(x, new Text("X"), titleFont, 8.5f);
+            Cell cell22 = new Cell().add(x.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+            Paragraph y = new Paragraph();
+            generatedDoc.pushText(y, new Text("Y"), titleFont, 8.5f);
+            Cell cell23 = new Cell().add(y.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+            
+            table.addHeaderCell(cell21).setTextAlignment(TextAlignment.CENTER);
+            table.addHeaderCell(cell22).setTextAlignment(TextAlignment.CENTER);
+            table.addHeaderCell(cell23).setTextAlignment(TextAlignment.CENTER);
+
+            for (int i = 0; i < 36; i++) {
+                q = new Paragraph();
+                generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
+                Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER);
+                table.addCell(temporal).setMinHeight(175);
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return table;  
+    } 
+    
     /**
      *
      * @param p
      * @param generatedDoc
      * @param relativePosition
      */
-    public static void setUpParagraph(Paragraph p, PdfWorkspace generatedDoc, int relativePosition) {
-        p.setFixedLeading(20);
+    public static void setUpParagraph(Paragraph p, PdfWorkspace generatedDoc, int relativePosition, int leading) {
+        p.setFixedLeading(leading);
         p.setBorder(new SolidBorder(0.75f));
         p.setMarginRight(-5);
+        p.setMarginLeft(-5);
         p.setPaddingLeft(5);
         p.setRelativePosition(0, 0, 0, relativePosition);
+
+        /*switch (position) {
+            case ('s'):
+                p.setBorderBottom(Border.NO_BORDER);
+                break;
+            case ('m'):
+                p.setBorderTop(Border.NO_BORDER);
+                p.setBorderBottom(Border.NO_BORDER);
+                break;
+
+            case ('l'):
+                p.setBorderTop(Border.NO_BORDER);
+                p.setBorderBottom(Border.NO_BORDER);
+                break;
+            default:
+                break;
+        }*/
+
         generatedDoc.empujarParrafo(p);
     }
 
@@ -251,7 +419,7 @@ public class PdfController {
      * @param generatedDoc
      * @param color
      */
-    public static void generateCheckBoxes(PdfWorkspace generatedDoc, Color color) {
+    public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color) {
 
         int y = 817;
 
@@ -272,44 +440,44 @@ public class PdfController {
         generatedDoc.createRectangle(color, 191, y - 140, 18, 10);
         generatedDoc.createRectangle(color, 236, y - 140, 18, 10);
         //Fifth
-        generatedDoc.createRectangle(color, 88, y - 180, 18, 10);
-        generatedDoc.createRectangle(color, 159, y - 180, 18, 10);
-        generatedDoc.createRectangle(color, 226, y - 180, 18, 10);
-        generatedDoc.createRectangle(color, 296, y - 180, 18, 10);
-        generatedDoc.createRectangle(color, 371, y - 180, 18, 10);
-        generatedDoc.createRectangle(color, 459, y - 180, 18, 10);
+        generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+        generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+        generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+        generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+        generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+        generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
         //sixth
-        generatedDoc.createRectangle(color, 126, y - 200, 18, 10);
-        generatedDoc.createRectangle(color, 239, y - 200, 18, 10);
-        generatedDoc.createRectangle(color, 289, y - 200, 18, 10);
+        generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+        generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+        generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
         //Seventh
-        generatedDoc.createRectangle(color, 146, y - 240, 18, 10);
-        generatedDoc.createRectangle(color, 216, y - 240, 18, 10);
-        generatedDoc.createRectangle(color, 279, y - 240, 18, 10);
+        generatedDoc.createRectangle(color, 143, y - 240, 18, 10);
+        generatedDoc.createRectangle(color, 213, y - 240, 18, 10);
+        generatedDoc.createRectangle(color, 276, y - 240, 18, 10);
         //Eight
-        generatedDoc.createRectangle(color, 157, y - 483, 18, 10);
-        generatedDoc.createRectangle(color, 210, y - 483, 18, 10);
-        generatedDoc.createRectangle(color, 295, y - 483, 18, 10);
-        generatedDoc.createRectangle(color, 405, y - 483, 18, 10);
+        generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
+        generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
+        generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
+        generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
         //ninth
-        generatedDoc.createRectangle(color, 265, y - 503, 18, 10);
+        generatedDoc.createRectangle(color, 262, y - 503, 18, 10);
         //Tenth
-        generatedDoc.createRectangle(color, 183, y - 563, 18, 10);
+        generatedDoc.createRectangle(color, 180, y - 563, 18, 10);
         //Eleventh
-        generatedDoc.createRectangle(color, 295, y - 583, 18, 10);
-        generatedDoc.createRectangle(color, 351, y - 583, 18, 10);
-        generatedDoc.createRectangle(color, 426, y - 583, 18, 10);
-        generatedDoc.createRectangle(color, 562, y - 583, 18, 10);
+        generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
+        generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
+        generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
+        generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
         //Twelft
-        generatedDoc.createRectangle(color, 295, y - 623, 18, 10);
-        generatedDoc.createRectangle(color, 371, y - 623, 18, 10);
+        generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
+        generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
         //Thirteenth
-        generatedDoc.createRectangle(color, 295, y - 623, 18, 10);
-        generatedDoc.createRectangle(color, 371, y - 623, 18, 10);
+        generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
+        generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
         //Fourtheenth
-        generatedDoc.createRectangle(color, 94, y - 745, 18, 10);
-        generatedDoc.createRectangle(color, 176, y - 745, 18, 10);
-        generatedDoc.createRectangle(color, 252, y - 745, 18, 10);
+        generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
+        generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
+        generatedDoc.createRectangle(color, 249, y - 745, 18, 10);
 
     }
 
@@ -365,7 +533,7 @@ public class PdfController {
         }
         return lineCounter;
     }
-    
+
     public static int addTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter, int fontSize) throws IOException {
 
         try {
@@ -427,7 +595,7 @@ public class PdfController {
         Paragraph title = generatedDoc.nuevoParrafo(new Text(espacio + espacio), "ArialNarrowBold.ttf", 10f);
         generatedDoc.pushText(title, texts.get(i), "ArialNarrowBold.ttf", 10f);
         title.setBorder(new SolidBorder(0.75f));
-        //title.setMarginLeft(-5);
+        title.setMarginLeft(-5);
         title.setMarginRight(-5);
         title.setPaddingLeft(5);
         i++;

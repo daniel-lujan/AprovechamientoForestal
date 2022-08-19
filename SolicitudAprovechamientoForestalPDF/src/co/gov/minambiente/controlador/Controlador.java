@@ -70,7 +70,7 @@ public class Controlador {
         miCasita.setAdress(miDireccion);
         form1.addProperties(miCasita);
         
-        PdfController.generateCheckBoxes(generatedDoc, new DeviceRgb(212,216,210));
+        PdfController.generateCheckBoxes1(generatedDoc, new DeviceRgb(212,216,210));
         PdfController.fillDocument(generatedDoc, form1);
 
     }
