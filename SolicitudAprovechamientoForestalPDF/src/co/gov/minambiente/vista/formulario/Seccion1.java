@@ -1,6 +1,8 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,16 +16,6 @@ public class Seccion1 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion1() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        this.controlador = new ControladorSolicitud();
-        txtOtro.setEnabled(false);
-        txtCosto.setEnabled(false);
-        txtCostoLetras.setEnabled(false);
-        setEnabledApoderado(false);
-    }
-
     public Seccion1(ControladorSolicitud controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -32,6 +24,12 @@ public class Seccion1 extends javax.swing.JFrame {
         txtCosto.setEnabled(false);
         txtCostoLetras.setEnabled(false);
         setEnabledApoderado(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mostrarMenuPrincipal();
+            }
+        });
     }
 
     private void setEnabledApoderado(boolean state) {
@@ -48,6 +46,14 @@ public class Seccion1 extends javax.swing.JFrame {
         } else {
             controlador.mostrarSeccion3();
         }
+    }
+    
+    public void mostrarMenuPrincipal(){
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
     }
 
     @SuppressWarnings("unchecked")
@@ -107,7 +113,7 @@ public class Seccion1 extends javax.swing.JFrame {
             }
         });
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("1. Datos del interesado");
@@ -723,10 +729,7 @@ public class Seccion1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-        if (JOptionPane.showConfirmDialog(null, "Si vuelve al menu principal, perderá la información diligenciada.") == 0){
-            this.setVisible(false);
-            controlador.mostrarPrincipal();
-        }
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void cmbTipoIdApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdApoderadoActionPerformed
@@ -873,10 +876,10 @@ public class Seccion1 extends javax.swing.JFrame {
 
     private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
         int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
-        if(opcion == 0){
+        if (opcion == 0) {
             this.setVisible(false);
             controlador.mostrarPrincipal();
-        } 
+        }
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
@@ -916,7 +919,7 @@ public class Seccion1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seccion1().setVisible(true);
+                new Seccion1(new ControladorSolicitud()).setVisible(true);
             }
         });
     }

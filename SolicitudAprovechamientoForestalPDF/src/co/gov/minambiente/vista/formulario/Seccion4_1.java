@@ -2,6 +2,8 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.modelo.DepartmentModel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,22 +19,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion4_1() throws IOException {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        LinkedList<String> departamentos = controlador.cargarDepartamentos();
-        cmbDepartamento.addItem("Seleccione");
-        for (String departamento : departamentos) {
-            cmbDepartamento.addItem(departamento);
-        }
-        cmbDepartamento.setSelectedIndex(0);
-        cmbMunicipio.addItem("Seleccione");
-        cmbMunicipio.setEnabled(false);
-        txtVereda.setEnabled(false);
-        txtMatriculaInmobiliaria.setEnabled(false);
-        txtCedulaCatastral.setEnabled(false);
-    }
-
     public Seccion4_1(ControladorSolicitud controlador) throws IOException {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -47,11 +33,25 @@ public class Seccion4_1 extends javax.swing.JFrame {
         txtVereda.setEnabled(false);
         txtMatriculaInmobiliaria.setEnabled(false);
         txtCedulaCatastral.setEnabled(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mostrarMenuPrincipal();
+            }
+        });
     }
 
     private void mostrarSiguienteVentana() {
         this.setVisible(false);
         controlador.mostrarSeccion4_2();
+    }
+    
+    public void mostrarMenuPrincipal(){
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
     }
 
     /**
@@ -94,7 +94,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
         txtVereda = new javax.swing.JTextField();
         btnPrincipal = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("4. Información general del predio");
@@ -584,11 +584,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaCatastralKeyTyped
 
     private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
-        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
-        if(opcion == 0){
-            this.setVisible(false);
-            controlador.mostrarPrincipal();
-        } 
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
@@ -627,7 +623,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Seccion4_1().setVisible(true);
+                    new Seccion4_1(new ControladorSolicitud()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Seccion4_1.class.getName()).log(Level.SEVERE, null, ex);
                 }

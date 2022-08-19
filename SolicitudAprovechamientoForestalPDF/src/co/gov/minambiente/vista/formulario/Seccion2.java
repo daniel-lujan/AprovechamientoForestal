@@ -1,6 +1,8 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,15 +16,24 @@ public class Seccion2 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion2() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
-
     public Seccion2(ControladorSolicitud controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.controlador = controlador;
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mostrarMenuPrincipal();
+            }
+        });
+    }
+    
+    public void mostrarMenuPrincipal(){
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
     }
 
     @SuppressWarnings("unchecked")
@@ -42,7 +53,7 @@ public class Seccion2 extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         btnPrincipal = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("2. Si es una prórroga de un aprovechamiento o manejo sotenible aprobado");
@@ -231,11 +242,7 @@ public class Seccion2 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroActoKeyTyped
 
     private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
-        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
-        if(opcion == 0){
-            this.setVisible(false);
-            controlador.mostrarPrincipal();
-        } 
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
@@ -275,7 +282,7 @@ public class Seccion2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seccion2().setVisible(true);
+                new Seccion2(new ControladorSolicitud()).setVisible(true);
             }
         });
     }

@@ -1,6 +1,8 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.logging.Level;
@@ -16,14 +18,6 @@ public class Seccion5_2 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion5_2() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        setEnabledSection1(false);
-        setEnabledSection3(false);
-        setEnabledSection4(false);
-    }
-
     public Seccion5_2(ControladorSolicitud controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,6 +25,20 @@ public class Seccion5_2 extends javax.swing.JFrame {
         setEnabledSection1(false);
         setEnabledSection3(false);
         setEnabledSection4(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mostrarMenuPrincipal();
+            }
+        });
+    }
+    
+    public void mostrarMenuPrincipal(){
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
     }
 
     private void setEnabledSection1(boolean state) {
@@ -87,7 +95,7 @@ public class Seccion5_2 extends javax.swing.JFrame {
         txtOtro1 = new javax.swing.JTextField();
         btnPrincipal = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("    flora silvestre y los productos forestales no maderables");
@@ -516,11 +524,7 @@ public class Seccion5_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbActividadActionPerformed
 
     private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
-        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
-        if(opcion == 0){
-            this.setVisible(false);
-            controlador.mostrarPrincipal();
-        } 
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
     /**

@@ -3,6 +3,8 @@ package co.gov.minambiente.vista.formulario;
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.vista.formulario.Seccion5_2;
 import java.awt.Point;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
@@ -14,18 +16,27 @@ import javax.swing.table.TableModel;
 public class Seccion5_1 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
-
-    public Seccion5_1() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-    }
-
+    
     public Seccion5_1(ControladorSolicitud controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.controlador = controlador;
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mostrarMenuPrincipal();
+            }
+        });
     }
-
+    
+    public void mostrarMenuPrincipal(){
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,7 +61,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
         txtUso = new javax.swing.JTextArea();
         btnPrincipal = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("    flora silvestre y los productos forestales no maderables");
@@ -333,11 +344,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tblEspeciesMousePressed
 
     private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
-        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
-        if (opcion == 0) {
-            this.setVisible(false);
-            controlador.mostrarPrincipal();
-        }
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
     /**
@@ -377,7 +384,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seccion5_1().setVisible(true);
+                new Seccion5_1(new ControladorSolicitud()).setVisible(true);
             }
         });
     }

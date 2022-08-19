@@ -1,6 +1,8 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -16,16 +18,6 @@ public class Seccion3 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion3() {
-        initComponents();
-        this.setLocationRelativeTo(null);
-        cmbCategoriaAsociada.setEnabled(false);
-        setEnabledSection1(false);
-        setEnabledSection2(false);
-        setEnabledSection4(false);
-        setEnabledHowToAcquire();
-    }
-
     public Seccion3(ControladorSolicitud controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -35,8 +27,22 @@ public class Seccion3 extends javax.swing.JFrame {
         setEnabledSection2(false);
         setEnabledSection4(false);
         setEnabledHowToAcquire();
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                mostrarMenuPrincipal();
+            }
+        });
     }
-
+    
+    public void mostrarMenuPrincipal(){
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -74,7 +80,7 @@ public class Seccion3 extends javax.swing.JFrame {
         lbD = new javax.swing.JCheckBox();
         btnPrincipal = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("3. Descripción detallada de la solicitud");
@@ -370,7 +376,7 @@ public class Seccion3 extends javax.swing.JFrame {
                     .addComponent(btnAnterior)
                     .addComponent(btnSiguiente)
                     .addComponent(btnPrincipal))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -381,7 +387,9 @@ public class Seccion3 extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -612,7 +620,7 @@ public class Seccion3 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
-        // TODO add your handling code here:
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalActionPerformed
 
     /**
@@ -652,7 +660,7 @@ public class Seccion3 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seccion3().setVisible(true);
+                new Seccion3(new ControladorSolicitud()).setVisible(true);
             }
         });
     }
