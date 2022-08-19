@@ -252,13 +252,14 @@ public class Seccion5_1 extends javax.swing.JFrame {
     private void btnSiguiente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguiente1MouseClicked
         ArrayList<ArrayList<String>> datosTabla = new ArrayList<>();
 
-        for (int row = 1; row < tblEspecies.getRowCount(); row++) {
+        for (int row = 0; row < tblEspecies.getRowCount(); row++) {
             if (tblEspecies.getValueAt(row, 1) != null && tblEspecies.getValueAt(row, 2) != null && tblEspecies.getValueAt(row, 3) != null
                     && tblEspecies.getValueAt(row, 4) != null && tblEspecies.getValueAt(row, 5) != null
                     && tblEspecies.getValueAt(row, 6) != null && tblEspecies.getValueAt(row, 7) != null
                     && tblEspecies.getValueAt(row, 8) != null) {
+                System.out.println("Adentro");
                 ArrayList<String> array = new ArrayList<>();
-                array.add((String)tblEspecies.getValueAt(row, 1));
+                array.add(String.valueOf(tblEspecies.getValueAt(row, 1)));
                 array.add((String)tblEspecies.getValueAt(row, 2));
                 array.add((String)tblEspecies.getValueAt(row, 3));
                 array.add((String)tblEspecies.getValueAt(row, 4));
@@ -270,6 +271,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
             }
         }
         
+        System.out.println(datosTabla);
         for(ArrayList<String> fila : datosTabla){
             for(String s : fila){
                 System.out.println(s);
