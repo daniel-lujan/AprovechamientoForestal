@@ -271,20 +271,20 @@ public class Seccion5_1 extends javax.swing.JFrame {
                 System.out.println("Adentro");
                 ArrayList<String> array = new ArrayList<>();
                 array.add(String.valueOf(tblEspecies.getValueAt(row, 1)));
-                array.add((String)tblEspecies.getValueAt(row, 2));
-                array.add((String)tblEspecies.getValueAt(row, 3));
-                array.add((String)tblEspecies.getValueAt(row, 4));
-                array.add((String)tblEspecies.getValueAt(row, 5));
-                array.add((String)tblEspecies.getValueAt(row, 6));
-                array.add((String)tblEspecies.getValueAt(row, 7));
-                array.add((String)tblEspecies.getValueAt(row, 8));
+                array.add((String) tblEspecies.getValueAt(row, 2));
+                array.add((String) tblEspecies.getValueAt(row, 3));
+                array.add((String) tblEspecies.getValueAt(row, 4));
+                array.add((String) tblEspecies.getValueAt(row, 5));
+                array.add((String) tblEspecies.getValueAt(row, 6));
+                array.add((String) tblEspecies.getValueAt(row, 7));
+                array.add((String) tblEspecies.getValueAt(row, 8));
                 datosTabla.add(array);
             }
         }
-        
+
         System.out.println(datosTabla);
-        for(ArrayList<String> fila : datosTabla){
-            for(String s : fila){
+        for (ArrayList<String> fila : datosTabla) {
+            for (String s : fila) {
                 System.out.println(s);
             }
         }
@@ -295,19 +295,23 @@ public class Seccion5_1 extends javax.swing.JFrame {
         if (!metodo.equals("Seleccione") && !uso.equals("")) {
             controlador.guardarInformacionSeccion5_1(metodo, datosTabla, uso);
             this.setVisible(false);
-            controlador.mostrarSeccion5_2();
+            if (controlador.esCategoriaC()) {
+                controlador.mostrarSeccion5_2();
+            } else {
+                controlador.mostrarSeccion6();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
         }
     }//GEN-LAST:event_btnSiguiente1MouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        this.setVisible(false);
-        controlador.mostrarSeccion4_2();
+
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-
+        this.setVisible(false);
+        controlador.mostrarSeccion4_2();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void txtUsoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsoKeyTyped
@@ -330,7 +334,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
 
     private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
         int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
-        if(opcion == 0){
+        if (opcion == 0) {
             this.setVisible(false);
             controlador.mostrarPrincipal();
         }

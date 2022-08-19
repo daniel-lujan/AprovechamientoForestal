@@ -43,11 +43,14 @@ public class ControladorSolicitud {
             seccion5_2 = new Seccion5_2(this);
             seccion6 = new Seccion6(this);
         } catch (IOException e) {
-
+            System.out.println("No se instancian");
         }
     }
     
-
+    public void instanciarVentana3(){
+        seccion3 = new Seccion3(this);
+    }
+    
     public void mostrarPrincipal() {
         principal.mostrar();
     }
@@ -61,6 +64,9 @@ public class ControladorSolicitud {
     }
 
     public void mostrarSeccion3() {
+        if (seccion3 == null){
+            instanciarVentana3();
+        }
         seccion3.setVisible(true);
     }
 
@@ -235,6 +241,13 @@ public class ControladorSolicitud {
 
     public void guardarSolicitudEnBaseDeDatos(){
         RequestsDatabase.add(request);
+    }
+    
+    public boolean esCategoriaC(){
+        String A = request.getCategoryA().getTypeUtilization();
+        String B = request.getCategoryB().getTypeOperation();
+        String D = request.getCategoryD().getTypeUtilization();
+        return A.equals("") && B.equals("") && D.equals("");
     }
     
     public String verTypeProperty() {
