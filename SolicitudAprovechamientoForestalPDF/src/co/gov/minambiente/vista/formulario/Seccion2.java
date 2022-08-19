@@ -40,6 +40,7 @@ public class Seccion2 extends javax.swing.JFrame {
         btnSiguiente = new javax.swing.JButton();
         btnAnterior = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        btnPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +101,18 @@ public class Seccion2 extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel4.setText("Indique el número de acto administrativo mediante el cual se otorgó el derecho al uso del recurso forestal (permiso, asociación, concesión forestal o");
 
+        btnPrincipal.setText("Volver a la ventana principal");
+        btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrincipalMouseClicked(evt);
+            }
+        });
+        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -119,7 +132,9 @@ public class Seccion2 extends javax.swing.JFrame {
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAnterior)
-                        .addGap(637, 637, 637)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPrincipal)
+                        .addGap(445, 445, 445)
                         .addComponent(btnSiguiente))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,7 +158,9 @@ public class Seccion2 extends javax.swing.JFrame {
                 .addComponent(jLabel26)
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAnterior)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAnterior)
+                        .addComponent(btnPrincipal))
                     .addComponent(btnSiguiente))
                 .addContainerGap(13, Short.MAX_VALUE))
         );
@@ -213,6 +230,18 @@ public class Seccion2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNumeroActoKeyTyped
 
+    private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
+    }//GEN-LAST:event_btnPrincipalMouseClicked
+
+    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrincipalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -253,6 +282,7 @@ public class Seccion2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnPrincipal;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;

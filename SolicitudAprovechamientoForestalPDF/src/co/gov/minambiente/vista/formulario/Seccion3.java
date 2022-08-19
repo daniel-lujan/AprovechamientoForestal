@@ -72,6 +72,7 @@ public class Seccion3 extends javax.swing.JFrame {
         lbB = new javax.swing.JCheckBox();
         lbC = new javax.swing.JCheckBox();
         lbD = new javax.swing.JCheckBox();
+        btnPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -232,6 +233,18 @@ public class Seccion3 extends javax.swing.JFrame {
             }
         });
 
+        btnPrincipal.setText("Volver a la ventana principal");
+        btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrincipalMouseClicked(evt);
+            }
+        });
+        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -289,6 +302,8 @@ public class Seccion3 extends javax.swing.JFrame {
                         .addGap(734, 734, 734))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnAnterior)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnPrincipal)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSiguiente)
                         .addGap(133, 133, 133))))
@@ -353,7 +368,8 @@ public class Seccion3 extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAnterior)
-                    .addComponent(btnSiguiente))
+                    .addComponent(btnSiguiente)
+                    .addComponent(btnPrincipal))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -587,6 +603,18 @@ public class Seccion3 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lbDActionPerformed
 
+    private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
+    }//GEN-LAST:event_btnPrincipalMouseClicked
+
+    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrincipalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -631,6 +659,7 @@ public class Seccion3 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnPrincipal;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;

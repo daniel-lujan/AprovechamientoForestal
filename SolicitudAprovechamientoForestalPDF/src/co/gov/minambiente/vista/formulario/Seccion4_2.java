@@ -144,6 +144,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        btnPrincipal = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel1.setText("4. Información general del predio");
@@ -423,6 +424,19 @@ public class Seccion4_2 extends javax.swing.JFrame {
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
         jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 300, -1));
 
+        btnPrincipal.setText("Volver a la ventana principal");
+        btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrincipalMouseClicked(evt);
+            }
+        });
+        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrincipalActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 620, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -468,6 +482,18 @@ public class Seccion4_2 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.","INFO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnSiguienteMouseClicked
+
+    private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
+    }//GEN-LAST:event_btnPrincipalMouseClicked
+
+    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrincipalActionPerformed
     private void setEnabledSection4_2(boolean state) {
         tblPlanas.setEnabled(state);
     }
@@ -523,6 +549,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnPrincipal;
     public javax.swing.JButton btnSiguiente;
     private javax.swing.ButtonGroup buttonGroup3;
     public javax.swing.JRadioButton cblCoordenadasGeograficas;

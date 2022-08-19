@@ -85,6 +85,7 @@ public class Seccion5_2 extends javax.swing.JFrame {
         cmbTipo = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         txtOtro1 = new javax.swing.JTextField();
+        btnPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,6 +225,13 @@ public class Seccion5_2 extends javax.swing.JFrame {
             }
         });
 
+        btnPrincipal.setText("Volver a la ventana principal");
+        btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrincipalMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -231,6 +239,8 @@ public class Seccion5_2 extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addComponent(btnAnterior)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPrincipal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSiguiente2)
                 .addGap(41, 41, 41))
@@ -325,9 +335,9 @@ public class Seccion5_2 extends javax.swing.JFrame {
                         .addComponent(jLabel23)))
                 .addGap(18, 18, 18)
                 .addComponent(cmb2)
-                .addGap(18, 18, 18)
+                .addGap(11, 11, 11)
                 .addComponent(cmb3)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel19)
@@ -356,7 +366,8 @@ public class Seccion5_2 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAnterior)
-                    .addComponent(btnSiguiente2))
+                    .addComponent(btnSiguiente2)
+                    .addComponent(btnPrincipal))
                 .addGap(11, 11, 11))
         );
 
@@ -504,6 +515,14 @@ public class Seccion5_2 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cmbActividadActionPerformed
 
+    private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
+        int opcion = JOptionPane.showConfirmDialog(null, "Toda la información escrita previamente se eliminará", "¿Está seguro?", JOptionPane.YES_NO_OPTION);
+        if(opcion == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        } 
+    }//GEN-LAST:event_btnPrincipalMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -548,6 +567,7 @@ public class Seccion5_2 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnPrincipal;
     public javax.swing.JButton btnSiguiente2;
     private javax.swing.ButtonGroup buttonGroup1;
     public javax.swing.JRadioButton cmb1;
