@@ -2,7 +2,9 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.vista.formulario.Seccion5_2;
+import java.awt.Point;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -122,6 +124,16 @@ public class Seccion5_1 extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblEspecies.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblEspeciesMousePressed(evt);
+            }
+        });
+        tblEspecies.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tblEspeciesKeyTyped(evt);
             }
         });
         jScrollPane1.setViewportView(tblEspecies);
@@ -279,6 +291,20 @@ public class Seccion5_1 extends javax.swing.JFrame {
     private void btnSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente1ActionPerformed
 
     }//GEN-LAST:event_btnSiguiente1ActionPerformed
+
+    private void tblEspeciesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblEspeciesKeyTyped
+
+    }//GEN-LAST:event_tblEspeciesKeyTyped
+
+    private void tblEspeciesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEspeciesMousePressed
+        /**if (evt.getClickCount() > 1) {
+            Point point = evt.getPoint();
+            int row = tblEspecies.rowAtPoint(point);
+            int column = tblEspecies.columnAtPoint(point);
+            TableModel model = tblEspecies.getModel();
+            JOptionPane.showMessageDialog(this, model.getValueAt(row, column));
+        }**/
+    }//GEN-LAST:event_tblEspeciesMousePressed
 
     /**
      * @param args the command line arguments
