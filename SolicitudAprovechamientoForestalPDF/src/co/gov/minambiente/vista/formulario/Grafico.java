@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author valer
+ * @author valeria
  */
 public class Grafico extends javax.swing.JFrame {
 
