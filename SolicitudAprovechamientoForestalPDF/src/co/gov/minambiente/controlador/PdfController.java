@@ -11,6 +11,7 @@ import co.gov.minambiente.modelo.CategoryCModel;
 import co.gov.minambiente.modelo.CategoryDModel;
 import co.gov.minambiente.modelo.CategoryModel;
 import co.gov.minambiente.modelo.RequestModel;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import static com.itextpdf.kernel.pdf.PdfName.Page;
@@ -18,6 +19,7 @@ import static com.itextpdf.kernel.pdf.PdfName.Table;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Tab;
 import com.itextpdf.layout.element.TabStop;
@@ -53,6 +55,7 @@ public class PdfController {
 
         int lineCounter = drawPage1(generatedDoc, solicitude);
         lineCounter = drawPage2(lineCounter, generatedDoc, solicitude);
+        lineCounter = drawPage3(lineCounter, generatedDoc, solicitude);
         generatedDoc.crearPdf();
     }
 
@@ -253,27 +256,140 @@ public class PdfController {
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-
+            
             Table t = createTable1(generatedDoc);
             p.add(t);      
             p.add(new Text ("\n \n"));
-  
+                
             Table t2 = createTable2(generatedDoc);
             p.add(t2);
             p.add(new Text("\n \n"));
-
+            
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
-
+            
             setUpParagraph(p, generatedDoc, 27, 10);
             
             generatedDoc.pasarPagina(3);
             
-        } catch (IOException ex){
+        } catch (IOException ex) {
+            Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lineCounter;
+    }
+
+    public static int drawPage3(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
+        try {
+            
+            addHeader(generatedDoc, texts);
+            lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 9);
+            
+            Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
+            
+            p.add(new Text("\n"));
+            lineCounter = addBodyTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            
+            Table t = createTable3(generatedDoc);
+            p.add(t);
+            p.add(new Text("\n \n"));
+            
+            
+            setUpParagraph(p, generatedDoc, 18, 10);
+        
+        } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
     }
     
+    private static Table createTable3(PdfWorkspace generatedDoc) throws IOException{
+        
+        Table table = new Table(UnitValue.createPercentArray(8)).setWidth(530).setRelativePosition(10, 0, 0, 0);
+        
+        Paragraph q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Cantidad"), titleFont, 8);
+        Cell cell = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Unidad de medida*"), titleFont, 8);
+        Cell cell12 = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell12);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Nombre común"), titleFont, 8);
+        Cell cell13 = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell13);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Nombre científico"), titleFont, 8);
+        Cell cell14 = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell14);
+   
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Aplica para únicamente para manejo\n"
+                + "sostenible de flora silvestre y los productos\n"
+                + "forestales no maderables"), titleFont, 8.5f);
+        Cell cell15 = new Cell(1, 2).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell15);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Veda nacional\n"
+                + "o regional\n"
+                + "(si aplica) **"), titleFont, 8);
+        Cell cell17 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell17);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Categoría\n"
+                + "de\n"
+                + "amenaza\n"
+                + "(si aplica)"), titleFont, 8);
+        Cell cell18 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell18);
+    
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Parte aprovechada"
+                + "(Raíz, Fruto, Semilla,"
+                + "Flor, Corteza,"
+                + "Exudado, Yema, Hojas,"
+                + "Tallos, Ramas, etc.)"), titleFont, 8);
+        Cell cell25 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell25);
+     
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Hábito"
+                + "(Árbol, Arbusto,"
+                + "Hierba terrestre,"
+                + "Epífita, Bejuco/liana,"
+                + "Hemiepífita, Palma,"
+                + "etc.)"), titleFont, 8.5f);
+        Cell cell26 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell26);
+        
+        for (int i = 0; i < 80; i++) {
+            q = new Paragraph();
+            generatedDoc.pushText(q, new Text(""), titleFont, 8);
+            Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setMinHeight(10);
+            table.addCell(temporal);
+        }
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Cantidad \n Total"), titleFont, 8.5f);
+        Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
+        table.addFooterCell(temporal);
+        
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text(""), titleFont, 8f);
+        Cell cellFinal = new Cell (1,7).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addFooterCell(cellFinal);
+
+        return table;
+    }
+
     /**
      * 
      * @param generatedDoc

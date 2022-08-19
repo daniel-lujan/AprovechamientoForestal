@@ -63,14 +63,11 @@ de 2019, Decreto 690 de 2021,
 -En caso de seleccionar coordenadas planas, las mismas deberán corresponder al Origen único CTM 12, conforme a lo establecido en la Resolución 471 de 2020, modificada por la Resolución 529 de 2020, proferida por el Instituto Geográfico Agustín Codazzi, y para coordenadas geográficas utilizar elsistema de coordenadas Magna Sirgas
 -Diligencie el listado de coordenadas según sea el caso:
 
-
 -Nota. Para los aprovechamientos forestales domésticos de bosque natural, de árboles aislados y el manejo sostenible doméstico de la flora silvestre y de los productos forestales no maderables, la autoridad ambiental competente en la visita, tomará las coordenadas planas o geográficas respectivas.
--5.		Información sobre el aprovechamiento forestal o manejo sostenible de la flora silvestre y los productos forestales no maderables
--5.1. Información de las especies objeto de la solicitud de aprovechamiento forestal o manejo sostenible de flora silvestre y los productos forestales no
--maderables y método-(Aplica para todas las categorías)
--Método de aprovechamiento o manejo sostenible:- Mecánico			 Manual			 Mecánico-Manual			 
+-5.	Información sobre el aprovechamiento forestal o manejo sostenible de la flora silvestre y los productos forestales no maderables
+-5.1. Información de las especies objeto de la solicitud de aprovechamiento forestal o manejo sostenible de flora silvestre y los productos forestales no maderables y método - (Aplica para todas las categorías)
+-Método de aprovechamiento o manejo sostenible:	Mecánico		Manual		Mecánico/Manual			 
 -Especies objeto de la solicitud:
-
 
 -* Unidades de medida: Metros cúbicos, toneladas, kilogramos, gramos, miligramos, entre otros.
 -Nota. Para los aprovechamientos forestales únicos la información sobre el volumen corresponde a la establecida por el inventario estadístico.
