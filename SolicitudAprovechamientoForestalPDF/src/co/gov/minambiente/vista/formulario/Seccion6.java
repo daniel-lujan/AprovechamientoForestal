@@ -501,7 +501,16 @@ public class Seccion6 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-
+        this.setVisible(false);
+        if (controlador.isNueva()){
+            if (controlador.esCategoriaC()){
+                controlador.mostrarSeccion5_2();
+            }else {
+                controlador.mostrarSeccion5_1();
+            }
+        } else {
+            controlador.mostrarSeccion2();
+        }
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     public static void main(String args[]) {

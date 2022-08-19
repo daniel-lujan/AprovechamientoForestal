@@ -3,6 +3,8 @@ package co.gov.minambiente.vista.formulario;
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import javax.swing.ButtonModel;
 import co.gov.minambiente.controlador.Utils;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -19,8 +21,21 @@ public class Seccion4_2 extends javax.swing.JFrame {
         initComponents();
         this.controlador = controlador;
         this.setLocationRelativeTo(null);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                volverAlMenu();
+            }
+        });
     }
 
+    private void volverAlMenu(){
+        if (JOptionPane.showConfirmDialog(null, "Si vuelve al menú principal, perderá los datos diligenciados. ¿Está seguro?") == 0) {
+            this.dispose();
+            controlador.mostrarPrincipal();
+        }
+    }
+    
     private Object[] getRowPlane(int row){
         Object[] array = new Object[3];
         array[0] = (short)tblPlanas.getValueAt(row, 0);
