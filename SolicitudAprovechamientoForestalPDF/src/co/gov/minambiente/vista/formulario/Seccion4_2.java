@@ -422,6 +422,8 @@ public class Seccion4_2 extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel9.setText("Origen: ");
         jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
+
+        jTextField1.setEnabled(false);
         jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 300, -1));
 
         btnPrincipal.setText("Volver a la ventana principal");
@@ -496,10 +498,12 @@ public class Seccion4_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrincipalActionPerformed
     private void setEnabledSection4_2(boolean state) {
         tblPlanas.setEnabled(state);
+        jTextField1.setEnabled(!state);
     }
 
     private void setEnabledSection4_2_1(boolean state) {
         tblGeograficas.setEnabled(state);
+        jTextField1.setEnabled(state);
     }
     /**
      * @param args the command line arguments

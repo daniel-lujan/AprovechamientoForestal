@@ -2,6 +2,8 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.controlador.Utils;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,21 +26,6 @@ public class Seccion6 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Seccion6() throws IOException {
-        initComponents();
-        LinkedList<String> departamentos = controlador.cargarDepartamentos();
-        cmbDepartamento.addItem("Seleccione");
-        for (String departamento : departamentos) {
-            cmbDepartamento.addItem(departamento);
-        }
-        cmbDepartamento.setSelectedIndex(0);
-        cmbMunicipio.addItem("Seleccione");
-        cmbMunicipio.setEnabled(false);
-        txtVereda.setEnabled(false);
-        this.setLocationRelativeTo(null);
-        setEnabledCampos(false);
-    }
-
     public Seccion6(ControladorSolicitud controlador) throws IOException {
         initComponents();
         LinkedList<String> departamentos = controlador.cargarDepartamentos();
@@ -53,6 +40,12 @@ public class Seccion6 extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.controlador = controlador;
         setEnabledCampos(false);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                volverAlMenu();
+            }
+        });
     }
 
     private void setEnabledCampos(boolean state) {
@@ -62,6 +55,13 @@ public class Seccion6 extends javax.swing.JFrame {
         cmbMunicipio.setEnabled(state);
         txtVereda.setEnabled(state);
         txtNombre.setEnabled(state);
+    }
+
+    public void volverAlMenu() {
+        if (JOptionPane.showConfirmDialog(null, "Si vuelve al menú principal, perderá los datos diligenciados. ¿Está seguro?") == 0) {
+            this.dispose();
+            controlador.mostrarPrincipal();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -96,7 +96,7 @@ public class Seccion6 extends javax.swing.JFrame {
         txtMostrar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         btnGuardar.setText("Guardar ");
         btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,6 +114,11 @@ public class Seccion6 extends javax.swing.JFrame {
         btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAnteriorMouseClicked(evt);
+            }
+        });
+        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnteriorActionPerformed(evt);
             }
         });
 
@@ -219,7 +224,7 @@ public class Seccion6 extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Ventana Principal");
+        jButton1.setText("Volver al menú pincipal");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -270,9 +275,9 @@ public class Seccion6 extends javax.swing.JFrame {
                         .addComponent(btnAnterior)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnGuardar)
-                        .addGap(80, 80, 80)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(23, 23, 23))))
+                        .addGap(73, 73, 73))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -285,7 +290,7 @@ public class Seccion6 extends javax.swing.JFrame {
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel25)
@@ -471,14 +476,14 @@ public class Seccion6 extends javax.swing.JFrame {
         String vereda = txtVereda.getText();
         String municipio = (String) cmbMunicipio.getSelectedItem();
         if (rbSI.isSelected()) {
-            if (!Utils.isEmail(correo)){
+            if (!Utils.isEmail(correo)) {
                 JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
                 return;
             }
             if (!(correo.equals("") || direccion.equals("") || vereda.equals("") || municipio.equals("") || departamento.equals(""))) {
                 controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio);
                 controlador.guardarSolicitudEnBaseDeDatos();
-                JOptionPane.showMessageDialog(null, "Solicitud registrada correctamente.","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Solicitud registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
                 controlador.mostrarPrincipal();
                 return;
@@ -492,8 +497,12 @@ public class Seccion6 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        volverAlMenu();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -526,7 +535,7 @@ public class Seccion6 extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Seccion6().setVisible(true);
+                    new Seccion6(new ControladorSolicitud()).setVisible(true);
                 } catch (IOException ex) {
                     Logger.getLogger(Seccion6.class.getName()).log(Level.SEVERE, null, ex);
                 }

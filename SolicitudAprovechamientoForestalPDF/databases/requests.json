@@ -30,7 +30,7 @@
       "municipality" : "",
       "sidewalk" : ""
     },
-    "realEstateRegistration" : "",
+    "realEstateRegistration" : null,
     "cadastralIdNumber" : "",
     "coordiantes" : [ ],
     "species" : [ ]
@@ -92,7 +92,7 @@
       "municipality" : "",
       "sidewalk" : ""
     },
-    "realEstateRegistration" : "",
+    "realEstateRegistration" : null,
     "cadastralIdNumber" : "",
     "coordiantes" : [ ],
     "species" : [ ]
@@ -127,4 +127,87 @@
   "intendedUse" : "",
   "methodUtilization" : "",
   "reference" : "8377939460"
+}, {
+  "typeRequest" : "Prórroga",
+  "interested" : {
+    "name" : "Daniel",
+    "typeId" : "CC",
+    "id" : "123",
+    "typePerson" : "Natural",
+    "requests" : null,
+    "attorney" : null,
+    "interestedQuality" : "Propietario",
+    "projectCost" : [ ],
+    "authorization" : false,
+    "emailAdress" : "daniel@mail.com",
+    "telephone" : "6751398",
+    "adress" : {
+      "street" : "Calle1",
+      "typeArea" : "",
+      "department" : "Antioquia",
+      "municipality" : "El Retiro",
+      "sidewalk" : "Bario1"
+    }
+  },
+  "properties" : [ {
+    "typeProperty" : "Privado",
+    "name" : "",
+    "surface" : "",
+    "adress" : {
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : "",
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  }, {
+    "typeProperty" : "Colectivo",
+    "name" : "",
+    "surface" : "",
+    "adress" : {
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : "",
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  } ],
+  "howToAcquire" : "",
+  "categoryA" : {
+    "name" : "A. Productos forestales maderables",
+    "typeUtilization" : ""
+  },
+  "categoryB" : {
+    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
+    "typeOperation" : "",
+    "revenuesExpected" : [ ],
+    "associatedCategory" : ""
+  },
+  "categoryC" : {
+    "name" : "C. Árboles Aislados",
+    "locationOrType" : ""
+  },
+  "categoryD" : {
+    "name" : "D. Guaduales y bambusales",
+    "typeUtilization" : ""
+  },
+  "creationDate" : {
+    "year" : 0,
+    "month" : 0,
+    "day" : 0,
+    "dateWithFormat" : "0/0/0"
+  },
+  "fileNumber" : "1234",
+  "actNumber" : "4567",
+  "intendedUse" : "",
+  "methodUtilization" : "",
+  "reference" : "1579800866"
 } ]

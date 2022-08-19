@@ -250,6 +250,10 @@ public class ControladorSolicitud {
         return A.equals("") && B.equals("") && D.equals("");
     }
     
+    public boolean isNueva(){
+        return (request.getTypeRequest().equalsIgnoreCase("nueva"));
+    }
+    
     public String verTypeProperty() {
         return request.getProperties().get(0).getTypeProperty();
     }
