@@ -28,7 +28,14 @@ public class AddressModel {
         this.municipality = municipality;
         this.sidewalk = sidewalk;
     }
+    public AddressModel(String street, String typeArea, String department, String municipality){
+        this.street = street;
+        this.typeArea = typeArea;
+        this.department = department;
+        this.municipality = municipality;
+       
     
+    }
     //Setters & getters
 
     public String getStreet() {

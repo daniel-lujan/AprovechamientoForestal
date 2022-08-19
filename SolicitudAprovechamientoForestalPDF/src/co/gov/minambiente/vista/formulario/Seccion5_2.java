@@ -2,8 +2,10 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
@@ -118,6 +120,11 @@ public class Seccion5_2 extends javax.swing.JFrame {
         jLabel20.setText("5.2. Información asociada a la solicitud de aprovechamiento de árboles aislados (Si aplica):");
 
         cmbCausa.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Estabilidad de suelos", "Canal de agua", "Obras de infraestructura", "Otro" }));
+        cmbCausa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbCausaActionPerformed(evt);
+            }
+        });
 
         jLabel21.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel21.setText("Tipo:");
@@ -184,6 +191,11 @@ public class Seccion5_2 extends javax.swing.JFrame {
         jLabel19.setText("Tipo:");
 
         cmbActividad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Construcción/Realización", "Remodelación", "Ampliación", "Instalación", "Similar" }));
+        cmbActividad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbActividadActionPerformed(evt);
+            }
+        });
 
         jLabel22.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel22.setText("Estado del individuo:");
@@ -427,51 +439,70 @@ public class Seccion5_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbEstadoActionPerformed
 
     private void btnSiguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente2ActionPerformed
-
         String estado = (String) cmbEstado.getSelectedItem();
-        String otro = txtOtro.getText().trim();
+        String otro = txtOtro.getText();
         String tipo = (String) cmbTipo.getSelectedItem();
-        JRadioButton rb = (JRadioButton) buttonGroup1.getSelection();
-        String texto = rb.getText().toString();
+        String otro1 =  txtOtro1.getText();
+         String similar =  txtSimilar.getText();
+        String texto = "Árboles aislados fuera de la cobertura del bosque natural";
         String tipoA = (String) cmbTipo3.getSelectedItem();
         String causa = (String) cmbCausa.getSelectedItem();
-        String otro1 = txtOtro1.getText().trim();
         String estadoIndividual = (String) cmbEstadoI.getSelectedItem();
         String actividad = (String) cmbActividad.getSelectedItem();
-        String similar = txtOtro.getText().trim();
-        if (cmb1.isSelected() && (!estado.equals("Seleccione"))) {
-            if (estado.equals("Otro")) {
-                if (!otro.equals("")) {
-                    controlador.guardarInformacionSeccion5_2(otro, estadoIndividual, otro1);
-                } else {
-                    controlador.guardarInformacionSeccion5_2(tipoA, estadoIndividual, otro1);
-                }
-            }
-        } else if (cmb2.isSelected()) {
-            controlador.guardarInformacionSeccion5_2(tipoA, estadoIndividual, otro1);
-        }
-        if (cmb3.isSelected() && (!estadoIndividual.equals("Seleccione") && (!tipoA.equals("Seleccione")))) {
-            if (causa.equals("Otro")) {
-                if (!otro1.equals("")) {
-                    controlador.guardarInformacionSeccion5_2(tipoA, estadoIndividual, otro1);
-                }
-            }
-        } else {
-            controlador.guardarInformacionSeccion5_2(tipoA, estadoIndividual, causa);
-        }
-        if (cmb4.isSelected() && (!actividad.equals("Seleccione")) && (!tipo.equals("Seleccione"))) {
-            if (actividad.equals("Similar")) {
-                if (!actividad.equals("")) {
-                    controlador.guardarInformacionSeccion5_2(actividad, tipo, similar);
-                }
+        LinkedList<String> categorias = new LinkedList<>();
+        if (cmb1.isSelected()) {
+            categorias.add("A");
+            if (!estado.equals("Seleccione")) {
+                controlador.guardarInformacionSeccion5_2(estado, categorias, tipo, texto, tipoA, causa, estadoIndividual, actividad,otro,otro1,similar);
             } else {
-                controlador.guardarInformacionSeccion5_2(actividad, tipo, similar);
-
+                JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
             }
         }
-
-
+        if (cmb2.isSelected()) {
+            categorias.add("B");
+            controlador.guardarInformacionSeccion5_2(estado, categorias, tipo, texto, tipoA, causa, estadoIndividual, actividad,otro,otro1,similar);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+        }
+        if (cmb3.isSelected()) {
+            categorias.add("C");
+            if (!tipoA.equals("Seleccione") && (!estadoIndividual.equals("Seleccione")) && (!causa.equals("Seleccione"))) {
+                 controlador.guardarInformacionSeccion5_2(estado, categorias, tipo, texto, tipoA, causa, estadoIndividual, actividad,otro,otro1,similar);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+            }
+        }
+        if (cmb4.isSelected()) {
+            categorias.add("D");
+            if (!tipo.equals("Seleccione") && (!actividad.equals("Seleccione"))) {
+                controlador.guardarInformacionSeccion5_2(estado, categorias, tipo, texto, tipoA, causa, estadoIndividual, actividad,otro,otro1,similar);
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+            }
+            if (!cmb1.isSelected() && !cmb2.isSelected() && !cmb3.isSelected() && !cmb4.isSelected()) {
+                JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+            }
+        }
     }//GEN-LAST:event_btnSiguiente2ActionPerformed
+
+    private void cmbCausaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCausaActionPerformed
+        if (cmbCausa.getSelectedIndex() == 9) {
+            txtOtro1.setEnabled(true);
+        } else {
+            txtOtro1.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbCausaActionPerformed
+
+    private void cmbActividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbActividadActionPerformed
+        if (cmbActividad.getSelectedIndex() == 9) {
+            txtSimilar.setEnabled(true);
+        } else {
+            txtOtro1.setEnabled(false);
+        }
+
+    }//GEN-LAST:event_cmbActividadActionPerformed
 
     /**
      * @param args the command line arguments

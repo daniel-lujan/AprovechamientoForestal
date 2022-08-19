@@ -5,31 +5,35 @@ package co.gov.minambiente.modelo;
  * @author Natalia García
  */
 public class CategoryC3Model extends CategoryCModel{
-    private boolean logging;
+    private String tipo;
     private String individualStatus;
     private String cause;
 
     public CategoryC3Model(String locationOrType) {
         super(locationOrType);
-        this.logging = false;
+        this.tipo = tipo;
         this.individualStatus = "";
         this.cause = "";
     }
     
-    public CategoryC3Model(String locationOrType, boolean logging, String individualStatus, String cause) {
+    public CategoryC3Model(String locationOrType, String tipo, String individualStatus, String cause) {
         super(locationOrType);
-        this.logging = false;
+        this.tipo= tipo;
         this.individualStatus = individualStatus;
         this.cause = cause;
     }
 
-    public boolean isLogging() {
-        return logging;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setLogging(boolean logging) {
-        this.logging = logging;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
+
+   
+
+  
 
     public String getIndividualStatus() {
         return individualStatus;

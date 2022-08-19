@@ -392,7 +392,7 @@ public class Seccion6 extends javax.swing.JFrame {
     }//GEN-LAST:event_rbSIActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-         if (txtNombre.getText().length() >= 25) {
+        if (txtNombre.getText().length() >= 25) {
             evt.consume();
         }
 
@@ -416,7 +416,7 @@ public class Seccion6 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTelefonoKeyTyped
 
     private void txtDireccionNotKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionNotKeyTyped
-          if (txtDireccionNot.getText().length() >= 25) {
+        if (txtDireccionNot.getText().length() >= 25) {
             evt.consume();
         }
     }//GEN-LAST:event_txtDireccionNotKeyTyped
@@ -463,12 +463,12 @@ public class Seccion6 extends javax.swing.JFrame {
             txtMostrar.setIcon(new ImageIcon(jf.getSelectedFile().toString()));
         }
     }//GEN-LAST:event_btnAbrirFirmaActionPerformed
-       
+
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-        if(metodo.isEmail(txtCorreo.getText())){
-            
-        }else{
-            JOptionPane.showMessageDialog(null, "Email incorrecto", "Validar email",JOptionPane.INFORMATION_MESSAGE);
+        if (metodo.isEmail(txtCorreo.getText())) {
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Email incorrecto", "Validar email", JOptionPane.INFORMATION_MESSAGE);
             txtCorreo.requestFocus();
         }
     }//GEN-LAST:event_txtCorreoKeyTyped
@@ -482,31 +482,28 @@ public class Seccion6 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtVeredaActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-          String correo = txtCorreo.getText();
-        int telefono = Integer.parseInt(txtTelefono.getText());
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
         String direccion = txtDireccionNot.getText();
         String departamento = (String) cmbDepartamento.getSelectedItem();
         String vereda = txtVereda.getText();
         String municipio = (String) cmbMunicipio.getSelectedItem();
         String nombre = txtNombre.getText();
         //falta obtener la firma
-        
-        System.out.println(correo + telefono);
         if (rbSI.isSelected()) {
             if (!correo.equals("") && !direccion.equals("") && !nombre.equals("") && !vereda.equals("") && !municipio.equals("") && !departamento.equals("")) {
-               controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio, nombre);
+                controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio, nombre);
             }
-            
-
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
-    
-   
-     public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

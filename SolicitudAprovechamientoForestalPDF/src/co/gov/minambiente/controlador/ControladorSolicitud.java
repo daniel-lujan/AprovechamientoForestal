@@ -189,13 +189,50 @@ public class ControladorSolicitud {
 
         request.setIntendedUse(uso);
     }
+public void guardarInformacionSeccion5_2(String estado, LinkedList<String> categorias, String tipo, String texto, String tipoA, String causa, String estadoIndividual, String actividad, String otro, String otro1, String similar) {
+      for (String categoria : categorias) {
+            switch (categoria) {
+                case "A":
+                    request.setCategoryC(new CategoryC1Model("i. Árboles aislados dentro de la cobertura del bosque natural", estado));
+                    if (estado.equals("Otro")) {
+                        request.getInterested().setInterestedQuality(otro);
+                    } else {
+                        request.getInterested().setInterestedQuality(estado);
+                    }
+                    break;
+                case "B":
+                    request.setCategoryC(new CategoryC2Model("ii. Árboles aislados fuera de la cobertura del bosque natural"));
+                    break;
 
-    public void guardarInformacionSeccion5_2(String otro, String estadoIndividual, String otro1) {
+                case "C":
+                    request.setCategoryC(new CategoryC3Model("iii Tala o poda de emergencia en centros urbano", tipo, estadoIndividual, causa));
+                    if (causa.equals("Otro")) {
+                        request.getInterested().setInterestedQuality(otro1);
+                    } else {
+                        request.getInterested().setInterestedQuality(causa);
+                    }
+                    break;
+                case "D":
+                    request.setCategoryC(new CategoryC4Model("iv. Obra pública o privada en centros urbanos", tipo, actividad));
+                    if (actividad.equals("Otro")) {
+                        request.getInterested().setInterestedQuality(similar);
+                    } else {
+                        request.getInterested().setInterestedQuality(actividad);
+                    }
+                    break;
+            }
 
-    }
+        }
+}
 
-    public void guardarInformacionSeccion6(String correo, int telefono, String direccion, String departamento, String vereda, String municipio, String nombre) {
-
+    public void guardarInformacionSeccion6(String correo, String telefono, String direccion, String departamento, String vereda, String municipio, String nombre) {
+        request.getInterested().setEmailAdress(correo);
+        request.getInterested().setTelephone(telefono);
+        LinkedList<PropertyModel> properties = request.getProperties();
+        for (PropertyModel property : properties) {
+            property.setName(nombre);
+            property.setAdress(new AddressModel(direccion, departamento, municipio, vereda));
+        }
     }
 
     public String verTypeProperty() {
@@ -220,5 +257,7 @@ public class ControladorSolicitud {
         }
         return null;
     }
+
+    
 
 }
