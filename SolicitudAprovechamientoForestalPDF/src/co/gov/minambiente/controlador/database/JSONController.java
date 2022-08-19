@@ -45,6 +45,7 @@ public class JSONController {
     }
 
     public void loadRequestsDatabase() {
+        System.out.println("load");
         ArrayList<java.util.LinkedHashMap> lista;
         try {
             lista = om.readerFor(ArrayList.class).readValue(new File(REQUESTS_PATH));
@@ -55,8 +56,12 @@ public class JSONController {
             }
         } catch (com.fasterxml.jackson.core.JsonProcessingException ex) {
             ex.printStackTrace();
+            System.out.println(ex.getClass().getSimpleName());
+            System.exit(0);
         } catch (java.io.IOException e){
             e.printStackTrace();
+            System.out.println(e.getClass().getSimpleName());
+            System.exit(0);
         }
 
     }

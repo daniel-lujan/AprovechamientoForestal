@@ -18,11 +18,11 @@ class ObjectInstantiator {
 
     private final LinkedHashMap hm;
 
-    ObjectInstantiator(LinkedHashMap hm) {
+    public ObjectInstantiator(LinkedHashMap hm) {
         this.hm = hm;
     }
 
-    RequestModel getRequestInstance() {
+    public RequestModel getRequestInstance() {
         return new RequestModel(
                 (String) hm.get("reference"),
                 (String) hm.get("typeRequest"),
@@ -182,7 +182,7 @@ class ObjectInstantiator {
                         break;
                     case 4:
                         category = new CategoryC4Model(
-                                (boolean) info.get("logging"),
+                                (String) info.get("tipo"),
                                 (String) info.get("activity"),
                                 (String) info.get("locationOrType")
                         );
@@ -190,7 +190,7 @@ class ObjectInstantiator {
                     default:
                         category = new CategoryC3Model(
                                 (String) info.get("locationOrType"),
-                                (boolean) info.get("logging"),
+                                (String) info.get("info"),
                                 (String) info.get("individualStatus"),
                                 (String) info.get("cause")
                         );

@@ -46,9 +46,10 @@ public class ControladorSolicitud {
 
         }
     }
+    
 
     public void mostrarPrincipal() {
-        principal.setVisible(true);
+        principal.mostrar();
     }
 
     public void mostrarSeccion1() {
@@ -189,8 +190,9 @@ public class ControladorSolicitud {
 
         request.setIntendedUse(uso);
     }
-public void guardarInformacionSeccion5_2(String estado, LinkedList<String> categorias, String tipo, String texto, String tipoA, String causa, String estadoIndividual, String actividad, String otro, String otro1, String similar) {
-      for (String categoria : categorias) {
+
+    public void guardarInformacionSeccion5_2(String estado, LinkedList<String> categorias, String tipo, String texto, String tipoA, String causa, String estadoIndividual, String actividad, String otro, String otro1, String similar) {
+        for (String categoria : categorias) {
             switch (categoria) {
                 case "A":
                     request.setCategoryC(new CategoryC1Model("i. Árboles aislados dentro de la cobertura del bosque natural", estado));
@@ -223,18 +225,18 @@ public void guardarInformacionSeccion5_2(String estado, LinkedList<String> categ
             }
 
         }
-}
-
-    public void guardarInformacionSeccion6(String correo, String telefono, String direccion, String departamento, String vereda, String municipio, String nombre) {
-        request.getInterested().setEmailAdress(correo);
-        request.getInterested().setTelephone(telefono);
-        LinkedList<PropertyModel> properties = request.getProperties();
-        for (PropertyModel property : properties) {
-            property.setName(nombre);
-            property.setAdress(new AddressModel(direccion, departamento, municipio, vereda));
-        }
     }
 
+    public void guardarInformacionSeccion6(String correo, String telefono, String direccion, String departamento, String vereda, String municipio) {
+        request.getInterested().setEmailAdress(correo);
+        request.getInterested().setTelephone(telefono);
+        request.getInterested().setAdress(new AddressModel(direccion, "", departamento, municipio, vereda));
+    }
+
+    public void guardarSolicitudEnBaseDeDatos(){
+        RequestsDatabase.add(request);
+    }
+    
     public String verTypeProperty() {
         return request.getProperties().get(0).getTypeProperty();
     }
@@ -257,7 +259,5 @@ public void guardarInformacionSeccion5_2(String estado, LinkedList<String> categ
         }
         return null;
     }
-
-    
 
 }

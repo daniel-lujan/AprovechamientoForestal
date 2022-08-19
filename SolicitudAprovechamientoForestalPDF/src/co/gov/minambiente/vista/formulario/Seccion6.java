@@ -23,7 +23,6 @@ import javax.swing.JOptionPane;
 public class Seccion6 extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
-    private Utils metodo;
 
     public Seccion6() throws IOException {
         initComponents();
@@ -153,19 +152,9 @@ public class Seccion6 extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel26.setText("Correo electrónico:");
 
-        txtCorreo.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCorreoFocusLost(evt);
-            }
-        });
         txtCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCorreoActionPerformed(evt);
-            }
-        });
-        txtCorreo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtCorreoKeyTyped(evt);
             }
         });
 
@@ -453,15 +442,6 @@ public class Seccion6 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cmbDepartamentoActionPerformed
-
-    private void txtCorreoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCorreoFocusLost
-        if (metodo.isEmail(txtCorreo.getText())) {
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Email incorrecto", "Validar email", JOptionPane.INFORMATION_MESSAGE);
-            txtCorreo.requestFocus();
-        }
-    }//GEN-LAST:event_txtCorreoFocusLost
     /**
      *
      * @param evt Carga la imagen
@@ -474,15 +454,6 @@ public class Seccion6 extends javax.swing.JFrame {
             txtMostrar.setIcon(new ImageIcon(jf.getSelectedFile().toString()));
         }
     }//GEN-LAST:event_btnAbrirFirmaActionPerformed
-
-    private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
-        if (metodo.isEmail(txtCorreo.getText())) {
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Email incorrecto", "Validar email", JOptionPane.INFORMATION_MESSAGE);
-            txtCorreo.requestFocus();
-        }
-    }//GEN-LAST:event_txtCorreoKeyTyped
 
     private void txtDireccionNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionNotActionPerformed
         // TODO add your handling code here:
@@ -499,15 +470,21 @@ public class Seccion6 extends javax.swing.JFrame {
         String departamento = (String) cmbDepartamento.getSelectedItem();
         String vereda = txtVereda.getText();
         String municipio = (String) cmbMunicipio.getSelectedItem();
-        String nombre = txtNombre.getText();
-        //falta obtener la firma
         if (rbSI.isSelected()) {
-            if (!correo.equals("") && !direccion.equals("") && !nombre.equals("") && !vereda.equals("") && !municipio.equals("") && !departamento.equals("")) {
-                controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio, nombre);
+            if (!Utils.isEmail(correo)){
+                JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
+                return;
             }
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+            if (!(correo.equals("") || direccion.equals("") || vereda.equals("") || municipio.equals("") || departamento.equals(""))) {
+                controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio);
+                controlador.guardarSolicitudEnBaseDeDatos();
+                JOptionPane.showMessageDialog(null, "Solicitud registrada correctamente.","Registro exitoso",JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+                controlador.mostrarPrincipal();
+                return;
+            }
         }
+        JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed

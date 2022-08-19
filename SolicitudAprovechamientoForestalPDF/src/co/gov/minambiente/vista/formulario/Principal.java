@@ -1,9 +1,8 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import co.gov.minambiente.controlador.database.RequestsDatabase;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,18 +14,15 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        controlador = new ControladorSolicitud();
-        controlador.instanciarVentanas();
+        co.gov.minambiente.controlador.database.RequestsDatabase.init();
         this.setLocationRelativeTo(null);
     }
 
-    public Principal(ControladorSolicitud controlador) {
-        initComponents();
-        this.controlador = controlador;
-        controlador.instanciarVentanas();
-        this.setLocationRelativeTo(null);
+    public void mostrar(){
+        controlador = null;
+        this.setVisible(true);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -45,11 +41,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("Bienvenido");
 
         btnRegistrar.setText("Registrar solicitud");
-        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegistrarMouseClicked(evt);
-            }
-        });
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
@@ -69,11 +60,6 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnSalir.setText("Salir");
-        btnSalir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnSalirMouseClicked(evt);
-            }
-        });
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -81,11 +67,6 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnEstadisticas.setText("Ver estadísticas");
-        btnEstadisticas.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEstadisticasMouseClicked(evt);
-            }
-        });
         btnEstadisticas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEstadisticasActionPerformed(evt);
@@ -144,13 +125,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        this.setVisible(false);
-        controlador.setPrincipal(this);
-        controlador.mostrarSeccion1();
-
-    }//GEN-LAST:event_btnRegistrarMouseClicked
-
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerActionPerformed
@@ -161,23 +135,29 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-
+        controlador = new ControladorSolicitud();
+        controlador.instanciarVentanas();
+        controlador.setPrincipal(this);
+        this.setVisible(false);
+        controlador.mostrarSeccion1();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirMouseClicked
-        this.setVisible(false);
-    }//GEN-LAST:event_btnSalirMouseClicked
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere salir del programa?") == 0) {
+            if (!RequestsDatabase.save()) {
+                if (JOptionPane.showConfirmDialog(null,
+                        "Hubo un error al guardar la base de datos, ¿seguro que desea salir?") != 0) {
+                    return;
+                }
+
+            }
+            System.exit(0);
+        }
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnEstadisticasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEstadisticasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEstadisticasMouseClicked
-
     private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed
-
+        this.dispose();
+        new Grafico().setVisible(true);
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
     /**
@@ -217,7 +197,7 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                    new Principal().setVisible(true);
+                new Principal().setVisible(true);
             }
         });
     }

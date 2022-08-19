@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 public class ConsultarEliminarModificar extends javax.swing.JFrame {
 
     public ConsultarEliminarModificar() {
-        new JSONController().loadRequestsDatabase();
         initComponents();
         updateList();
     }

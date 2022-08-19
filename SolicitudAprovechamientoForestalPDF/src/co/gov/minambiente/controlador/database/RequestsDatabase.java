@@ -19,10 +19,35 @@ public class RequestsDatabase{
     public static final int REFERENCE_LENGTH = 10;
     private static boolean initialized = false;
     
+    
+    /**
+     * Initilizes the database
+     */
     public static void init(){
         if (!initialized){
             new JSONController().loadRequestsDatabase();
             initialized = true;
+        }
+    }
+    
+    /**
+     * Checks initializing state
+     * @return true if the database was already initilized, false otherwise
+     */
+    public static boolean isInitilized(){
+        return initialized;
+    }
+    
+    /**
+     * Saves the database into a JSON file
+     * @return true if the database was saved, false otherwise
+     */
+    public static boolean save(){
+        if (initialized){
+            new JSONController().saveRequestsDatabase();
+            return true;
+        } else {
+            return false;
         }
     }
     
@@ -32,7 +57,12 @@ public class RequestsDatabase{
      * @return true if the request was added successfully, false otherwise
      */
     public static boolean add(RequestModel request){
-        return db.add(request);
+        if(get(request.getREFERENCE()) == null){
+            db.add(request);
+            return true;
+        } else {
+            return false;
+        }
     }
     
     /**
@@ -139,8 +169,8 @@ public class RequestsDatabase{
     }
     
     public static String requestSummary(RequestModel request){
-        return request.getREFERENCE() + "  -  " + request.getTypeRequest() + "  -  " + request.getInterested().getName() + " ("
-                + request.getInterested().getTypeId() + " " + request.getInterested().getId() + ")";
+        return request.getREFERENCE() + "  -  " + request.getTypeRequest().toUpperCase() + "  -  " + request.getInterested().getName() + " ("
+                + request.getInterested().getTypeId().toUpperCase() + " " + request.getInterested().getId() + ")";
     }
     
     public static String[] getSearchResult(ArrayList<RequestModel> requests){

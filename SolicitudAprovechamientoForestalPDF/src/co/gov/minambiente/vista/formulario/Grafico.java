@@ -163,7 +163,8 @@ public class Grafico extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearGraficoActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-       
+       this.dispose();
+       new Principal().setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
