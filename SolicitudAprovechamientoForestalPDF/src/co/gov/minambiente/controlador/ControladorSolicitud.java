@@ -1,27 +1,8 @@
 package co.gov.minambiente.controlador;
 
 import co.gov.minambiente.controlador.database.RequestsDatabase;
-import co.gov.minambiente.modelo.AddressModel;
-import co.gov.minambiente.modelo.DepartmentModel;
-import co.gov.minambiente.modelo.RequestModel;
-import co.gov.minambiente.modelo.AttorneyModel;
-import co.gov.minambiente.modelo.CategoryAModel;
-import co.gov.minambiente.modelo.CategoryBModel;
-import co.gov.minambiente.modelo.CategoryCModel;
-import co.gov.minambiente.modelo.CategoryDModel;
-import co.gov.minambiente.modelo.CategoryModel;
-import co.gov.minambiente.modelo.PropertyModel;
-import co.gov.minambiente.vista.formulario.Principal;
-import co.gov.minambiente.vista.formulario.Seccion1;
-import co.gov.minambiente.vista.formulario.Seccion2;
-import co.gov.minambiente.vista.formulario.Seccion3;
-import co.gov.minambiente.vista.formulario.Seccion4_1;
-import co.gov.minambiente.vista.formulario.Seccion4_2;
-import co.gov.minambiente.vista.formulario.Seccion5_1;
-import co.gov.minambiente.vista.formulario.Seccion5_2;
-import co.gov.minambiente.vista.formulario.Seccion6;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import co.gov.minambiente.modelo.*;
+import co.gov.minambiente.vista.formulario.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,22 +30,26 @@ public class ControladorSolicitud {
         request = new RequestModel(requestsDatabase.getNewReference());
     }
 
-    public void setPrincipal(Principal principal) throws IOException {
-        this.principal = new Principal();
+    public void setPrincipal(Principal principal) {
+        this.principal = principal;
         mostrarPrincipal();
     }
 
-    public void instanciarVentanas() throws IOException {
-        seccion1 = new Seccion1(this);
-        seccion2 = new Seccion2(this);
-        seccion4_1 = new Seccion4_1(this);
-        seccion4_2 = new Seccion4_2(this);
-        seccion5_1 = new Seccion5_1(this);
-        seccion5_2 = new Seccion5_2(this);
-        seccion6 = new Seccion6(this);
+    public void instanciarVentanas() {
+        try {
+            seccion1 = new Seccion1(this);
+            seccion2 = new Seccion2(this);
+            seccion4_1 = new Seccion4_1(this);
+            seccion4_2 = new Seccion4_2(this);
+            seccion5_1 = new Seccion5_1(this);
+            seccion5_2 = new Seccion5_2(this);
+            seccion6 = new Seccion6(this);
+        } catch (IOException e) {
+
+        }
     }
-    
-    public void instanciarVentana3(){
+
+    public void instanciarVentana3() {
         seccion3 = new Seccion3(this);
     }
 
@@ -174,8 +159,30 @@ public class ControladorSolicitud {
         properties.get(0).setCadastralIdNumber(cedulaCatastral);
     }
 
-    public void guardarInformacionSeccion4_2() {
-
+    public boolean guardarInformacionSeccion4_2(LinkedList<Object[]> coordinates) {
+        LinkedList<CoordinateModel> lista = new LinkedList();
+        if (coordinates.size() > 0) {
+            if (coordinates.get(0).length == 3) {
+                for (Object[] arr : coordinates) {
+                    lista.add(new PlaneCoordinateModel(
+                            (double) arr[1],
+                            (double) arr[2],
+                            (short) arr[0]));
+                }
+            } else {
+                for (Object[] arr : coordinates) {
+                    lista.add(new GeographicCoordinateModel(
+                            (ArrayList) arr[0],
+                            (ArrayList) arr[1],
+                            (double) arr[2],
+                            (String) arr[3],
+                            (short) arr[4]));
+                }
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void guardarInformacionSeccion5_1() {

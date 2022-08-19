@@ -13,14 +13,14 @@ public class Principal extends javax.swing.JFrame {
 
     private ControladorSolicitud controlador;
 
-    public Principal() throws IOException {
+    public Principal() {
         initComponents();
         controlador = new ControladorSolicitud();
         controlador.instanciarVentanas();
         this.setLocationRelativeTo(null);
     }
 
-    public Principal(ControladorSolicitud controlador) throws IOException {
+    public Principal(ControladorSolicitud controlador) {
         initComponents();
         this.controlador = controlador;
         controlador.instanciarVentanas();
@@ -130,13 +130,10 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        try {
-            this.setVisible(false);
-            controlador.setPrincipal(this);
-            controlador.mostrarSeccion1();
-        } catch (IOException ex) {
-            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.setVisible(false);
+        controlador.setPrincipal(this);
+        controlador.mostrarSeccion1();
+
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
@@ -197,11 +194,7 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
                     new Principal().setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
             }
         });
     }

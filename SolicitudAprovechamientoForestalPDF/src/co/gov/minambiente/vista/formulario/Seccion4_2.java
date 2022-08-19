@@ -1,14 +1,10 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ButtonModel;
-import javax.swing.table.DefaultTableModel;
 import co.gov.minambiente.controlador.Utils;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,14 +21,66 @@ public class Seccion4_2 extends javax.swing.JFrame {
     }
 
     private Object[] getRowPlane(int row){
-        Object[] array = new String[3];
-        array[0] = (short)jTable1.getValueAt(row, 0);
-        array[1] = (String)jTable1.getValueAt(row, 1);
-        array[2] = (String)jTable1.getValueAt(row, 2);
+        Object[] array = new Object[3];
+        array[0] = (short)tblPlanas.getValueAt(row, 0);
+        array[1] = (double)tblPlanas.getValueAt(row, 1);
+        array[2] = (double)tblPlanas.getValueAt(row, 2);
+        System.out.println(array);
+        return array;
+    }
+    
+    private Object[] getRowGeographic(int row){
+        Object[] array = new Object[5];
+        ArrayList latitude = new ArrayList();
+        latitude.add((String)tblGeograficas.getValueAt(row, 1));
+        latitude.add((String)tblGeograficas.getValueAt(row, 2));
+        latitude.add((String)tblGeograficas.getValueAt(row, 3));
+        ArrayList longitude = new ArrayList();
+        longitude.add((String)tblGeograficas.getValueAt(row, 4));
+        longitude.add((String)tblGeograficas.getValueAt(row, 5));
+        longitude.add((String)tblGeograficas.getValueAt(row, 6));
+        array[0] = latitude;
+        array[1] = longitude;
+        System.out.println(tblGeograficas.getValueAt(row, 7));
+        array[2] = (double)tblGeograficas.getValueAt(row, 7);
+        array[3] = (String)jTextField1.getText();
+        array[4] = (short)tblGeograficas.getValueAt(row,0);
         return array;
     }
    
+    private boolean geoTableRowIsEmpty(int row){
+        return (String)tblGeograficas.getValueAt(row, 1) == null &&
+                (String)tblGeograficas.getValueAt(row,2) == null &&
+                (String)tblGeograficas.getValueAt(row,3) == null &&
+                (String)tblGeograficas.getValueAt(row,4) == null &&
+                (String)tblGeograficas.getValueAt(row,5) == null &&
+                (String)tblGeograficas.getValueAt(row,6) == null &&
+                (String)tblGeograficas.getValueAt(row,7) == null;
+    }
     
+    private LinkedList<Object[]> getInfoList(){
+        LinkedList<Object[]> list = new LinkedList();
+        Object[] row;
+        if (cblCoordenadasPlanas.isSelected()){
+            for (int i = 0; i < 12; i++){
+                row = getRowPlane(i);
+                if ((Utils.stripSpaces((String)row[1])).equals("") || (Utils.stripSpaces((String)row[2])).equals("")){
+                    break;
+                }
+                list.add(row);
+            }
+        } else if (cblCoordenadasGeograficas.isSelected()) {
+            for (int i = 0; i < 12; i++){
+                if (!geoTableRowIsEmpty(i)){
+                    row = getRowGeographic(i);
+                    list.add(row);
+                } else{
+                    break;
+                }
+            }
+        }
+        return list;
+    }
    
     /**
      * This method is called from within the constructor to initialize the form.
@@ -93,6 +141,8 @@ public class Seccion4_2 extends javax.swing.JFrame {
         cblCoordenadasGeograficas = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel1.setText("4. Información general del predio");
@@ -197,26 +247,33 @@ public class Seccion4_2 extends javax.swing.JFrame {
 
         tblGeograficas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null, null, null, null, null, null},
-                {"2", null, null, null, null, null, null, null},
-                {"3", null, null, null, null, null, null, null},
-                {"4", null, null, null, null, null, null, null},
-                {"5", null, null, null, null, null, null, null},
-                {"6", null, null, null, null, null, null, null},
-                {"7", null, null, null, null, null, null, null},
-                {"8", null, null, null, null, null, null, null},
-                {"9", null, null, null, null, null, null, null},
-                {"10", null, null, null, null, null, null, null},
-                {"11", null, null, null, null, null, null, null},
-                {"12", null, null, null, null, null, null, null}
+                { new Short((short) 1), null, null, null, null, null, null, null},
+                { new Short((short) 2), null, null, null, null, null, null, null},
+                { new Short((short) 3), null, null, null, null, null, null, null},
+                { new Short((short) 4), null, null, null, null, null, null, null},
+                { new Short((short) 5), null, null, null, null, null, null, null},
+                { new Short((short) 6), null, null, null, null, null, null, null},
+                { new Short((short) 7), null, null, null, null, null, null, null},
+                { new Short((short) 8), null, null, null, null, null, null, null},
+                { new Short((short) 9), null, null, null, null, null, null, null},
+                { new Short((short) 10), null, null, null, null, null, null, null},
+                { new Short((short) 11), null, null, null, null, null, null, null},
+                { new Short((short) 12), null, null, null, null, null, null, null}
             },
             new String [] {
                 "Punto", "Grados", "Minutos", "Segundos", "Grados", "Minutos", "Segundos", "Altitud"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Short.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true, true, true
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -225,17 +282,12 @@ public class Seccion4_2 extends javax.swing.JFrame {
         tblGeograficas.setEnabled(false);
         jScrollPane3.setViewportView(tblGeograficas);
 
-        jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 540, 210));
+        jPanel5.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, 540, 210));
 
         btnSiguiente.setText("Siguiente");
         btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSiguienteMouseClicked(evt);
-            }
-        });
-        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSiguienteActionPerformed(evt);
             }
         });
         jPanel5.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 630, -1, -1));
@@ -246,39 +298,41 @@ public class Seccion4_2 extends javax.swing.JFrame {
                 btnAnteriorMouseClicked(evt);
             }
         });
-        btnAnterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnteriorActionPerformed(evt);
-            }
-        });
         jPanel5.add(btnAnterior, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, -1, -1));
 
         jLabel26.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel26.setText("Coordenadas Planas");
-        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
+        jPanel5.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, -1, -1));
 
         tblPlanas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", null, null},
-                {"2", null, null},
-                {"3", null, null},
-                {"4", null, null},
-                {"5", null, null},
-                {"6", null, null},
-                {"7", null, null},
-                {"8", null, null},
-                {"9", null, null},
-                {"10", null, null},
-                {"11", null, null},
-                {"12", null, null}
+                { new Short((short) 1), null, null},
+                { new Short((short) 2), null, null},
+                { new Short((short) 3), null, null},
+                { new Short((short) 4), null, null},
+                { new Short((short) 5), null, null},
+                { new Short((short) 6), null, null},
+                { new Short((short) 7), null, null},
+                { new Short((short) 8), null, null},
+                { new Short((short) 9), null, null},
+                { new Short((short) 10), null, null},
+                { new Short((short) 11), null, null},
+                { new Short((short) 12), null, null}
             },
             new String [] {
                 "Punto", "X", "Y"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.Short.class, java.lang.Double.class, java.lang.Double.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, true, true
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -287,19 +341,19 @@ public class Seccion4_2 extends javax.swing.JFrame {
         tblPlanas.setEnabled(false);
         jScrollPane4.setViewportView(tblPlanas);
 
-        jPanel5.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 330, 440, 210));
+        jPanel5.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 440, 210));
 
         jLabel31.setFont(new java.awt.Font("Arial Narrow", 2, 13)); // NOI18N
         jLabel31.setText("Diligencie el listado de coordenadas según sea el caso:");
         jPanel5.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 238, -1, -1));
 
         jLabel32.setFont(new java.awt.Font("Arial Narrow", 2, 13)); // NOI18N
-        jLabel32.setText("productos forestales no maderables, la autoridad forestal competente en la visita, tomará las coordenadas planas o geográficas rspectivas.");
+        jLabel32.setText("productos forestales no maderables, la autoridad forestal competente en la visita, tomará las coordenadas planas o geográficas respectivas.");
         jPanel5.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 570, 790, 60));
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel27.setText("Coordenadas Geográficas");
-        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, -1, -1));
+        jPanel5.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 270, -1, -1));
 
         jLabel33.setFont(new java.awt.Font("Arial Narrow", 2, 13)); // NOI18N
         jLabel33.setText("Para los aprovechamientos forestales persistentes y únicos de bosque natual, y para el manejo pesistente de la flora silvestre y los productos forestales no maderables,");
@@ -355,13 +409,18 @@ public class Seccion4_2 extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Longitud");
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 310, 200, 20));
+        jPanel5.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, 200, 20));
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Latitud");
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, 200, 20));
+        jPanel5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 290, 200, 20));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel9.setText("Origen: ");
+        jPanel5.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 530, -1, -1));
+        jPanel5.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 530, 300, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -391,40 +450,23 @@ public class Seccion4_2 extends javax.swing.JFrame {
         setEnabledSection4_2_1(false);
     }//GEN-LAST:event_cblCoordenadasPlanasActionPerformed
 
-    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAnteriorActionPerformed
-
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-        //        this.setVisible(false);
-        //        try {
-            //            new Seccion4_1(controlador).setVisible(true);
-            //        } catch (IOException ex) {
-            //            Logger.getLogger(Seccion4_2.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
+        if (this.controlador.guardarInformacionSeccion4_2(getInfoList())){
+            this.setVisible(false);
+            this.controlador.mostrarSeccion4_1();
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.","INFO", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
-        //        this.setVisible(false);
-        //        new Seccion5_1(controlador).setVisible(true);
-    }//GEN-LAST:event_btnSiguienteMouseClicked
-
-    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        ButtonModel selected = buttonGroup3.getSelection();
-        ArrayList<Object[]> list = new ArrayList();
-        Object[] row;
-        if (selected == null){
-            JOptionPane.showMessageDialog(null, "Seleccione un tipo de coordenadas", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (selected == cblCoordenadasPlanas){
-            for (int i = 0; i < 12; i++){
-                row = getRowPlane(i);
-                if ((Utils.stripSpaces((String)row[1])).equals("") || (Utils.stripSpaces((String)row[2])).equals("")){
-                    break;
-                }
-                list.add(row);
-            }
+        if (this.controlador.guardarInformacionSeccion4_2(getInfoList())){
+            this.setVisible(false);
+            this.controlador.mostrarSeccion5_1();
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.","INFO", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnSiguienteActionPerformed
+    }//GEN-LAST:event_btnSiguienteMouseClicked
     private void setEnabledSection4_2(boolean state) {
         tblPlanas.setEnabled(state);
     }
@@ -470,7 +512,9 @@ public class Seccion4_2 extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Seccion4_2(new ControladorSolicitud()).setVisible(true);
+                ControladorSolicitud c = new ControladorSolicitud();
+                c.instanciarVentanas();
+                new Seccion4_2(c).setVisible(true);
             }
         });
     }
@@ -514,6 +558,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel5;
@@ -525,6 +570,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
     public javax.swing.JTable tblGeograficas;
     public javax.swing.JTable tblPlanas;
     // End of variables declaration//GEN-END:variables
