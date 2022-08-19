@@ -5,28 +5,30 @@ package co.gov.minambiente.modelo;
  * @author Natalia García
  */
 public class CategoryC4Model extends CategoryCModel{
-    private boolean logging;
+    private String tipo;
     private String activity;
     
     public CategoryC4Model(String locationOrType) {
         super(locationOrType);
-        this.logging = false;
+        this.tipo = tipo;
         this.activity = "";
     }
     
-    public CategoryC4Model(boolean logging, String activity, String locationOrType) {
+    public CategoryC4Model(String tipo, String activity, String locationOrType) {
         super(locationOrType);
-        this.logging = logging;
+        this.tipo = tipo;
         this.activity = activity;
     }
 
-    public boolean isLogging() {
-        return logging;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setLogging(boolean logging) {
-        this.logging = logging;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
+
+   
 
     public String getActivity() {
         return activity;
