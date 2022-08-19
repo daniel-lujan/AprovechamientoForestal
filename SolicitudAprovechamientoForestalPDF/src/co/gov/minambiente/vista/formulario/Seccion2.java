@@ -18,6 +18,7 @@ public class Seccion2 extends javax.swing.JFrame {
 
     public Seccion2(ControladorSolicitud controlador) {
         initComponents();
+        this.setTitle("Sección 2");
         this.setLocationRelativeTo(null);
         this.controlador = controlador;
         this.addWindowListener(new WindowAdapter() {

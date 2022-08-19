@@ -20,6 +20,7 @@ public class Seccion3 extends javax.swing.JFrame {
 
     public Seccion3(ControladorSolicitud controlador) {
         initComponents();
+        this.setTitle("Sección 3");
         this.setLocationRelativeTo(null);
         this.controlador = controlador;
         cmbCategoriaAsociada.setEnabled(false);

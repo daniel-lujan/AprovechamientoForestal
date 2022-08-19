@@ -21,6 +21,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
 
     public Seccion4_1(ControladorSolicitud controlador) throws IOException {
         initComponents();
+        this.setTitle("Sección 4.1");
         this.setLocationRelativeTo(null);
         this.controlador = controlador;
         LinkedList<String> departamentos = this.controlador.cargarDepartamentos();
