@@ -1,22 +1,22 @@
 package co.gov.minambiente.vista.formulario;
 
-
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.vista.formulario.Seccion5_2;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Natalia García
  */
 public class Seccion5_1 extends javax.swing.JFrame {
-    
+
     private ControladorSolicitud controlador;
-    
+
     public Seccion5_1() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     public Seccion5_1(ControladorSolicitud controlador) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -151,28 +151,32 @@ public class Seccion5_1 extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel20)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmbMetodoA, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel17)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnAnterior)
-                        .addGap(637, 637, 637)
-                        .addComponent(btnSiguiente1))))
+                        .addGap(40, 40, 40)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel20)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbMetodoA, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnAnterior)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSiguiente1))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,11 +199,11 @@ public class Seccion5_1 extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(cmbMetodoA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel17)
-                .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel33)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -207,42 +211,63 @@ public class Seccion5_1 extends javax.swing.JFrame {
                         .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10)
                 .addComponent(jLabel15)
-                .addGap(6, 6, 6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAnterior)
-                    .addComponent(btnSiguiente1)))
+                    .addComponent(btnSiguiente1))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 862, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 18, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguiente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguiente1MouseClicked
-        this.setVisible(false);
-//        new Seccion5_2(controlador).setVisible(true);
+        String[][] datosTabla = new String[tblEspecies.getRowCount() - 1][tblEspecies.getColumnCount() - 1];
+
+        for (int row = 1; row < tblEspecies.getRowCount(); row++) {
+            for (int column = 1; column < tblEspecies.getColumnCount(); column++) {
+                if (tblEspecies.getValueAt(row, column) == null) {
+                    datosTabla[row - 1][column - 1] = "";
+                } else {
+                    datosTabla[row - 1][column - 1] = (String) tblEspecies.getValueAt(row, column);
+                }
+            }
+        }
+
+        String metodo = (String) cmbMetodoA.getSelectedItem();
+        String uso = txtUso.getText().trim();
+
+        if (!metodo.equals("Seleccione") && !uso.equals("")) {
+            controlador.guardarInformacionSeccion5_1(metodo, datosTabla, uso);
+            this.setVisible(false);
+            controlador.mostrarSeccion5_2();
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+        }
     }//GEN-LAST:event_btnSiguiente1MouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        controlador.mostrarSeccion4_2();
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-//        this.setVisible(false);
-//        new Seccion4_2(controlador).setVisible(true);
+
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void txtUsoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsoKeyTyped
@@ -252,13 +277,13 @@ public class Seccion5_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsoKeyTyped
 
     private void btnSiguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente1ActionPerformed
-        String uso = txtUso.getText();
+
     }//GEN-LAST:event_btnSiguiente1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-     public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -296,7 +321,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
             }
         });
     }
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnAnterior;
     public javax.swing.JButton btnSiguiente1;

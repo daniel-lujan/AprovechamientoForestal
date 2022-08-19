@@ -14,8 +14,8 @@ public class CategoryAModel extends CategoryModel {
         this.typeUtilization = "";
     }
 
-    public CategoryAModel(String typeUtilization) {
-        super("A. Productos forestales maderables");
+    public CategoryAModel(String typeUtilization, String methodUtilization) {
+        super("A. Productos forestales maderables",methodUtilization);
         this.typeUtilization = typeUtilization;
     }
     
@@ -31,13 +31,21 @@ public class CategoryAModel extends CategoryModel {
 
     @Override
     public void setName(String name) {
-        super.setName(name); //To change body of generated methods, choose Tools | Templates.
+        super.setName(name);
     }
 
     @Override
     public String getName() {
-        return super.getName(); //To change body of generated methods, choose Tools | Templates.
+        return super.getName();
     }
-    
-    
+
+    @Override
+    public void setMethodUtilization(String methodUtilization) {
+        super.setMethodUtilization(methodUtilization); 
+    }
+
+    @Override
+    public String getMethodUtilization() {
+        return super.getMethodUtilization();
+    }
 }

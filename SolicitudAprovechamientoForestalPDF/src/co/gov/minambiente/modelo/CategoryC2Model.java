@@ -10,4 +10,33 @@ public class CategoryC2Model extends CategoryCModel{
         super(locationOrType);
     }
     
+    @Override
+    public void setLocationOrType(String locationOrType) {
+        super.setLocationOrType(locationOrType);
+    }
+
+    @Override
+    public String getLocationOrType() {
+        return super.getLocationOrType();
+    }
+    
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setMethodUtilization(String methodUtilization) {
+        super.setMethodUtilization(methodUtilization); 
+    }
+
+    @Override
+    public String getMethodUtilization() {
+        return super.getMethodUtilization();
+    }
 }

@@ -23,15 +23,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" pref="862" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="18" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -41,31 +41,38 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jSeparator1" min="-2" pref="878" max="-2" attributes="0"/>
               <Group type="102" attributes="0">
-                  <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                      <Component id="jSeparator1" min="-2" pref="878" max="-2" attributes="0"/>
                       <Group type="102" attributes="0">
-                          <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="cmbMetodoA" min="-2" pref="270" max="-2" attributes="0"/>
-                      </Group>
-                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="790" max="-2" attributes="0"/>
-                      <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel34" min="-2" pref="790" max="-2" attributes="0"/>
-                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="790" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="btnAnterior" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="637" pref="637" max="-2" attributes="0"/>
-                          <Component id="btnSiguiente1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="cmbMetodoA" min="-2" pref="270" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel34" min="-2" pref="790" max="-2" attributes="0"/>
+                              <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="btnAnterior" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btnSiguiente1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jScrollPane2" alignment="0" min="-2" pref="790" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane1" alignment="0" min="-2" pref="790" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -95,27 +102,28 @@
                       <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbMetodoA" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="90" max="-2" attributes="0"/>
-                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel33" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Component id="jLabel34" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                   <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnAnterior" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnSiguiente1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnAnterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnSiguiente1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

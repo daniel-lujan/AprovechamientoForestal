@@ -35,4 +35,35 @@ public class CategoryC4Model extends CategoryCModel{
     public void setActivity(String activity) {
         this.activity = activity;
     }
+    
+    @Override
+    public void setLocationOrType(String locationOrType) {
+        super.setLocationOrType(locationOrType);
+    }
+
+    @Override
+    public String getLocationOrType() {
+        return super.getLocationOrType();
+    }
+    
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setMethodUtilization(String methodUtilization) {
+        super.setMethodUtilization(methodUtilization); 
+    }
+
+    @Override
+    public String getMethodUtilization() {
+        return super.getMethodUtilization();
+    }
+    
 }

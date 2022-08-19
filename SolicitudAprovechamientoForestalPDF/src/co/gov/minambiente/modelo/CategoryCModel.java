@@ -20,8 +20,28 @@ public class CategoryCModel extends CategoryModel{
     public String getLocationOrType() {
         return locationOrType;
     }
-
-    public void setAdquisitionMode(String locationOrType) {
+    
+    public void setLocationOrType(String locationOrType) {
         this.locationOrType = locationOrType;
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setMethodUtilization(String methodUtilization) {
+        super.setMethodUtilization(methodUtilization); 
+    }
+
+    @Override
+    public String getMethodUtilization() {
+        return super.getMethodUtilization();
     }
 }

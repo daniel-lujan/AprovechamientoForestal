@@ -16,8 +16,6 @@ public class CategoryBModel extends CategoryModel{
         super("B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables");
         this.typeOperation = "";
         this.revenuesExpected = new ArrayList<>();
-        this.revenuesExpected.add("");
-        this.revenuesExpected.add("");
         this.associatedCategory = "";
     }
 
@@ -51,4 +49,24 @@ public class CategoryBModel extends CategoryModel{
     public void setAssociatedCategory(String associatedCategory) {
         this.associatedCategory = associatedCategory;
     } 
+    
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setMethodUtilization(String methodUtilization) {
+        super.setMethodUtilization(methodUtilization); 
+    }
+
+    @Override
+    public String getMethodUtilization() {
+        return super.getMethodUtilization();
+    }
 }

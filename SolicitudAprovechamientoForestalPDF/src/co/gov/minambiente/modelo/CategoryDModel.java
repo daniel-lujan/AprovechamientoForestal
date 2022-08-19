@@ -24,4 +24,24 @@ public class CategoryDModel extends CategoryModel{
     public void setTypeUtilization(String typeUtilization) {
         this.typeUtilization = typeUtilization;
     }
+    
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();
+    }
+
+    @Override
+    public void setMethodUtilization(String methodUtilization) {
+        super.setMethodUtilization(methodUtilization); 
+    }
+
+    @Override
+    public String getMethodUtilization() {
+        return super.getMethodUtilization();
+    }
 }
