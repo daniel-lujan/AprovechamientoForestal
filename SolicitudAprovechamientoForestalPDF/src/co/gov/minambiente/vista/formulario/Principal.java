@@ -2,6 +2,8 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.controlador.database.RequestsDatabase;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,8 +18,27 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         co.gov.minambiente.controlador.database.RequestsDatabase.init();
         this.setLocationRelativeTo(null);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                salir();
+            }
+        });
     }
 
+    public void salir(){
+        if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere salir del programa?") == 0) {
+            if (!RequestsDatabase.save()) {
+                if (JOptionPane.showConfirmDialog(null,
+                        "Hubo un error al guardar la base de datos, ¿seguro que desea salir?") != 0) {
+                    return;
+                }
+
+            }
+            System.exit(0);
+        }
+    }
+    
     public void mostrar(){
         controlador = null;
         this.setVisible(true);
@@ -35,7 +56,7 @@ public class Principal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         btnEstadisticas = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("Bienvenido");
@@ -143,16 +164,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere salir del programa?") == 0) {
-            if (!RequestsDatabase.save()) {
-                if (JOptionPane.showConfirmDialog(null,
-                        "Hubo un error al guardar la base de datos, ¿seguro que desea salir?") != 0) {
-                    return;
-                }
-
-            }
-            System.exit(0);
-        }
+        salir();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed

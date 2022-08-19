@@ -141,12 +141,89 @@
     "authorization" : false,
     "emailAdress" : "daniel@mail.com",
     "telephone" : "6751398",
+    "adress" : null
+  },
+  "properties" : [ {
+    "typeProperty" : "Privado",
+    "name" : "",
+    "surface" : "",
     "adress" : {
-      "street" : "Calle1",
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : null,
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  }, {
+    "typeProperty" : "Colectivo",
+    "name" : "",
+    "surface" : "",
+    "adress" : {
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : null,
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  } ],
+  "howToAcquire" : "",
+  "categoryA" : {
+    "name" : "A. Productos forestales maderables",
+    "typeUtilization" : ""
+  },
+  "categoryB" : {
+    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
+    "typeOperation" : "",
+    "revenuesExpected" : [ ],
+    "associatedCategory" : ""
+  },
+  "categoryC" : {
+    "name" : "C. Árboles Aislados",
+    "locationOrType" : ""
+  },
+  "categoryD" : {
+    "name" : "D. Guaduales y bambusales",
+    "typeUtilization" : ""
+  },
+  "creationDate" : {
+    "year" : 0,
+    "month" : 0,
+    "day" : 0,
+    "dateWithFormat" : "0/0/0"
+  },
+  "fileNumber" : "",
+  "actNumber" : "1234",
+  "intendedUse" : "4567",
+  "methodUtilization" : "",
+  "reference" : "1579800866"
+}, {
+  "typeRequest" : "Prórroga",
+  "interested" : {
+    "name" : "Personaaa",
+    "typeId" : "CC",
+    "id" : "1413413",
+    "typePerson" : "Natural",
+    "requests" : null,
+    "attorney" : null,
+    "interestedQuality" : "Propietario",
+    "projectCost" : [ ],
+    "authorization" : false,
+    "emailAdress" : "daniel@mail.com",
+    "telephone" : "2413441",
+    "adress" : {
+      "street" : "CAlle341",
       "typeArea" : "",
       "department" : "Antioquia",
-      "municipality" : "El Retiro",
-      "sidewalk" : "Bario1"
+      "municipality" : "Granada",
+      "sidewalk" : "barrio e"
     }
   },
   "properties" : [ {
@@ -205,9 +282,9 @@
     "day" : 0,
     "dateWithFormat" : "0/0/0"
   },
-  "fileNumber" : "1234",
-  "actNumber" : "4567",
+  "fileNumber" : "13413",
+  "actNumber" : "141313",
   "intendedUse" : "",
   "methodUtilization" : "",
-  "reference" : "1579800866"
+  "reference" : "4817718385"
 } ]

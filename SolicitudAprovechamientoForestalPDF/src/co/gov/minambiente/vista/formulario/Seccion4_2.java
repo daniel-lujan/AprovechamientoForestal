@@ -39,9 +39,8 @@ public class Seccion4_2 extends javax.swing.JFrame {
     private Object[] getRowPlane(int row){
         Object[] array = new Object[3];
         array[0] = (short)tblPlanas.getValueAt(row, 0);
-        array[1] = (double)tblPlanas.getValueAt(row, 1);
-        array[2] = (double)tblPlanas.getValueAt(row, 2);
-        System.out.println(array);
+        array[1] = tblPlanas.getValueAt(row, 1);
+        array[2] = tblPlanas.getValueAt(row, 2);
         return array;
     }
     
@@ -57,7 +56,6 @@ public class Seccion4_2 extends javax.swing.JFrame {
         longitude.add((String)tblGeograficas.getValueAt(row, 6));
         array[0] = latitude;
         array[1] = longitude;
-        System.out.println(tblGeograficas.getValueAt(row, 7));
         array[2] = (double)tblGeograficas.getValueAt(row, 7);
         array[3] = (String)jTextField1.getText();
         array[4] = (short)tblGeograficas.getValueAt(row,0);
@@ -80,7 +78,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
         if (cblCoordenadasPlanas.isSelected()){
             for (int i = 0; i < 12; i++){
                 row = getRowPlane(i);
-                if ((Utils.stripSpaces((String)row[1])).equals("") || (Utils.stripSpaces((String)row[2])).equals("")){
+                if (row[1] == null || row[2] == null){
                     break;
                 }
                 list.add(row);

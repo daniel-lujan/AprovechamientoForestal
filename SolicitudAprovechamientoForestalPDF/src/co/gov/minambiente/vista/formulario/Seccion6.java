@@ -378,53 +378,9 @@ public class Seccion6 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
-        JOptionPane.showMessageDialog(null, "Solicitud terminada");
-        this.setVisible(false);
-        controlador.mostrarPrincipal();
-    }//GEN-LAST:event_btnGuardarMouseClicked
-
-    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btnAnteriorMouseClicked
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void rbSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSIActionPerformed
-        setEnabledCampos(true);
-    }//GEN-LAST:event_rbSIActionPerformed
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        if (txtNombre.getText().length() >= 25) {
-            evt.consume();
-        }
-
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void txtVeredaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVeredaKeyTyped
-        if (txtVereda.getText().length() >= 25) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtVeredaKeyTyped
-
-    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
-        int key = evt.getKeyChar();
-        boolean numeros = key >= 48 && key <= 57;
-        if (!numeros) {
-            evt.consume();
-        }
-        if (txtTelefono.getText().length() >= 10) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtTelefonoKeyTyped
-
-    private void txtDireccionNotKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionNotKeyTyped
-        if (txtDireccionNot.getText().length() >= 25) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDireccionNotKeyTyped
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        volverAlMenu();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cmbDepartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDepartamentoActionPerformed
         if (cmbDepartamento.getSelectedIndex() == 0) {
@@ -447,26 +403,62 @@ public class Seccion6 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cmbDepartamentoActionPerformed
-    /**
-     *
-     * @param evt Carga la imagen
-     */
-    private void btnAbrirFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirFirmaActionPerformed
-        JFileChooser jf = new JFileChooser();
-        jf.setMultiSelectionEnabled(false);
-        if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            rsdragdropfiles.RSDragDropFiles.setCopiar(jf.getSelectedFile().toString(), "src/imagenes/firma.png");
-            txtMostrar.setIcon(new ImageIcon(jf.getSelectedFile().toString()));
+
+    private void rbSIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSIActionPerformed
+        setEnabledCampos(true);
+    }//GEN-LAST:event_rbSIActionPerformed
+
+    private void txtVeredaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVeredaKeyTyped
+        if (txtVereda.getText().length() >= 25) {
+            evt.consume();
         }
-    }//GEN-LAST:event_btnAbrirFirmaActionPerformed
+    }//GEN-LAST:event_txtVeredaKeyTyped
+
+    private void txtVeredaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVeredaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVeredaActionPerformed
+
+    private void txtDireccionNotKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionNotKeyTyped
+        if (txtDireccionNot.getText().length() >= 25) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionNotKeyTyped
 
     private void txtDireccionNotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionNotActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDireccionNotActionPerformed
 
-    private void txtVeredaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVeredaActionPerformed
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        int key = evt.getKeyChar();
+        boolean numeros = key >= 48 && key <= 57;
+        if (!numeros) {
+            evt.consume();
+        }
+        if (txtTelefono.getText().length() >= 10) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtVeredaActionPerformed
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+        this.setVisible(false);
+        if (controlador.isNueva()){
+            if (controlador.esCategoriaC()){
+                controlador.mostrarSeccion5_2();
+            }else {
+                controlador.mostrarSeccion5_1();
+            }
+        } else {
+            controlador.mostrarSeccion2();
+        }
+    }//GEN-LAST:event_btnAnteriorActionPerformed
+
+    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String correo = txtCorreo.getText();
@@ -492,26 +484,34 @@ public class Seccion6 extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        volverAlMenu();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        JOptionPane.showMessageDialog(null, "Solicitud terminada");
         this.setVisible(false);
-        if (controlador.isNueva()){
-            if (controlador.esCategoriaC()){
-                controlador.mostrarSeccion5_2();
-            }else {
-                controlador.mostrarSeccion5_1();
-            }
-        } else {
-            controlador.mostrarSeccion2();
+        controlador.mostrarPrincipal();
+    }//GEN-LAST:event_btnGuardarMouseClicked
+
+    /**
+     *
+     * @param evt Carga la imagen
+     */
+    private void btnAbrirFirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirFirmaActionPerformed
+        JFileChooser jf = new JFileChooser();
+        jf.setMultiSelectionEnabled(false);
+        if (jf.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            rsdragdropfiles.RSDragDropFiles.setCopiar(jf.getSelectedFile().toString(), "src/imagenes/firma.png");
+            txtMostrar.setIcon(new ImageIcon(jf.getSelectedFile().toString()));
         }
-    }//GEN-LAST:event_btnAnteriorActionPerformed
+    }//GEN-LAST:event_btnAbrirFirmaActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        if (txtNombre.getText().length() >= 25) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -553,11 +553,11 @@ public class Seccion6 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnAbrirFirma;
-    public javax.swing.JButton btnAnterior;
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JComboBox<String> cmbDepartamento;
-    public javax.swing.JComboBox<String> cmbMunicipio;
+    private javax.swing.JButton btnAbrirFirma;
+    private javax.swing.JButton btnAnterior;
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JComboBox<String> cmbDepartamento;
+    private javax.swing.JComboBox<String> cmbMunicipio;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
@@ -573,12 +573,12 @@ public class Seccion6 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JRadioButton rbSI;
-    public javax.swing.JTextField txtCorreo;
-    public javax.swing.JTextField txtDireccionNot;
-    public javax.swing.JLabel txtMostrar;
-    public javax.swing.JTextField txtNombre;
-    public javax.swing.JTextField txtTelefono;
-    public javax.swing.JTextField txtVereda;
+    private javax.swing.JRadioButton rbSI;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDireccionNot;
+    private javax.swing.JLabel txtMostrar;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtVereda;
     // End of variables declaration//GEN-END:variables
 }
