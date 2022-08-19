@@ -7,13 +7,11 @@ package co.gov.minambiente.modelo;
 public abstract class CategoryModel{
     
     private String name;
-    private String methodUtilization;
     
     //Cosntructors
     
     public CategoryModel(){
         this.name = "";
-        this.methodUtilization = "";
     }
     
     public CategoryModel(String name) {
@@ -22,7 +20,6 @@ public abstract class CategoryModel{
     
     public CategoryModel(String name, String methodUtilization) {
         this.name = name;
-        this.methodUtilization = methodUtilization;
     }
 
     //Setters & getters
@@ -32,13 +29,5 @@ public abstract class CategoryModel{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getMethodUtilization() {
-        return methodUtilization;
-    }
-
-    public void setMethodUtilization(String methodUtilization) {
-        this.methodUtilization = methodUtilization;
     }
 }

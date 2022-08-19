@@ -26,6 +26,7 @@ public class RequestModel {
     private String fileNumber;
     private String actNumber;
     private String intendedUse;
+    private String methodUtilization;
 
     //constructors
     public RequestModel(String reference) {
@@ -43,6 +44,7 @@ public class RequestModel {
         this.categoryC = new CategoryCModel();
         this.categoryD = new CategoryDModel();
         this.creationDate = new DateModel();
+        this.methodUtilization = "";
     }
 
     public RequestModel(String reference, String typeRequest, InterestedModel interested, LinkedList<PropertyModel> properties) {
@@ -59,9 +61,10 @@ public class RequestModel {
         this.categoryC = new CategoryCModel();
         this.categoryD = new CategoryDModel();
         this.creationDate = new DateModel();
+        this.methodUtilization = "";
     }
 
-    public RequestModel(String REFERENCE, String typeRequest, InterestedModel interested, LinkedList<PropertyModel> properties, String howToAcquire, CategoryAModel categoryA, CategoryBModel categoryB, CategoryCModel categoryC, CategoryDModel categoryD, DateModel creationDate, String fileNumber, String actNumber, String intendedUse) {
+    public RequestModel(String REFERENCE, String typeRequest, InterestedModel interested, LinkedList<PropertyModel> properties, String howToAcquire, CategoryAModel categoryA, CategoryBModel categoryB, CategoryCModel categoryC, CategoryDModel categoryD, DateModel creationDate, String fileNumber, String actNumber, String intendedUse, String methodUtilization) {
         this.REFERENCE = REFERENCE;
         this.typeRequest = typeRequest;
         this.interested = interested;
@@ -75,6 +78,7 @@ public class RequestModel {
         this.fileNumber = fileNumber;
         this.actNumber = actNumber;
         this.intendedUse = intendedUse;
+        this.methodUtilization = methodUtilization;
     }
 
     //Getters & setters
@@ -178,4 +182,11 @@ public class RequestModel {
         this.intendedUse = intendedUse;
     }
 
+    public String getMethodUtilization() {
+        return methodUtilization;
+    }
+
+    public void setMethodUtilization(String methodUtilization) {
+        this.methodUtilization = methodUtilization;
+    }
 }

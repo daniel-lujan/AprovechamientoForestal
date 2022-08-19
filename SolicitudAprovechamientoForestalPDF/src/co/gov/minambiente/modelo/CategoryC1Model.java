@@ -44,14 +44,4 @@ public class CategoryC1Model extends CategoryCModel{
     public String getName() {
         return super.getName();
     }
-
-    @Override
-    public void setMethodUtilization(String methodUtilization) {
-        super.setMethodUtilization(methodUtilization); 
-    }
-
-    @Override
-    public String getMethodUtilization() {
-        return super.getMethodUtilization();
-    }
 }

@@ -14,8 +14,8 @@ public class CategoryAModel extends CategoryModel {
         this.typeUtilization = "";
     }
 
-    public CategoryAModel(String typeUtilization, String methodUtilization) {
-        super("A. Productos forestales maderables",methodUtilization);
+    public CategoryAModel(String typeUtilization) {
+        super("A. Productos forestales maderables");
         this.typeUtilization = typeUtilization;
     }
     
@@ -37,15 +37,5 @@ public class CategoryAModel extends CategoryModel {
     @Override
     public String getName() {
         return super.getName();
-    }
-
-    @Override
-    public void setMethodUtilization(String methodUtilization) {
-        super.setMethodUtilization(methodUtilization); 
-    }
-
-    @Override
-    public String getMethodUtilization() {
-        return super.getMethodUtilization();
     }
 }
