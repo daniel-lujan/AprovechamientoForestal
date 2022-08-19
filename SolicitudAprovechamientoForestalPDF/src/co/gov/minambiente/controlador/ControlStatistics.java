@@ -8,6 +8,7 @@ package co.gov.minambiente.controlador;
 import co.gov.minambiente.modelo.DateModel;
 import co.gov.minambiente.modelo.RequestModel;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -130,13 +131,16 @@ public class ControlStatistics {
                 int yRelativoTitulo; 
                 String tituloBarra;
                 int yInicialTitulo = yInicial + (anchoBarra/2);
-                Grafico.setColor(colorBarra);
+                Grafico.setFont(new Font("Tahoma", Font.BOLD, 14));
                 for(int i = 0; i < lista.size(); i++){
-                    yRelativo = yInicial+ ((anchoBarra + 25)*i);
-                    yRelativoTitulo = yInicialTitulo + ((anchoBarra + 25)*i);
+                    yRelativo = yInicial+ ((anchoBarra + 15)*i);
+                    yRelativoTitulo = yInicialTitulo + ((anchoBarra + 15)*i);
                     tituloBarra = lista.get(i).getDepartamento()+ "("+ String.valueOf(lista.get(i).getFrecuencia())+")";
+                    Grafico.setColor(colorBarra);
                     Grafico.fillRect(xInicial, yRelativo, lista.get(i).getTamano(), anchoBarra);
+                    Grafico.setColor(Color.darkGray);
                     Grafico.drawString(tituloBarra, xInicialTitulo, yRelativoTitulo);
+            
                 }                
      }
 }
