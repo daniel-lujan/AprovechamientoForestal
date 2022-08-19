@@ -5,24 +5,13 @@
  */
 package co.gov.minambiente.controlador;
 
-import co.gov.minambiente.modelo.CategoryAModel;
-import co.gov.minambiente.modelo.CategoryBModel;
-import co.gov.minambiente.modelo.CategoryCModel;
-import co.gov.minambiente.modelo.CategoryDModel;
-import co.gov.minambiente.modelo.CategoryModel;
+
 import co.gov.minambiente.modelo.RequestModel;
-import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
-import static com.itextpdf.kernel.pdf.PdfName.Page;
-import static com.itextpdf.kernel.pdf.PdfName.Table;
-import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Cell;
-import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.Tab;
-import com.itextpdf.layout.element.TabStop;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
@@ -30,9 +19,7 @@ import com.itextpdf.layout.property.UnitValue;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -295,6 +282,44 @@ public class PdfController {
             Table t = createTable3(generatedDoc);
             p.add(t);
             p.add(new Text("\n \n"));
+        
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter,8);
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter,8);
+            p.add(new Text("\n \n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter, solicitude.getMethodUtilization() + "\n");
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+   
+            switch (solicitude.getCategoryC().getName()) {
+                case ("i. Árboles aislados dentro de la cobertura del bosque natural"):
+
+                    break;
+                case ("ii. Árboles aislados fuera de la cobertura del bosque natural"):
+
+                    break;
+                case ("iii Tala o poda de emergencia en centros urbano"):
+
+                    break;
+                case ("iv. Obra pública o privada en centros urbanos"):
+
+                    break;
+                default:
+                    break;
+            }
+
+            
             
             
             setUpParagraph(p, generatedDoc, 18, 10);
@@ -332,7 +357,7 @@ public class PdfController {
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Aplica para únicamente para manejo\n"
                 + "sostenible de flora silvestre y los productos\n"
-                + "forestales no maderables"), titleFont, 8.5f);
+                + "forestales no maderables"), titleFont, 8);
         Cell cell15 = new Cell(1, 2).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
         table.addHeaderCell(cell15);
         
@@ -366,19 +391,19 @@ public class PdfController {
                 + "Hierba terrestre,"
                 + "Epífita, Bejuco/liana,"
                 + "Hemiepífita, Palma,"
-                + "etc.)"), titleFont, 8.5f);
+                + "etc.)"), titleFont, 8f);
         Cell cell26 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
         table.addHeaderCell(cell26);
         
         for (int i = 0; i < 80; i++) {
             q = new Paragraph();
-            generatedDoc.pushText(q, new Text(""), titleFont, 8);
+            generatedDoc.pushText(q, new Text(""), titleFont, 8f);
             Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setMinHeight(10);
             table.addCell(temporal);
         }
         
         q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Cantidad \n Total"), titleFont, 8.5f);
+        generatedDoc.pushText(q, new Text("Cantidad \n Total"), titleFont, 8f);
         Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
         table.addFooterCell(temporal);
         
@@ -500,6 +525,7 @@ public class PdfController {
      * @param p
      * @param generatedDoc
      * @param relativePosition
+     * @param leading
      */
     public static void setUpParagraph(Paragraph p, PdfWorkspace generatedDoc, int relativePosition, int leading) {
         p.setFixedLeading(leading);
@@ -508,24 +534,6 @@ public class PdfController {
         p.setMarginLeft(-5);
         p.setPaddingLeft(5);
         p.setRelativePosition(0, 0, 0, relativePosition);
-
-        /*switch (position) {
-            case ('s'):
-                p.setBorderBottom(Border.NO_BORDER);
-                break;
-            case ('m'):
-                p.setBorderTop(Border.NO_BORDER);
-                p.setBorderBottom(Border.NO_BORDER);
-                break;
-
-            case ('l'):
-                p.setBorderTop(Border.NO_BORDER);
-                p.setBorderBottom(Border.NO_BORDER);
-                break;
-            default:
-                break;
-        }*/
-
         generatedDoc.empujarParrafo(p);
     }
 
@@ -728,7 +736,6 @@ public class PdfController {
         for (String textoFormato : textoFormatos) {
             textsList.add(new Text(textoFormato));
         }
-
         return textsList;
     }
 

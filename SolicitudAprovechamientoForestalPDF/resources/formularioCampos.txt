@@ -70,22 +70,23 @@ de 2019, Decreto 690 de 2021,
 -Especies objeto de la solicitud:
 
 -* Unidades de medida: Metros cúbicos, toneladas, kilogramos, gramos, miligramos, entre otros.
--Nota. Para los aprovechamientos forestales únicos la información sobre el volumen corresponde a la establecida por el inventario estadístico.
--Indique el uso que se pretende dar a los productos a obtener:-
--5.2. Información asociada a la solicitud de aprovechamiento de árboles aislados (Si aplica):-
--Seleccione la ubicación o tipo de solicitud de los individuos objeto de aprovechamiento:-
--i. Árboles aislados dentro de la cobertura del bosque natural 
--Estado del Individuo:-
+-Nota. Para los aprovechamientos forestales únicos la información sobre el volumen corresponde a la establecida por el inventario estadístico. 
+-Indique el uso que se pretende dar a los productos a obtener:
+-
+-5.2. Información asociada a la solicitud de aprovechamiento de árboles aislados (Si aplica):
+-Seleccione la ubicación o tipo de solicitud de los individuos objeto de aprovechamiento:
+-i.	Árboles aislados dentro de la cobertura del bosque natural 
+-Estado del Individuo:
 -Caído por Causas Naturales
 -Muerto por Causas Naturales
 -Razones de Orden Fitosanitario			 Especifique cuál:-
--ii. Árboles aislados fuera de la cobertura del bosque natural
--iii. Tala o poda de emergencia en centros urbanos
+-ii.	Árboles aislados fuera de la cobertura del bosque natural
+-iii.	Tala o poda de emergencia en centros urbanos
 -Tala			 Poda			 
 -Estado del Individuo:-Caído			 Muerto			 Enfermo
 -Causa o Perjuicio: Estabilidad de Suelos			 Canal de Agua			 Obras de Infraestructura/Edificaciones			 
 -Otro (especifique cuál)
--iv. Obra pública o privada en centros urbanos
+-iv.	Obra pública o privada en centros urbanos
 -Tala			 Trasplante/Reubicación			
 -Actividad dentro de obras de infraestructura:- 
 -Construcción /Realización			 Remodelación			 Ampliación			 Instalación			 Similares * (especificar cuál):-
