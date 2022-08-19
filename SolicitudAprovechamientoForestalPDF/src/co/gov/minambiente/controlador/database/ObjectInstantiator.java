@@ -36,7 +36,8 @@ class ObjectInstantiator {
                 (DateModel)getDateInstance((LinkedHashMap)hm.get("creationDate")),
                 (String) hm.get("intendedUse"),
                 (String) hm.get("fileNumber"),
-                (String) hm.get("actNumber")
+                (String) hm.get("actNumber"),
+                (String) hm.get("methodUtilization")
         );
     }
 

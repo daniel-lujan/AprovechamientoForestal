@@ -17,6 +17,14 @@ public class RequestsDatabase{
     
     private static ArrayList<RequestModel> db = new ArrayList();
     public static final int REFERENCE_LENGTH = 10;
+    private static boolean initialized = false;
+    
+    public static void init(){
+        if (!initialized){
+            new JSONController().loadRequestsDatabase();
+            initialized = true;
+        }
+    }
     
     /**
      * Adds a request into the database

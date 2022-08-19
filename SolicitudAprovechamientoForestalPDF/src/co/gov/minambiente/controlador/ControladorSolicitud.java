@@ -14,7 +14,6 @@ import java.util.LinkedList;
  */
 public class ControladorSolicitud {
 
-    private static RequestsDatabase requestsDatabase = new RequestsDatabase();
     private RequestModel request;
     private Principal principal;
     private Seccion1 seccion1;
@@ -27,12 +26,11 @@ public class ControladorSolicitud {
     private Seccion6 seccion6;
 
     public ControladorSolicitud() {
-        request = new RequestModel(requestsDatabase.getNewReference());
+        request = new RequestModel(RequestsDatabase.getNewReference());
     }
 
     public void setPrincipal(Principal principal) {
         this.principal = principal;
-        mostrarPrincipal();
     }
 
     public void instanciarVentanas() {
@@ -47,10 +45,6 @@ public class ControladorSolicitud {
         } catch (IOException e) {
 
         }
-    }
-
-    public void instanciarVentana3() {
-        seccion3 = new Seccion3(this);
     }
 
     public void mostrarPrincipal() {

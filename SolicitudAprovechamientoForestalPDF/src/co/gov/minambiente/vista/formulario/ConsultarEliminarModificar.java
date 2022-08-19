@@ -141,7 +141,7 @@ public class ConsultarEliminarModificar extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\daniel\\Documents\\NetBeansProjects\\Forestal\\SolicitudAprovechamientoForestalPDF\\resources\\images\\pdf_icon.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\daniel\\Documents\\NetBeansProjects\\Forestal3\\SolicitudAprovechamientoForestalPDF\\resources\\images\\pdf_icon.png")); // NOI18N
         jButton4.setText("Exportar a PDF");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,7 +185,8 @@ public class ConsultarEliminarModificar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        new Principal().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

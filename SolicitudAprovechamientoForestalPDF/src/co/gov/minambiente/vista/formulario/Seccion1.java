@@ -44,10 +44,8 @@ public class Seccion1 extends javax.swing.JFrame {
     private void mostrarSiguienteVentana() {
         this.setVisible(false);
         if (cmbTipoSolicitud.getSelectedIndex() == 2) {
-            controlador.instanciarVentana3();
             controlador.mostrarSeccion2();
         } else {
-            controlador.instanciarVentana3();
             controlador.mostrarSeccion3();
         }
     }
@@ -710,8 +708,10 @@ public class Seccion1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-        this.setVisible(false);
-        controlador.mostrarPrincipal();
+        if (JOptionPane.showConfirmDialog(null, "Si vuelve al menu principal, perderá la información diligenciada.") == 0){
+            this.setVisible(false);
+            controlador.mostrarPrincipal();
+        }
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void cmbTipoIdApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdApoderadoActionPerformed

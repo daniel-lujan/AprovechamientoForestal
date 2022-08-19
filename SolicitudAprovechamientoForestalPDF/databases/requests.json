@@ -19,7 +19,22 @@
     "telephone" : "304446985",
     "adress" : null
   },
-  "properties" : [ ],
+  "properties" : [ {
+    "typeProperty" : "Colectivo",
+    "name" : "",
+    "surface" : "",
+    "adress" : {
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : "",
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  } ],
   "howToAcquire" : "",
   "categoryA" : {
     "name" : "A. Productos forestales maderables",
@@ -28,7 +43,7 @@
   "categoryB" : {
     "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
     "typeOperation" : "",
-    "revenuesExpected" : [ "", "" ],
+    "revenuesExpected" : [ ],
     "associatedCategory" : ""
   },
   "categoryC" : {
@@ -42,12 +57,14 @@
   "creationDate" : {
     "year" : 0,
     "month" : 0,
-    "day" : 0
+    "day" : 0,
+    "dateWithFormat" : "0/0/0"
   },
   "fileNumber" : "",
   "actNumber" : "",
   "intendedUse" : "",
-  "reference" : "1717556084"
+  "methodUtilization" : "",
+  "reference" : "6289817298"
 }, {
   "typeRequest" : "nueva",
   "interested" : {
@@ -64,7 +81,22 @@
     "telephone" : "3141345",
     "adress" : null
   },
-  "properties" : [ ],
+  "properties" : [ {
+    "typeProperty" : "Colectivo",
+    "name" : "",
+    "surface" : "",
+    "adress" : {
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : "",
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  } ],
   "howToAcquire" : "",
   "categoryA" : {
     "name" : "A. Productos forestales maderables",
@@ -73,7 +105,7 @@
   "categoryB" : {
     "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
     "typeOperation" : "",
-    "revenuesExpected" : [ "", "" ],
+    "revenuesExpected" : [ ],
     "associatedCategory" : ""
   },
   "categoryC" : {
@@ -87,10 +119,12 @@
   "creationDate" : {
     "year" : 0,
     "month" : 0,
-    "day" : 0
+    "day" : 0,
+    "dateWithFormat" : "0/0/0"
   },
   "fileNumber" : "",
   "actNumber" : "",
   "intendedUse" : "",
-  "reference" : "2714415735"
+  "methodUtilization" : "",
+  "reference" : "9781905076"
 } ]

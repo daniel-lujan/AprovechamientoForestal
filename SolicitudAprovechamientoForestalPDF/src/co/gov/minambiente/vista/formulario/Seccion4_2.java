@@ -18,6 +18,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
     public Seccion4_2(ControladorSolicitud controlador) {
         initComponents();
         this.controlador = controlador;
+        this.setLocationRelativeTo(null);
     }
 
     private Object[] getRowPlane(int row){
