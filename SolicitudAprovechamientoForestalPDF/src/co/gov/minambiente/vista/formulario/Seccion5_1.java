@@ -3,6 +3,7 @@ package co.gov.minambiente.vista.formulario;
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import co.gov.minambiente.vista.formulario.Seccion5_2;
 import java.awt.Point;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
@@ -249,15 +250,29 @@ public class Seccion5_1 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguiente1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguiente1MouseClicked
-        String[][] datosTabla = new String[tblEspecies.getRowCount() - 1][tblEspecies.getColumnCount() - 1];
+        ArrayList<ArrayList<String>> datosTabla = new ArrayList<>();
 
         for (int row = 1; row < tblEspecies.getRowCount(); row++) {
-            for (int column = 1; column < tblEspecies.getColumnCount(); column++) {
-                if (tblEspecies.getValueAt(row, column) == null) {
-                    datosTabla[row - 1][column - 1] = "";
-                } else {
-                    datosTabla[row - 1][column - 1] = (String) tblEspecies.getValueAt(row, column);
-                }
+            if (tblEspecies.getValueAt(row, 1) != null && tblEspecies.getValueAt(row, 2) != null && tblEspecies.getValueAt(row, 3) != null
+                    && tblEspecies.getValueAt(row, 4) != null && tblEspecies.getValueAt(row, 5) != null
+                    && tblEspecies.getValueAt(row, 6) != null && tblEspecies.getValueAt(row, 7) != null
+                    && tblEspecies.getValueAt(row, 8) != null) {
+                ArrayList<String> array = new ArrayList<>();
+                array.add((String)tblEspecies.getValueAt(row, 1));
+                array.add((String)tblEspecies.getValueAt(row, 2));
+                array.add((String)tblEspecies.getValueAt(row, 3));
+                array.add((String)tblEspecies.getValueAt(row, 4));
+                array.add((String)tblEspecies.getValueAt(row, 5));
+                array.add((String)tblEspecies.getValueAt(row, 6));
+                array.add((String)tblEspecies.getValueAt(row, 7));
+                array.add((String)tblEspecies.getValueAt(row, 8));
+                datosTabla.add(array);
+            }
+        }
+        
+        for(ArrayList<String> fila : datosTabla){
+            for(String s : fila){
+                System.out.println(s);
             }
         }
 
@@ -297,13 +312,7 @@ public class Seccion5_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_tblEspeciesKeyTyped
 
     private void tblEspeciesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEspeciesMousePressed
-        /**if (evt.getClickCount() > 1) {
-            Point point = evt.getPoint();
-            int row = tblEspecies.rowAtPoint(point);
-            int column = tblEspecies.columnAtPoint(point);
-            TableModel model = tblEspecies.getModel();
-            JOptionPane.showMessageDialog(this, model.getValueAt(row, column));
-        }**/
+
     }//GEN-LAST:event_tblEspeciesMousePressed
 
     /**

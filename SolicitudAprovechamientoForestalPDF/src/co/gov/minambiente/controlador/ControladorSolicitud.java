@@ -179,12 +179,12 @@ public class ControladorSolicitud {
         }
     }
 
-    public void guardarInformacionSeccion5_1(String metodo, String[][] datosTabla, String uso) {
+    public void guardarInformacionSeccion5_1(String metodo, ArrayList<ArrayList<String>> datosTabla, String uso) {
         request.setMethodUtilization(metodo);
 
-        for (String[] datos : datosTabla) {
-            request.getProperties().get(0).getSpecies().add(new SpecieModel(Double.parseDouble(datos[0]), datos[1], datos[2], datos[3],
-                    datos[4], datos[5], datos[6], datos[7]));
+        for (ArrayList<String> datos : datosTabla) {
+            request.getProperties().get(0).getSpecies().add(new SpecieModel(Double.parseDouble(datos.get(0)), datos.get(1), datos.get(2),
+                    datos.get(3), datos.get(4), datos.get(5), datos.get(6), datos.get(7)));
         }
 
         request.setIntendedUse(uso);
