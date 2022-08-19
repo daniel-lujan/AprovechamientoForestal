@@ -3,9 +3,6 @@ package co.gov.minambiente.vista.formulario;
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -119,11 +116,6 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setText("1. Datos del interesado");
 
-        txtNombreApoderado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreApoderadoActionPerformed(evt);
-            }
-        });
         txtNombreApoderado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreApoderadoKeyTyped(evt);
@@ -133,11 +125,6 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Tipo de predio(s):");
 
-        txtOtro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOtroActionPerformed(evt);
-            }
-        });
         txtOtro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtOtroKeyTyped(evt);
@@ -150,22 +137,12 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setText("TP:");
 
-        txtTPApoderado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTPApoderadoActionPerformed(evt);
-            }
-        });
         txtTPApoderado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtTPApoderadoKeyTyped(evt);
             }
         });
 
-        txtNumeroIdApoderado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroIdApoderadoActionPerformed(evt);
-            }
-        });
         txtNumeroIdApoderado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroIdApoderadoKeyTyped(evt);
@@ -192,11 +169,6 @@ public class Seccion1 extends javax.swing.JFrame {
         });
 
         btnAnterior.setText("Anterior");
-        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAnteriorMouseClicked(evt);
-            }
-        });
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -214,18 +186,8 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel13.setText("1.1. Tipo de solicitud: ");
 
         cmbTipoSolicitud.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Nueva", "Prórroga" }));
-        cmbTipoSolicitud.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoSolicitudActionPerformed(evt);
-            }
-        });
 
         cmbTipoPredio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Público", "Colectivo", "Privado" }));
-        cmbTipoPredio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoPredioActionPerformed(evt);
-            }
-        });
 
         jLabel14.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel14.setText("Nombre:");
@@ -236,11 +198,6 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setText("Nombre o Razón Social:");
 
-        txtNombreInteresado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreInteresadoActionPerformed(evt);
-            }
-        });
         txtNombreInteresado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreInteresadoKeyTyped(evt);
@@ -251,20 +208,10 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel17.setText("Tipo de identificación:");
 
         cmbTipoIdInteresado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "CC", "CE", "PA", "NIT" }));
-        cmbTipoIdInteresado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoIdInteresadoActionPerformed(evt);
-            }
-        });
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel18.setText("Número de identificación:");
 
-        txtNumeroIdInteresado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroIdInteresadoActionPerformed(evt);
-            }
-        });
         txtNumeroIdInteresado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroIdInteresadoKeyTyped(evt);
@@ -281,11 +228,6 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel21.setText("1.6. Costo del Proyecto, Obra o Actividad");
 
         cmbTipoPersonaInteresado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Natural", "Jurídica", "Jurídica Privada" }));
-        cmbTipoPersonaInteresado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoPersonaInteresadoActionPerformed(evt);
-            }
-        });
 
         jLabel22.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel22.setText("1.4. Calidad en que actúa sobre el predio donde se realizará el aprovechamiento o manejo ");
@@ -300,11 +242,6 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         jLabel23.setText("1.5. Información del predio objeto de la solicitud");
 
-        txtCosto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostoActionPerformed(evt);
-            }
-        });
         txtCosto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCostoKeyTyped(evt);
@@ -314,11 +251,6 @@ public class Seccion1 extends javax.swing.JFrame {
         jLabel25.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel25.setText("$");
 
-        txtCostoLetras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCostoLetrasActionPerformed(evt);
-            }
-        });
         txtCostoLetras.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCostoLetrasKeyTyped(evt);
@@ -352,11 +284,6 @@ public class Seccion1 extends javax.swing.JFrame {
         btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPrincipalMouseClicked(evt);
-            }
-        });
-        btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrincipalActionPerformed(evt);
             }
         });
 
@@ -590,22 +517,6 @@ public class Seccion1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreApoderadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreApoderadoActionPerformed
-
-    private void txtOtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtOtroActionPerformed
-
-    private void txtTPApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTPApoderadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTPApoderadoActionPerformed
-
-    private void txtNumeroIdApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroIdApoderadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroIdApoderadoActionPerformed
-
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -726,40 +637,12 @@ public class Seccion1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteMouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAnteriorActionPerformed
-
-    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         mostrarMenuPrincipal();
-    }//GEN-LAST:event_btnAnteriorMouseClicked
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void cmbTipoIdApoderadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdApoderadoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbTipoIdApoderadoActionPerformed
-
-    private void cmbTipoSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoSolicitudActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoSolicitudActionPerformed
-
-    private void cmbTipoPredioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPredioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoPredioActionPerformed
-
-    private void txtNombreInteresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreInteresadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreInteresadoActionPerformed
-
-    private void cmbTipoIdInteresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoIdInteresadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoIdInteresadoActionPerformed
-
-    private void txtNumeroIdInteresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroIdInteresadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroIdInteresadoActionPerformed
-
-    private void cmbTipoPersonaInteresadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoPersonaInteresadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoPersonaInteresadoActionPerformed
 
     private void cmbCalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCalidadActionPerformed
         if (cmbCalidad.getSelectedIndex() == 9) {
@@ -768,14 +651,6 @@ public class Seccion1 extends javax.swing.JFrame {
             txtOtro.setEnabled(false);
         }
     }//GEN-LAST:event_cmbCalidadActionPerformed
-
-    private void txtCostoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostoActionPerformed
-
-    private void txtCostoLetrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCostoLetrasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCostoLetrasActionPerformed
 
     private void rbSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSiActionPerformed
         if (rbSi.isSelected()) {
@@ -883,47 +758,6 @@ public class Seccion1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnPrincipalMouseClicked
 
-    private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPrincipalActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Seccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Seccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Seccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Seccion1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Seccion1(new ControladorSolicitud()).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;

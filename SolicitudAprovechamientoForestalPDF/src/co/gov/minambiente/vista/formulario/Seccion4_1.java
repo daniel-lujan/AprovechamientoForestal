@@ -1,11 +1,9 @@
 package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.ControladorSolicitud;
-import co.gov.minambiente.modelo.DepartmentModel;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -106,22 +104,12 @@ public class Seccion4_1 extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel5.setText("Municipio:");
 
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
-            }
-        });
         txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtDireccionKeyTyped(evt);
             }
         });
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNombreKeyTyped(evt);
@@ -137,22 +125,12 @@ public class Seccion4_1 extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel8.setText("Cédula catastral (solo si no dispone de matrícula inmobiliaria):");
 
-        txtCedulaCatastral.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaCatastralActionPerformed(evt);
-            }
-        });
         txtCedulaCatastral.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCedulaCatastralKeyTyped(evt);
             }
         });
 
-        txtSuperficie.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSuperficieActionPerformed(evt);
-            }
-        });
         txtSuperficie.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtSuperficieKeyTyped(evt);
@@ -165,11 +143,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel10.setText("Número(s) de matrícula inmobiliaria:");
 
-        txtMatriculaInmobiliaria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatriculaInmobiliariaActionPerformed(evt);
-            }
-        });
         txtMatriculaInmobiliaria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtMatriculaInmobiliariaKeyTyped(evt);
@@ -183,11 +156,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
         jLabel12.setText("Nombre del predio:");
 
         cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Urbano", "Rural" }));
-        cmbTipo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoActionPerformed(evt);
-            }
-        });
 
         jLabel26.setFont(new java.awt.Font("Arial Narrow", 2, 13)); // NOI18N
         jLabel26.setText("Nota: En caso de que el área para el desarrollo del aprovechamiento forestal o manejo sostenible comprenda más de dos predios a intervenir, el interesado deberá anexar una");
@@ -204,11 +172,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
         });
 
         btnAnterior.setText("Anterior");
-        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAnteriorMouseClicked(evt);
-            }
-        });
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -240,17 +203,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
             }
         });
 
-        cmbMunicipio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbMunicipioActionPerformed(evt);
-            }
-        });
-
-        txtVereda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtVeredaActionPerformed(evt);
-            }
-        });
         txtVereda.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtVeredaKeyTyped(evt);
@@ -258,11 +210,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
         });
 
         btnPrincipal.setText("Volver a la ventana principal");
-        btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrincipalMouseClicked(evt);
-            }
-        });
         btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrincipalActionPerformed(evt);
@@ -414,30 +361,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtCedulaCatastralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaCatastralActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaCatastralActionPerformed
-
-    private void txtSuperficieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSuperficieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSuperficieActionPerformed
-
-    private void txtMatriculaInmobiliariaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatriculaInmobiliariaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatriculaInmobiliariaActionPerformed
-
-    private void cmbTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoActionPerformed
-
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
         String nombre = txtNombre.getText().trim();
         String superficie = txtSuperficie.getText().trim();
@@ -476,13 +399,9 @@ public class Seccion4_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteMouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAnteriorActionPerformed
-
-    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
         controlador.mostrarSeccion3();
-    }//GEN-LAST:event_btnAnteriorMouseClicked
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void rbSiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbSiActionPerformed
         txtMatriculaInmobiliaria.setEnabled(true);
@@ -515,14 +434,6 @@ public class Seccion4_1 extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_cmbDepartamentoActionPerformed
-
-    private void cmbMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMunicipioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbMunicipioActionPerformed
-
-    private void txtVeredaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVeredaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVeredaActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         if (txtNombre.getText().length() > 25) {
@@ -584,53 +495,10 @@ public class Seccion4_1 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCedulaCatastralKeyTyped
 
-    private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
-        mostrarMenuPrincipal();
-    }//GEN-LAST:event_btnPrincipalMouseClicked
-
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
-        // TODO add your handling code here:
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Seccion4_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Seccion4_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Seccion4_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Seccion4_1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Seccion4_1(new ControladorSolicitud()).setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(Seccion4_1.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;

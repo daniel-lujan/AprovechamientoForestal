@@ -106,7 +106,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnVerMouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
@@ -121,9 +120,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver estad&#xed;sticas"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstadisticasActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

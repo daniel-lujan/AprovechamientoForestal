@@ -3,9 +3,6 @@ package co.gov.minambiente.vista.formulario;
 import co.gov.minambiente.controlador.ControladorSolicitud;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -62,22 +59,12 @@ public class Seccion2 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("autorización)");
 
-        txtNumeroExpediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroExpedienteActionPerformed(evt);
-            }
-        });
         txtNumeroExpediente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroExpedienteKeyTyped(evt);
             }
         });
 
-        txtNumeroActo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNumeroActoActionPerformed(evt);
-            }
-        });
         txtNumeroActo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNumeroActoKeyTyped(evt);
@@ -99,11 +86,6 @@ public class Seccion2 extends javax.swing.JFrame {
         });
 
         btnAnterior.setText("Anterior");
-        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAnteriorMouseClicked(evt);
-            }
-        });
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -114,11 +96,6 @@ public class Seccion2 extends javax.swing.JFrame {
         jLabel4.setText("Indique el número de acto administrativo mediante el cual se otorgó el derecho al uso del recurso forestal (permiso, asociación, concesión forestal o");
 
         btnPrincipal.setText("Volver a la ventana principal");
-        btnPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrincipalMouseClicked(evt);
-            }
-        });
         btnPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrincipalActionPerformed(evt);
@@ -193,14 +170,6 @@ public class Seccion2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNumeroExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroExpedienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroExpedienteActionPerformed
-
-    private void txtNumeroActoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroActoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumeroActoActionPerformed
-
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
         String numeroExpediente = txtNumeroExpediente.getText().trim();
         String numeroActo = txtNumeroActo.getText().trim();
@@ -214,13 +183,9 @@ public class Seccion2 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteMouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAnteriorActionPerformed
-
-    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
         controlador.mostrarSeccion1();
-    }//GEN-LAST:event_btnAnteriorMouseClicked
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void txtNumeroExpedienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroExpedienteKeyTyped
         if (txtNumeroExpediente.getText().length() > 15) {
@@ -242,51 +207,9 @@ public class Seccion2 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtNumeroActoKeyTyped
 
-    private void btnPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrincipalMouseClicked
-        mostrarMenuPrincipal();
-    }//GEN-LAST:event_btnPrincipalMouseClicked
-
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
-        // TODO add your handling code here:
+        mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Seccion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Seccion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Seccion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Seccion2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Seccion2(new ControladorSolicitud()).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;

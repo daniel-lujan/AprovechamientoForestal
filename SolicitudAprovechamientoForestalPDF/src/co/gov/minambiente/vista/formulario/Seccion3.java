@@ -89,22 +89,12 @@ public class Seccion3 extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel3.setText("Predios de propiedad privada o colectiva:");
 
-        txtIngresosLetras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngresosLetrasActionPerformed(evt);
-            }
-        });
         txtIngresosLetras.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIngresosLetrasKeyTyped(evt);
             }
         });
 
-        txtIngresos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIngresosActionPerformed(evt);
-            }
-        });
         txtIngresos.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtIngresosKeyTyped(evt);
@@ -121,11 +111,6 @@ public class Seccion3 extends javax.swing.JFrame {
         jLabel12.setText("Terrenos de dominio público:");
 
         cmbTerrenosDominio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Permiso", "Asociación", "Concesión Forestal" }));
-        cmbTerrenosDominio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTerrenosDominioActionPerformed(evt);
-            }
-        });
 
         btnSiguiente.setText("Siguiente");
         btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -135,11 +120,6 @@ public class Seccion3 extends javax.swing.JFrame {
         });
 
         btnAnterior.setText("Anterior");
-        btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAnteriorMouseClicked(evt);
-            }
-        });
         btnAnterior.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnteriorActionPerformed(evt);
@@ -155,28 +135,13 @@ public class Seccion3 extends javax.swing.JFrame {
 
         lbAutorizacion.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         lbAutorizacion.setText("Autorización");
-        lbAutorizacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lbAutorizacionActionPerformed(evt);
-            }
-        });
 
         cmbTipoAprovechamientoD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Tipo 1", "Tipo 2", "Cambio definitivo de uso de suelo", "Establecimiento y Manejo" }));
-        cmbTipoAprovechamientoD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoAprovechamientoDActionPerformed(evt);
-            }
-        });
 
         jLabel15.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel15.setText("Seleccione la clase de aprovechamiento a solicitar: ");
 
         cmbCategoriaAsociada.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Pequeños", "Medianos", "Grandes" }));
-        cmbCategoriaAsociada.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbCategoriaAsociadaActionPerformed(evt);
-            }
-        });
 
         jLabel16.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel16.setText("Seleccione el tipo de aprovechamiento a solicitar: ");
@@ -192,11 +157,6 @@ public class Seccion3 extends javax.swing.JFrame {
         jLabel27.setToolTipText("");
 
         cmbTipoAprovechamientoA.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Persistente", "Único", "Doméstico", "Manejo Forestal Unificado" }));
-        cmbTipoAprovechamientoA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTipoAprovechamientoAActionPerformed(evt);
-            }
-        });
 
         jLabel19.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel19.setText("Seleccione la clase de manejo sostenible a solicitar: ");
@@ -431,18 +391,6 @@ public class Seccion3 extends javax.swing.JFrame {
         }
     }
 
-    private void txtIngresosLetrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresosLetrasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngresosLetrasActionPerformed
-
-    private void txtIngresosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIngresosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIngresosActionPerformed
-
-    private void cmbTerrenosDominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTerrenosDominioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTerrenosDominioActionPerformed
-
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
         String terrenosDominio = (controlador.verTypeProperty().equals("Público")) ? (String) cmbTerrenosDominio.getSelectedItem() : (lbAutorizacion.isSelected() ? "Autorización" : "Seleccione");
         String tipoAprovechamientoA = (String) cmbTipoAprovechamientoA.getSelectedItem();
@@ -514,29 +462,9 @@ public class Seccion3 extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteMouseClicked
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
-       
-    }//GEN-LAST:event_btnAnteriorActionPerformed
-
-    private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
         this.setVisible(false);
-        controlador.mostrarSeccion1();
-    }//GEN-LAST:event_btnAnteriorMouseClicked
-
-    private void lbAutorizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbAutorizacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbAutorizacionActionPerformed
-
-    private void cmbTipoAprovechamientoDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoAprovechamientoDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoAprovechamientoDActionPerformed
-
-    private void cmbCategoriaAsociadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCategoriaAsociadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbCategoriaAsociadaActionPerformed
-
-    private void cmbTipoAprovechamientoAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTipoAprovechamientoAActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTipoAprovechamientoAActionPerformed
+        controlador.mostrarSeccion1();       
+    }//GEN-LAST:event_btnAnteriorActionPerformed
 
     private void cmbClaseManejoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbClaseManejoActionPerformed
         if (cmbClaseManejo.getSelectedIndex() == 2) {
@@ -623,48 +551,6 @@ public class Seccion3 extends javax.swing.JFrame {
     private void btnPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrincipalActionPerformed
         mostrarMenuPrincipal();
     }//GEN-LAST:event_btnPrincipalActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Seccion3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Seccion3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Seccion3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Seccion3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Seccion3(new ControladorSolicitud()).setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAnterior;
