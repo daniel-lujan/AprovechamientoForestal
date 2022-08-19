@@ -55,21 +55,16 @@ de 2019, Decreto 690 de 2021,
 -Dirección del predio:	--	Urbano			 Rural
 -Departamento:	--	 Municipio:	--	Vereda:	-
 -Número(s) de matrícula inmobiliaria:-
--Cédula Catastral (solo si no dispone de la matrícula inmobiliaria)
--Nota. En caso de que el área para el desarrollo del aprovechamiento forestal o manejo sostenible comprenda más de dos predios a intervenir, el interesado
--deberá anexar una tabla con la información predial adicional de acuerdo a los campos descritos en el presente formato.
--4.2. Coordenadas del área objeto de la solicitud*:-
--Para los aprovechamientos forestales persistentes y únicos de bosque natural, y para el manejo sostenible persistente de la flora silvestre y los productos
--forestales no maderables, se deberá señalar:-
+-Cédula Catastral (solo si no dispone de la matrícula inmobiliaria)-
+-Nota. En caso de que el área para el desarrollo del aprovechamiento forestal o manejo sostenible comprenda más de dos predios a intervenir, el interesado deberá anexar una tabla con la información predial adicional de acuerdo a los campos descritos en el presente formato.
+-4.2. Coordenadas del área objeto de la solicitud*:
+-Para los aprovechamientos forestales persistentes y únicos de bosque natural, y para el manejo sostenible persistente de la flora silvestre y los productosforestales no maderables, se deberá señalar:
 -Coordenadas planas			 Coordenadas geográficas 
--En caso de seleccionar coordenadas planas, las mismas deberán corresponder al Origen único CTM-12, conforme a lo establecido en la Resolución 471
--de 2020, modificada por la Resolución 529 de 2020, proferida por el Instituto Geográfico Agustín Codazzi, y para coordenadas geográficas utilizar el
--sistema de coordenadas Magna-Sirgas
+-En caso de seleccionar coordenadas planas, las mismas deberán corresponder al Origen único CTM 12, conforme a lo establecido en la Resolución 471 de 2020, modificada por la Resolución 529 de 2020, proferida por el Instituto Geográfico Agustín Codazzi, y para coordenadas geográficas utilizar elsistema de coordenadas Magna Sirgas
 -Diligencie el listado de coordenadas según sea el caso:
 
 
--Nota. Para los aprovechamientos forestales domésticos de bosque natural, de árboles aislados y el manejo sostenible doméstico de la flora silvestre y
--de los productos forestales no maderables, la autoridad ambiental competente en la visita, tomará las coordenadas planas o geográficas respectivas.
+-Nota. Para los aprovechamientos forestales domésticos de bosque natural, de árboles aislados y el manejo sostenible doméstico de la flora silvestre y de los productos forestales no maderables, la autoridad ambiental competente en la visita, tomará las coordenadas planas o geográficas respectivas.
 -5.		Información sobre el aprovechamiento forestal o manejo sostenible de la flora silvestre y los productos forestales no maderables
 -5.1. Información de las especies objeto de la solicitud de aprovechamiento forestal o manejo sostenible de flora silvestre y los productos forestales no
 -maderables y método-(Aplica para todas las categorías)
