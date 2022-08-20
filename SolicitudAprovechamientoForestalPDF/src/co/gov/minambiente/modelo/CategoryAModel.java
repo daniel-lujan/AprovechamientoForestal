@@ -8,7 +8,7 @@ public class CategoryAModel extends CategoryModel {
     
     private String typeUtilization;
 
-    //Constructors  
+    
     public CategoryAModel(){
         super("A. Productos forestales maderables");
         this.typeUtilization = "";
@@ -19,7 +19,7 @@ public class CategoryAModel extends CategoryModel {
         this.typeUtilization = typeUtilization;
     }
     
-    //Setters & getters
+   
 
     public String getTypeUtilization() {
         return typeUtilization;

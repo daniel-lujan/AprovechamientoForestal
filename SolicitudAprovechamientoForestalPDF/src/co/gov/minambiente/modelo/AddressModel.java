@@ -12,7 +12,7 @@ public class AddressModel {
     private String municipality;
     private String sidewalk;
 
-    //Constructors 
+   
     public AddressModel(){
         this.street = "";
         this.typeArea = "";
@@ -36,7 +36,7 @@ public class AddressModel {
        
     
     }
-    //Setters & getters
+    
 
     public String getStreet() {
         return street;

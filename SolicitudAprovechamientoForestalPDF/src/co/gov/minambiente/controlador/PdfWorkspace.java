@@ -120,6 +120,15 @@ public class PdfWorkspace {
                 .setColor(fill, true).fill()
                 ;
     }
+    public void createRectangle2(Color color,float positionX, float positionY,
+        int width, int height ) throws MalformedURLException{
+        Image temporal = new Image(ImageDataFactory.create("resources\\images\\icons.jpg"));
+        temporal.setMaxHeight(width );
+        temporal.setMaxWidth(height);
+        temporal.setFixedPosition(positionX,positionY );
+        this.document.add(temporal);
+        
+    }
     
     /**
      * Este método revisa si el directorio fue creado

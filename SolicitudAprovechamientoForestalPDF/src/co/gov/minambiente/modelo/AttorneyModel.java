@@ -8,7 +8,7 @@ public class AttorneyModel extends PersonModel {
     
     private String profesionalCard;
     
-    //Constructors
+  
     
     public AttorneyModel(){
         this.profesionalCard = "";
@@ -23,7 +23,7 @@ public class AttorneyModel extends PersonModel {
         this.profesionalCard = profesionalCard;
     }
     
-    //Getters & setters
+  
 
     public String getProfesionalCard() {
         return profesionalCard;
@@ -62,7 +62,5 @@ public class AttorneyModel extends PersonModel {
     public String getName() {
         return super.getName(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
     
 }

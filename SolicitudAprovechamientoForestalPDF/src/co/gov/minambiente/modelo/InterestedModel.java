@@ -135,6 +135,7 @@ public class InterestedModel extends PersonModel {
     public boolean isAuthorization() {
         return authorization;
     }
+    
 
     public void setAuthorization(boolean authorization) {
         this.authorization = authorization;
