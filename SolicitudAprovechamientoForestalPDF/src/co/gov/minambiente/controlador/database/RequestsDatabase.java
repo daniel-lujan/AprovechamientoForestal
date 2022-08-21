@@ -8,6 +8,8 @@ package co.gov.minambiente.controlador.database;
 import co.gov.minambiente.controlador.Utils;
 import java.util.ArrayList;
 import co.gov.minambiente.modelo.RequestModel;
+import co.gov.minambiente.modelo.DateModel;
+import java.time.LocalDate;
 
 /**
  *
@@ -166,6 +168,11 @@ public class RequestsDatabase{
             }
         }
         return ref;
+    }
+    
+    public static DateModel getCurrentDate(){
+        LocalDate date = LocalDate.now();
+        return new DateModel(date.getDayOfMonth(),date.getMonthValue(),date.getYear());
     }
     
     public static String requestSummary(RequestModel request){

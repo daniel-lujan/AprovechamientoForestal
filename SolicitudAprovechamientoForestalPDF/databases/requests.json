@@ -199,9 +199,9 @@
     "day" : 0,
     "dateWithFormat" : "0/0/0"
   },
-  "fileNumber" : "4567",
-  "actNumber" : "",
-  "intendedUse" : "1234",
+  "fileNumber" : "",
+  "actNumber" : "1234",
+  "intendedUse" : "4567",
   "methodUtilization" : "",
   "reference" : "1579800866"
 }, {
@@ -276,9 +276,94 @@
     "day" : 0,
     "dateWithFormat" : "0/0/0"
   },
-  "fileNumber" : "",
-  "actNumber" : "13413",
-  "intendedUse" : "141313",
+  "fileNumber" : "13413",
+  "actNumber" : "141313",
+  "intendedUse" : "",
   "methodUtilization" : "",
   "reference" : "4817718385"
+}, {
+  "typeRequest" : "Nueva",
+  "interested" : {
+    "name" : "Juan",
+    "typeId" : "CC",
+    "id" : "890",
+    "typePerson" : "Natural",
+    "requests" : null,
+    "attorney" : null,
+    "interestedQuality" : "Propietario",
+    "projectCost" : [ ],
+    "authorization" : false,
+    "emailAdress" : "juan@mail.com",
+    "telephone" : "124126",
+    "adress" : null
+  },
+  "properties" : [ {
+    "typeProperty" : "Privado",
+    "name" : "Terreno",
+    "surface" : "1341",
+    "adress" : {
+      "street" : "Calle12",
+      "typeArea" : "Urbano",
+      "department" : "Amazonas",
+      "municipality" : "Puerto Nariño",
+      "sidewalk" : "Veredaaa"
+    },
+    "realEstateRegistration" : null,
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ {
+      "quantity" : 143.0,
+      "unit" : "kg",
+      "commonName" : "comun",
+      "scientificName" : "100tifiko",
+      "habit" : "nacional",
+      "closure" : "ninguna",
+      "threatClassification" : null
+    } ]
+  }, {
+    "typeProperty" : "Colectivo",
+    "name" : "",
+    "surface" : "",
+    "adress" : {
+      "street" : "",
+      "typeArea" : "",
+      "department" : "",
+      "municipality" : "",
+      "sidewalk" : ""
+    },
+    "realEstateRegistration" : null,
+    "cadastralIdNumber" : "",
+    "coordiantes" : [ ],
+    "species" : [ ]
+  } ],
+  "howToAcquire" : "Autorización",
+  "categoryA" : {
+    "name" : "A. Productos forestales maderables",
+    "typeUtilization" : "Persistente"
+  },
+  "categoryB" : {
+    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
+    "typeOperation" : "",
+    "revenuesExpected" : [ ],
+    "associatedCategory" : ""
+  },
+  "categoryC" : {
+    "name" : "C. Árboles Aislados",
+    "locationOrType" : ""
+  },
+  "categoryD" : {
+    "name" : "D. Guaduales y bambusales",
+    "typeUtilization" : ""
+  },
+  "creationDate" : {
+    "year" : 0,
+    "month" : 0,
+    "day" : 0,
+    "dateWithFormat" : "0/0/0"
+  },
+  "fileNumber" : "Venta",
+  "actNumber" : "",
+  "intendedUse" : "",
+  "methodUtilization" : "Mecánico",
+  "reference" : "8691279972"
 } ]

@@ -29,7 +29,7 @@ public class ControladorSolicitud {
      * Constructor vacío.
      */
     public ControladorSolicitud() {
-        request = new RequestModel(RequestsDatabase.getNewReference());
+        request = new RequestModel(RequestsDatabase.getNewReference(),RequestsDatabase.getCurrentDate());
     }
     
     public void setPrincipal(Principal principal) {
