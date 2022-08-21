@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
- *
+ * Esta clase gestiona las vistas
  * @author Natalia García
  */
 public class ControladorSolicitud {
@@ -348,7 +348,7 @@ public class ControladorSolicitud {
      * @param municipio Municipio
      */
     public void guardarInformacionSeccion6(String correo, String telefono, String direccion, String departamento, String vereda, String municipio) {
-        request.getInterested().setEmailAdress(correo);
+        request.getInterested().setEmailAddress(correo);
         request.getInterested().setTelephone(telefono);
         request.getInterested().setAdress(new AddressModel(direccion, "", departamento, municipio, vereda));
     }
