@@ -313,10 +313,8 @@ public class ControladorSolicitud {
             switch (categoria) {
                 case "A":
                     request.setCategoryC(new CategoryC1Model("i. Árboles aislados dentro de la cobertura del bosque natural", estado));
-                    if (estado.equals("Otro")) {
-                        request.getInterested().setInterestedQuality(otro);
-                    } else {
-                        request.getInterested().setInterestedQuality(estado);
+                    if (estado.equals("Razones de Orden Fitosanitario")) {
+                        ((CategoryC1Model)request.getCategoryC()).setIndividualStatus(otro);
                     }
                     break;
                 case "B":
@@ -324,19 +322,15 @@ public class ControladorSolicitud {
                     break;
 
                 case "C":
-                    request.setCategoryC(new CategoryC3Model("iii Tala o poda de emergencia en centros urbano", tipo, estadoIndividual, causa));
+                    request.setCategoryC(new CategoryC3Model("iii Tala o poda de emergencia en centros urbano", tipoA, estadoIndividual, causa));
                     if (causa.equals("Otro")) {
-                        request.getInterested().setInterestedQuality(otro1);
-                    } else {
-                        request.getInterested().setInterestedQuality(causa);
+                        ((CategoryC3Model)request.getCategoryC()).setCause(otro1);
                     }
                     break;
                 case "D":
                     request.setCategoryC(new CategoryC4Model("iv. Obra pública o privada en centros urbanos", tipo, actividad));
-                    if (actividad.equals("Otro")) {
-                        request.getInterested().setInterestedQuality(similar);
-                    } else {
-                        request.getInterested().setInterestedQuality(actividad);
+                    if (actividad.equals("Similar")) {
+                        ((CategoryC4Model)request.getCategoryC()).setActivity(similar);
                     }
                     break;
             }
