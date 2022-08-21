@@ -1,32 +1,40 @@
 package co.gov.minambiente.modelo;
 
 /**
- *
- * @author marit
+ * Esta clase contiene los métodos y atributos de una categoría
+ * @author Maritza
  */
 public abstract class CategoryModel{
     
     private String name;
     
-    //Cosntructors
-    
+    /**
+     * Constructor vacío
+     */
     public CategoryModel(){
         this.name = "";
     }
     
-    public CategoryModel(String name) {
-        this.name = name;
-    }
-    
-    public CategoryModel(String name, String methodUtilization) {
+    /**
+     * Constructor full
+     * @param name Nombre
+     */
+    public CategoryModel(String name){
         this.name = name;
     }
 
-    //Setters & getters
+    /**
+     * Retorna el nombre
+     * @return Nombre
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Asigna el nombre
+     * @param name Nombre
+     */
     public void setName(String name) {
         this.name = name;
     }
