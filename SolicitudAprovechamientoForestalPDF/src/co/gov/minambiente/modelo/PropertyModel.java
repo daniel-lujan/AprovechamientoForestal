@@ -3,8 +3,8 @@ package co.gov.minambiente.modelo;
 import java.util.LinkedList;
 
 /**
- *
- * @author marit
+ * Esta clase contiene los métodos y atributos de un predio
+ * @author Maritza
  */
 public class PropertyModel {
     
@@ -17,8 +17,9 @@ public class PropertyModel {
     private LinkedList<CoordinateModel> coordiantes;
     private LinkedList<SpecieModel> species;
     
-    //Constructors
-    
+    /**
+     * Constructor vacío
+     */
     public PropertyModel(){
         this.typeProperty = "";
         this.name = "";
@@ -30,6 +31,10 @@ public class PropertyModel {
         this.species = new LinkedList<>();
     }
     
+    /**
+     * Constructor
+     * @param typeProperty Tipo (Público, Colectivo, Privado)
+     */
     public PropertyModel(String typeProperty){
         this.typeProperty = typeProperty;
         this.name = "";
@@ -41,6 +46,17 @@ public class PropertyModel {
         this.species = new LinkedList<>();
     }
   
+    /**
+     * Constructor full
+     * @param typeProperty Tipo (Público, Colectivo, Privado)
+     * @param name Nombre
+     * @param surface Superficie en hectáreas
+     * @param adress Instancia de la dirección
+     * @param realEstateRegistration Número de matrícula inmobiliaría
+     * @param cadastralIdNumber Número de cédula catastral
+     * @param coordiantes Lista de coordenadas del área
+     * @param species Lista de instancias de especies objeto de la solicitud
+     */
     public PropertyModel(String typeProperty, String name, String surface, 
             AddressModel adress, String realEstateRegistration, String cadastralIdNumber,
             LinkedList<CoordinateModel> coordiantes, LinkedList<SpecieModel> species) {
@@ -54,24 +70,42 @@ public class PropertyModel {
         this.species = species;
     }
     
-    //Setters & getters
-
+    /**
+     * Retorna el tipo (Público, Colectivo, Privado)
+     * @return Tipo (Público, Colectivo, Privado)
+     */
     public String getTypeProperty() {
         return typeProperty;
     }
 
+    /**
+     * Asigna el tipo (Público, Colectivo, Privado)
+     * @param typeProperty Tipo (Público, Colectivo, Privado)
+     */
     public void setTypeProperty(String typeProperty) {
         this.typeProperty = typeProperty;
     }
 
+    /**
+     * Retorna el nombre
+     * @return Nombre
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Asigna el nombre
+     * @param name Nombre
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getSurface() {
         return surface;
     }

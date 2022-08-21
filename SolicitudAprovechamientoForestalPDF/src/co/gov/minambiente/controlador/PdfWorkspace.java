@@ -224,8 +224,7 @@ public class PdfWorkspace {
      * @param parrafo Párrafo previamente instanciado
      * @param texto Texto a empujar
      * @param nombreFuente Nombre en disco de la fuente a usar 
-     * @param tamano Tamaño de la fuente 
-     * @param espacio Espacio a identar en dirección x 
+     * @param tamano Tamaño de la fuente
      * @throws MalformedURLException
      * @throws IOException 
      */
