@@ -1,317 +1,44 @@
 [ {
-  "typeRequest" : "nueva",
-  "interested" : {
-    "name" : "Bob Esponja",
-    "typeId" : "cc",
-    "id" : "1101760080",
-    "typePerson" : "Natural",
-    "attorney" : {
-      "name" : "Patricio Estrella",
-      "typeId" : "CC",
-      "id" : "552116447",
-      "profesionalCard" : "856413T"
-    },
-    "interestedQuality" : "Propietario",
-    "projectCost" : [ "1200000", "Doce millones de pesos", "134134", "un monton" ],
-    "authorization" : false,
-    "emailAdress" : "bob_esponja@gmail.com",
-    "telephone" : "304446985",
-    "adress" : null
-  },
-  "properties" : [ {
-    "typeProperty" : "Colectivo",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  } ],
-  "howToAcquire" : "",
-  "categoryA" : {
-    "name" : "A. Productos forestales maderables",
-    "typeUtilization" : ""
-  },
-  "categoryB" : {
-    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
-    "typeOperation" : "",
-    "revenuesExpected" : [ ],
-    "associatedCategory" : ""
-  },
-  "categoryC" : {
-    "name" : "C. Árboles Aislados",
-    "locationOrType" : ""
-  },
-  "categoryD" : {
-    "name" : "D. Guaduales y bambusales",
-    "typeUtilization" : ""
-  },
-  "creationDate" : {
-    "year" : 0,
-    "month" : 0,
-    "day" : 0,
-    "dateWithFormat" : "0/0/0"
-  },
-  "fileNumber" : "",
-  "actNumber" : "",
-  "intendedUse" : "",
-  "methodUtilization" : "",
-  "reference" : "0219447683"
-}, {
-  "typeRequest" : "nueva",
-  "interested" : {
-    "name" : "Mister R",
-    "typeId" : "cc",
-    "id" : "123",
-    "typePerson" : "Natural",
-    "attorney" : null,
-    "interestedQuality" : "Propietario",
-    "projectCost" : [ ],
-    "authorization" : false,
-    "emailAdress" : "example@gmail.com",
-    "telephone" : "3141345",
-    "adress" : null
-  },
-  "properties" : [ {
-    "typeProperty" : "Colectivo",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  } ],
-  "howToAcquire" : "",
-  "categoryA" : {
-    "name" : "A. Productos forestales maderables",
-    "typeUtilization" : ""
-  },
-  "categoryB" : {
-    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
-    "typeOperation" : "",
-    "revenuesExpected" : [ ],
-    "associatedCategory" : ""
-  },
-  "categoryC" : {
-    "name" : "C. Árboles Aislados",
-    "locationOrType" : ""
-  },
-  "categoryD" : {
-    "name" : "D. Guaduales y bambusales",
-    "typeUtilization" : ""
-  },
-  "creationDate" : {
-    "year" : 0,
-    "month" : 0,
-    "day" : 0,
-    "dateWithFormat" : "0/0/0"
-  },
-  "fileNumber" : "",
-  "actNumber" : "",
-  "intendedUse" : "",
-  "methodUtilization" : "",
-  "reference" : "8377939460"
-}, {
-  "typeRequest" : "Prórroga",
+  "typeRequest" : "Nueva",
   "interested" : {
     "name" : "Daniel",
     "typeId" : "CC",
-    "id" : "123",
+    "id" : "0123456789",
     "typePerson" : "Natural",
     "attorney" : null,
     "interestedQuality" : "Propietario",
     "projectCost" : [ ],
     "authorization" : false,
-    "emailAdress" : "daniel@mail.com",
-    "telephone" : "6751398",
-    "adress" : null
-  },
-  "properties" : [ {
-    "typeProperty" : "Privado",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
+    "emailAddress" : null,
+    "telephone" : "3141334",
+    "address" : {
+      "street" : "CAlle1",
       "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  }, {
-    "typeProperty" : "Colectivo",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  } ],
-  "howToAcquire" : "",
-  "categoryA" : {
-    "name" : "A. Productos forestales maderables",
-    "typeUtilization" : ""
-  },
-  "categoryB" : {
-    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
-    "typeOperation" : "",
-    "revenuesExpected" : [ ],
-    "associatedCategory" : ""
-  },
-  "categoryC" : {
-    "name" : "C. Árboles Aislados",
-    "locationOrType" : ""
-  },
-  "categoryD" : {
-    "name" : "D. Guaduales y bambusales",
-    "typeUtilization" : ""
-  },
-  "creationDate" : {
-    "year" : 0,
-    "month" : 0,
-    "day" : 0,
-    "dateWithFormat" : "0/0/0"
-  },
-  "fileNumber" : "4567",
-  "actNumber" : "",
-  "intendedUse" : "1234",
-  "methodUtilization" : "",
-  "reference" : "1579800866"
-}, {
-  "typeRequest" : "Prórroga",
-  "interested" : {
-    "name" : "Personaaa",
-    "typeId" : "CC",
-    "id" : "1413413",
-    "typePerson" : "Natural",
-    "attorney" : null,
-    "interestedQuality" : "Propietario",
-    "projectCost" : [ ],
-    "authorization" : false,
-    "emailAdress" : "daniel@mail.com",
-    "telephone" : "2413441",
-    "adress" : null
-  },
-  "properties" : [ {
-    "typeProperty" : "Privado",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  }, {
-    "typeProperty" : "Colectivo",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  } ],
-  "howToAcquire" : "",
-  "categoryA" : {
-    "name" : "A. Productos forestales maderables",
-    "typeUtilization" : ""
-  },
-  "categoryB" : {
-    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
-    "typeOperation" : "",
-    "revenuesExpected" : [ ],
-    "associatedCategory" : ""
-  },
-  "categoryC" : {
-    "name" : "C. Árboles Aislados",
-    "locationOrType" : ""
-  },
-  "categoryD" : {
-    "name" : "D. Guaduales y bambusales",
-    "typeUtilization" : ""
-  },
-  "creationDate" : {
-    "year" : 0,
-    "month" : 0,
-    "day" : 0,
-    "dateWithFormat" : "0/0/0"
-  },
-  "fileNumber" : "",
-  "actNumber" : "13413",
-  "intendedUse" : "141313",
-  "methodUtilization" : "",
-  "reference" : "4817718385"
-}, {
-  "typeRequest" : "Nueva",
-  "interested" : {
-    "name" : "Juan",
-    "typeId" : "CC",
-    "id" : "890",
-    "typePerson" : "Natural",
-    "attorney" : null,
-    "interestedQuality" : "Propietario",
-    "projectCost" : [ ],
-    "authorization" : false,
-    "emailAdress" : "juan@mail.com",
-    "telephone" : "124126",
-    "adress" : null
+      "department" : "Antioquia",
+      "municipality" : "Itagüí",
+      "sidewalk" : "Barrio"
+    }
   },
   "properties" : [ {
     "typeProperty" : "Privado",
     "name" : "Terreno",
-    "surface" : "1341",
+    "surface" : "31413",
     "adress" : {
-      "street" : "Calle12",
-      "typeArea" : "Urbano",
-      "department" : "Amazonas",
-      "municipality" : "Puerto Nariño",
-      "sidewalk" : "Veredaaa"
+      "street" : "Calle1",
+      "typeArea" : "Rural",
+      "department" : "Antioquia",
+      "municipality" : "Abejorral",
+      "sidewalk" : "veredaaa"
     },
     "realEstateRegistration" : null,
     "cadastralIdNumber" : "",
     "coordiantes" : [ ],
     "species" : [ {
-      "quantity" : 143.0,
+      "quantity" : 12312.0,
       "unit" : "kg",
       "commonName" : "comun",
       "scientificName" : "100tifiko",
-      "habit" : null,
+      "habit" : "ninguna",
       "closure" : null,
       "threatClassification" : null
     } ]
@@ -334,7 +61,7 @@
   "howToAcquire" : "Autorización",
   "categoryA" : {
     "name" : "A. Productos forestales maderables",
-    "typeUtilization" : "Persistente"
+    "typeUtilization" : "Doméstico"
   },
   "categoryB" : {
     "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
@@ -351,14 +78,14 @@
     "typeUtilization" : ""
   },
   "creationDate" : {
-    "year" : 0,
-    "month" : 0,
-    "day" : 0,
-    "dateWithFormat" : "0/0/0"
+    "year" : 21,
+    "month" : 8,
+    "day" : 2022,
+    "dateWithFormat" : "2022/8/21"
   },
   "fileNumber" : "",
-  "actNumber" : "Venta",
+  "actNumber" : "fabricar cosas",
   "intendedUse" : "",
-  "methodUtilization" : "Mecánico",
-  "reference" : "8691279972"
+  "methodUtilization" : "Manual",
+  "reference" : "5848917790"
 } ]

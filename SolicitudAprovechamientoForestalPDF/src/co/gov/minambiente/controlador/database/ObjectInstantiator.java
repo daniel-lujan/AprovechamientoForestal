@@ -52,7 +52,8 @@ class ObjectInstantiator {
                 (String) info.get("telephone"),
                 (String) info.get("name"),
                 (String) info.get("typeId"),
-                (String) info.get("id")
+                (String) info.get("id"),
+                getAddressInstance((LinkedHashMap)info.get("address"))
         );
     }
 
@@ -87,6 +88,7 @@ class ObjectInstantiator {
     }
 
     private AddressModel getAddressInstance(LinkedHashMap info) {
+        System.out.println(info);
         return new AddressModel(
                 (String) info.get("street"),
                 (String) info.get("typeArea"),

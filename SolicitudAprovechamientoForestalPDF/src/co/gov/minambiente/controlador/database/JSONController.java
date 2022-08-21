@@ -49,6 +49,8 @@ public class JSONController {
         ArrayList<java.util.LinkedHashMap> lista;
         try {
             lista = om.readerFor(ArrayList.class).readValue(new File(REQUESTS_PATH));
+            System.out.print("Lista: ");
+            System.out.println(lista);
             ObjectInstantiator oi;
             for (java.util.LinkedHashMap hm : lista){
                 oi = new ObjectInstantiator(hm);
