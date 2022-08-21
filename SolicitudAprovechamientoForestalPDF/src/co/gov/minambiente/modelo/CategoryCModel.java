@@ -27,7 +27,7 @@ public class CategoryCModel extends CategoryModel{
 
     /**
      * Retorna el nombre (Ubicación o tipo de solicitud de los individuos objeto de aprovechamiento)
-     * @param locationOrType Nombre (Ubicación o tipo de solicitud de los individuos objeto de aprovechamiento)
+     * @return Nombre (Ubicación o tipo de solicitud de los individuos objeto de aprovechamiento)
      */
     public String getLocationOrType() {
         return locationOrType;
@@ -35,7 +35,7 @@ public class CategoryCModel extends CategoryModel{
     
     /**
      * Asigna el nombre (Ubicación o tipo de solicitud de los individuos objeto de aprovechamiento)
-     * @return Nombre (Ubicación o tipo de solicitud de los individuos objeto de aprovechamiento)
+     * @param locationOrType Nombre (Ubicación o tipo de solicitud de los individuos objeto de aprovechamiento)
      */
     public void setLocationOrType(String locationOrType) {
         this.locationOrType = locationOrType;

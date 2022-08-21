@@ -227,7 +227,7 @@ public class InterestedModel extends PersonModel {
 
     /**
      * Asigna el correo electrónico
-     * @param emailAdress Correo electrónico
+     * @param emailAddress Correo electrónico
      */
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
