@@ -5,7 +5,6 @@
     "typeId" : "cc",
     "id" : "1101760080",
     "typePerson" : "Natural",
-    "requests" : null,
     "attorney" : {
       "name" : "Patricio Estrella",
       "typeId" : "CC",
@@ -72,7 +71,6 @@
     "typeId" : "cc",
     "id" : "123",
     "typePerson" : "Natural",
-    "requests" : null,
     "attorney" : null,
     "interestedQuality" : "Propietario",
     "projectCost" : [ ],
@@ -134,7 +132,6 @@
     "typeId" : "CC",
     "id" : "123",
     "typePerson" : "Natural",
-    "requests" : null,
     "attorney" : null,
     "interestedQuality" : "Propietario",
     "projectCost" : [ ],
@@ -199,9 +196,9 @@
     "day" : 0,
     "dateWithFormat" : "0/0/0"
   },
-  "fileNumber" : "",
-  "actNumber" : "1234",
-  "intendedUse" : "4567",
+  "fileNumber" : "4567",
+  "actNumber" : "",
+  "intendedUse" : "1234",
   "methodUtilization" : "",
   "reference" : "1579800866"
 }, {
@@ -211,7 +208,6 @@
     "typeId" : "CC",
     "id" : "1413413",
     "typePerson" : "Natural",
-    "requests" : null,
     "attorney" : null,
     "interestedQuality" : "Propietario",
     "projectCost" : [ ],
@@ -276,9 +272,9 @@
     "day" : 0,
     "dateWithFormat" : "0/0/0"
   },
-  "fileNumber" : "13413",
-  "actNumber" : "141313",
-  "intendedUse" : "",
+  "fileNumber" : "",
+  "actNumber" : "13413",
+  "intendedUse" : "141313",
   "methodUtilization" : "",
   "reference" : "4817718385"
 }, {
@@ -288,7 +284,6 @@
     "typeId" : "CC",
     "id" : "890",
     "typePerson" : "Natural",
-    "requests" : null,
     "attorney" : null,
     "interestedQuality" : "Propietario",
     "projectCost" : [ ],
@@ -316,8 +311,8 @@
       "unit" : "kg",
       "commonName" : "comun",
       "scientificName" : "100tifiko",
-      "habit" : "nacional",
-      "closure" : "ninguna",
+      "habit" : null,
+      "closure" : null,
       "threatClassification" : null
     } ]
   }, {
@@ -361,8 +356,8 @@
     "day" : 0,
     "dateWithFormat" : "0/0/0"
   },
-  "fileNumber" : "Venta",
-  "actNumber" : "",
+  "fileNumber" : "",
+  "actNumber" : "Venta",
   "intendedUse" : "",
   "methodUtilization" : "Mecánico",
   "reference" : "8691279972"

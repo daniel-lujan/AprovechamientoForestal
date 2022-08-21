@@ -10,14 +10,15 @@ import co.gov.minambiente.controlador.Utils;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author Natalia García
  */
-public class ConsultarEliminarModificar extends javax.swing.JFrame {
+public class ConsultarDatabase extends javax.swing.JFrame {
 
-    public ConsultarEliminarModificar() {
+    public ConsultarDatabase() {
         initComponents();
         updateList();
         this.setLocationRelativeTo(null);
@@ -152,6 +153,11 @@ public class ConsultarEliminarModificar extends javax.swing.JFrame {
 
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\daniel\\Documents\\NetBeansProjects\\Forestal3\\SolicitudAprovechamientoForestalPDF\\resources\\images\\pdf_icon.png")); // NOI18N
         jButton4.setText("  Exportar a PDF");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,6 +218,13 @@ public class ConsultarEliminarModificar extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        String path = new FileChooser().getPath();
+        if (path != null){
+            // Enviar Utils.modifyExtension(path,"pdf") a PDF controller
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -16,7 +16,6 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
-        co.gov.minambiente.controlador.database.RequestsDatabase.init();
         this.setLocationRelativeTo(null);
         this.addWindowListener(new WindowAdapter() {
             @Override
@@ -138,7 +137,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnVerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerMouseClicked
         this.setVisible(false);
-        new ConsultarEliminarModificar().setVisible(true);
+        new ConsultarDatabase().setVisible(true);
     }//GEN-LAST:event_btnVerMouseClicked
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -153,12 +152,6 @@ public class Principal extends javax.swing.JFrame {
         salir();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        new Principal().setVisible(true);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstadisticas;

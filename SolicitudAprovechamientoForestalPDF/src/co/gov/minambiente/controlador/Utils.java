@@ -152,4 +152,18 @@ public class Utils {
         }
         return array;
     }
+    
+    public static void main(String[] args) {
+        System.out.println("agfe".substring(0,2));
+    }
+    
+    public static String modifyExtension(String path, String extension){
+        int i = path.lastIndexOf(".");
+        if (i == -1){
+            return path + "." + extension;
+        }
+        else {
+            return path.substring(0,i+1) + extension;
+        }
+    }
 }

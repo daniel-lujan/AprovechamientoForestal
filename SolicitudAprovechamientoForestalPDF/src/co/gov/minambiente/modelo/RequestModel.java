@@ -86,7 +86,11 @@ public class RequestModel {
      * @param intendedUse Uso que se pretende dar a los productos a obtener
      * @param methodUtilization Método de aprovechamiento o manejo sostenible (Mecánico, Manual, Mecánico-Manual)
      */
-    public RequestModel(String REFERENCE, String typeRequest, InterestedModel interested, LinkedList<PropertyModel> properties, String howToAcquire, CategoryAModel categoryA, CategoryBModel categoryB, CategoryCModel categoryC, CategoryDModel categoryD, DateModel creationDate, String fileNumber, String actNumber, String intendedUse, String methodUtilization) {
+    public RequestModel(String REFERENCE, String typeRequest, InterestedModel interested,
+            LinkedList<PropertyModel> properties, String howToAcquire, CategoryAModel categoryA,
+            CategoryBModel categoryB, CategoryCModel categoryC, CategoryDModel categoryD,
+            DateModel creationDate, String fileNumber, String actNumber, String intendedUse,
+            String methodUtilization) {
         this.REFERENCE = REFERENCE;
         this.typeRequest = typeRequest;
         this.interested = interested;
