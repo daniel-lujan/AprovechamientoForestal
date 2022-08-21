@@ -103,58 +103,98 @@ public class PropertyModel {
     }
 
     /**
-     * 
-     * @return 
+     * Retorna la superficie en hectáreas
+     * @return Superficie en hectáreas
      */
     public String getSurface() {
         return surface;
     }
 
+    /**
+     * Asigna la superficie en hectáreas
+     * @param surface Superficie en hectáreas
+     */
     public void setSurface(String surface) {
         this.surface = surface;
     }
 
+    /**
+     * Retorna la instancia de la dirección
+     * @return Instancia de la dirección
+     */
     public AddressModel getAdress() {
         return adress;
     }
 
+    /**
+     * Asigna la instancia de la dirección
+     * @param adress Instancia de la dirección
+     */
     public void setAdress(AddressModel adress) {
         this.adress = adress;
     }
 
+    /**
+     * Retorna el número de matrícula inmobilaría
+     * @return Número de matrícula inmobiliaría
+     */
     public String getRealEstateRegistration() {
         return realEstateRegistration;
     }
 
+    /**
+     * Asigna el número de matrícula inmobiliaría
+     * @param realEstateRegistration Número de matrícula inmobiliaría
+     */
     public void setRealEstateRegistration(String realEstateRegistration) {
         this.realEstateRegistration = realEstateRegistration;
     }
 
+    /**
+     * Retorna el número de cédula catastral
+     * @return Número de cédula catastral
+     */
     public String getCadastralIdNumber() {
         return cadastralIdNumber;
     }
 
+    /**
+     * Asigna el número de cédula catastral
+     * @param cadastralIdNumber Número de cédula catastral
+     */
     public void setCadastralIdNumber(String cadastralIdNumber) {
         this.cadastralIdNumber = cadastralIdNumber;
     }
 
+    /**
+     * Retorna la lista de coordenadas del área
+     * @return Lista de coordenadas del área
+     */
     public LinkedList<CoordinateModel> getCoordiantes() {
         return coordiantes;
     }
 
+    /**
+     * Asigna la lista de coordenadas del área
+     * @param coordiantes Lista de coordenadas del área
+     */
     public void setCoordiantes(LinkedList<CoordinateModel> coordiantes) {
         this.coordiantes = coordiantes;
     }
 
+    /**
+     * Retorna la lista de instancias de especies objeto de la solicitud
+     * @return Lista de instancias de especies objeto de la solicitud
+     */
     public LinkedList<SpecieModel> getSpecies() {
         return species;
     }
 
+    /**
+     * Asigna la lista de instancias de especies objeto de la solicitud
+     * @param species Lista de instancias de especies objeto de la solicitud
+     */
     public void setSpecies(LinkedList<SpecieModel> species) {
         this.species = species;
-    }
-    
-    
-    
-    
+    }    
 }
