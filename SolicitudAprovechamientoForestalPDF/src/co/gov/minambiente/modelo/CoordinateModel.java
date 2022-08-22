@@ -6,13 +6,13 @@ package co.gov.minambiente.modelo;
  */
 public abstract class CoordinateModel {
     
-    private final short POINT;
+    private final int POINT;
    
     /**
      * Constructor full
      * @param point Número de punto
      */
-    public CoordinateModel(short point) {
+    public CoordinateModel(int point) {
         this.POINT = point;
     } 
     
@@ -20,7 +20,7 @@ public abstract class CoordinateModel {
      * Retorna el número de punto
      * @return Número de punto
      */
-    public short getPOINT() {
+    public int getPOINT() {
         return POINT;
     }
     

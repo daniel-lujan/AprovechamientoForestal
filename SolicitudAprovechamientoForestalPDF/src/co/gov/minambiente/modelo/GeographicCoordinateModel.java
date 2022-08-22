@@ -22,7 +22,7 @@ public class GeographicCoordinateModel extends CoordinateModel {
      * @param ORIGIN Origen
      * @param point Número de punto
      */
-    public GeographicCoordinateModel(ArrayList<Object> LATITUDE, ArrayList<Object> LONGITUDE, double ALTITUDE, String ORIGIN, short point) {
+    public GeographicCoordinateModel(ArrayList<Object> LATITUDE, ArrayList<Object> LONGITUDE, double ALTITUDE, String ORIGIN, int point) {
         super(point);
         this.LATITUDE = LATITUDE;
         this.LONGITUDE = LONGITUDE;
@@ -67,7 +67,7 @@ public class GeographicCoordinateModel extends CoordinateModel {
      * @return Número de punto
      */
     @Override
-    public short getPOINT() {
+    public int getPOINT() {
         return super.getPOINT(); //To change body of generated methods, choose Tools | Templates.
     }
 

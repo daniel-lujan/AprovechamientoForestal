@@ -16,7 +16,7 @@ public class PlaneCoordinateModel extends CoordinateModel{
      * @param y Coordenada en y
      * @param point Número de punto
      */
-    public PlaneCoordinateModel(double x, double y, short point) {
+    public PlaneCoordinateModel(double x, double y, int point) {
         super(point);
         this.X = x;
         this.Y = y;
@@ -43,7 +43,7 @@ public class PlaneCoordinateModel extends CoordinateModel{
      * @return Número de punto
      */
     @Override
-    public short getPOINT() {
+    public int getPOINT() {
         return super.getPOINT(); 
     }
     
