@@ -280,8 +280,9 @@ public class PdfController {
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
 
             setUpParagraph(p, generatedDoc, 27, 10);
+             PdfController.generateCheckBoxes2(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
             generatedDoc.pasarPagina(3);
-            PdfController.generateCheckBoxes2(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
+           
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1022,87 +1023,134 @@ public class PdfController {
 
         int y = 817;
         generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
-        if (category.getName() != null) {
+        
 
             if (category.getName().equals("D. Guaduales y bambusales")) {
                 generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
-
+            }else{
+                generatedDoc.createRectangle(color, 150, y + 41, 18, 10);
+            }
                 if (categoryD.getTypeUtilization().equals("Tipo 1")) {
                     generatedDoc.createRectangle2(color, 65, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                } else if (categoryD.getTypeUtilization().equals("Tipo 2")) {
+                } else{
+                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                }
+                if (categoryD.getTypeUtilization().equals("Tipo 2")) {
                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
                     generatedDoc.createRectangle2(color, 125, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                } else if (categoryD.getTypeUtilization().equals("Cambio definitivo de uso del suelo")) {
+                } else{
+                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                }
+                if (categoryD.getTypeUtilization().equals("Cambio definitivo de uso del suelo")) {
                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
                     generatedDoc.createRectangle2(color, 292, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                } else if (categoryD.getTypeUtilization().equals("Establecimiento y Manejo")) {
+                } else{
+                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                }
+               if (categoryD.getTypeUtilization().equals("Establecimiento y Manejo")) {
                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
                     generatedDoc.createRectangle2(color, 431, y + 1, 18, 10);
-                } else if (addressTypeArea.equals("Urbano")) {
-                    generatedDoc.createRectangle2(color, 285, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
-                } else if (addressTypeArea.equals("Rural")) {
-                    generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
-                    generatedDoc.createRectangle2(color, 340, y - 80, 18, 10);
-                } else if (coordinate.equals("Coordenadas planas")) {
-                    generatedDoc.createRectangle2(color, 125, y - 240, 18, 10);
-                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
-                } else if (coordinate.equals("Coordenadas geográficas")) {
-
-                } else {
-                    generatedDoc.createRectangle(color, 150, y + 41, 18, 10);
-                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                }else{
+                   generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
                     generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+               }
+               if (addressTypeArea.equals("Urbano")) {
+                    generatedDoc.createRectangle2(color, 285, y - 80, 18, 10);
                     generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+                } else{
+                     generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+               }
+               if (addressTypeArea.equals("Rural")) {
+                    generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+                    generatedDoc.createRectangle2(color, 340, y - 80, 18, 10);
+                } else{
+                   generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+               }
+               if (coordinate.equals("Coordenadas planas")) {
+                    generatedDoc.createRectangle2(color, 125, y - 240, 18, 10);
+                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
+                } else{
+                   generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
+                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
+               }
+               if (coordinate.equals("Coordenadas geográficas")) {
+ generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
+                    generatedDoc.createRectangle2(color, 260, y - 240, 18, 10);
+                } else{
                     generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
                     generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
-                }
+               }
+                
 
-            }
+            
         }
 
-    }
+    
 
     public static void generateCheckBoxes3(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
         CategoryCModel category = solicitude.getCategoryC();
 
         int y = 817;
-        generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
-        if (solicitude.getMethodUtilization().equals("Mecánico")) {
-            generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
-            generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
-            generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
-        } else if (solicitude.getMethodUtilization().equals("Manual")) {
-            generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
-            generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
-            generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
-        } else if (solicitude.getMethodUtilization().equals("Mecánico-Manual")) {
-            generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
-            generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
-            generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
-        } else if (category instanceof CategoryC1Model) {
-            CategoryC1Model category1 = (CategoryC1Model) category;
-            if (category1.getIndividualStatus().equals("Caído por Causas Naturales")) {
 
-            } else if (category1.getIndividualStatus().equals("Muerto por Causas Naturales")) {
+        generatedDoc.createRectangle(color, 160, y - 530, 18, 10);
+        if (solicitude.getMethodUtilization() != null) {
+            if (solicitude.getMethodUtilization().equals("Mecánico")) {
+                generatedDoc.createRectangle2(color, 285, y - 10, 18, 10);
+                generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+                generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+            } else if (solicitude.getMethodUtilization().equals("Manual")) {
+                generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+                generatedDoc.createRectangle2(color, 335, y - 10, 18, 10);
+                generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+            } else if (solicitude.getMethodUtilization().equals("Mecánico-Manual")) {
+                generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+                generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+                generatedDoc.createRectangle2(color, 430, y - 10, 18, 10);
+            } else {
+                generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+                generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+                generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+            }
+            if (category instanceof CategoryC1Model) {
+                CategoryC1Model category1 = (CategoryC1Model) category;
+                if (category1.getIndividualStatus().equals("Caído por Causas Naturales")) {
+                    generatedDoc.createRectangle(color, 285, y - 470, 18, 10);
+                } else if (category1.getIndividualStatus().equals("Muerto por Causas Naturales")) {
+                    generatedDoc.createRectangle(color, 160, y - 510, 18, 10);
+                } else if (category1.getIndividualStatus().equals("Razones de Orden Fitosanitario")) {
+                    generatedDoc.createRectangle(color, 160, y - 530, 18, 10);
+                }
+            }else{
+                generatedDoc.createRectangle(color, 285, y - 470, 18, 10);
+                 generatedDoc.createRectangle(color, 160, y - 510, 18, 10);
+                  generatedDoc.createRectangle(color, 160, y - 530, 18, 10);
+            }
+            if (category instanceof CategoryC2Model) {
 
-            } else if (category1.getIndividualStatus().equals("Razones de Orden Fitosanitario")) {
-
-            } else if (category instanceof CategoryC2Model) {
-
-            } else if (category instanceof CategoryC3Model) {
+            }
+            if (category instanceof CategoryC3Model) {
                 CategoryC3Model category3 = (CategoryC3Model) category;
 
                 if (category3.getTipo().equals("Tala")) {
@@ -1120,36 +1168,32 @@ public class PdfController {
                 } else if (category3.getCause().equals("Canal de Agua")) {
 
                 } else if (category3.getCause().equals("Obras de Infraestructura/Edificaciones")) {
-
-                } else if (category instanceof CategoryC4Model) {
-                    CategoryC4Model category4 = (CategoryC4Model) category;
-                    if (category4.getTipo().equals("Tala")) {
-
-                    } else if (category4.getTipo().equals("Trasplante/Reubicación")) {
-
-                    } else if (category4.getActivity().equals("Construcción /Realización")) {
-
-                    } else if (category4.getActivity().equals("Remodelación")) {
-
-                    } else if (category4.getActivity().equals("Ampliación")) {
-
-                    } else if (category4.getActivity().equals("Instalación")) {
-
-                    } else if (category4.getActivity().equals("Similares")) {
-
-                    }
-
-                } else {
-                    generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
-                    generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
-                    generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
-
                 }
-                if (solicitude.getInterested().isAuthorization()) {
 
-                }
             }
+            if (category instanceof CategoryC4Model) {
+                CategoryC4Model category4 = (CategoryC4Model) category;
+                if (category4.getTipo().equals("Tala")) {
+
+                } else if (category4.getTipo().equals("Trasplante/Reubicación")) {
+
+                } else if (category4.getActivity().equals("Construcción /Realización")) {
+
+                } else if (category4.getActivity().equals("Remodelación")) {
+
+                } else if (category4.getActivity().equals("Ampliación")) {
+
+                } else if (category4.getActivity().equals("Instalación")) {
+
+                } else if (category4.getActivity().equals("Similares")) {
+
+                }
+
+            }
+
+            //if (solicitude.getInterested().isAuthorization()) {
         }
+
     }
 
     public static int addBodyTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter) throws IOException {

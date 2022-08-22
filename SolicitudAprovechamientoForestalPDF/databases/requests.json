@@ -38,7 +38,7 @@
       "unit" : "kg",
       "commonName" : "comun",
       "scientificName" : "100tifiko",
-      "habit" : "ninguna",
+      "habit" : null,
       "closure" : null,
       "threatClassification" : null
     } ]
@@ -84,8 +84,8 @@
     "dateWithFormat" : "2022/8/21"
   },
   "fileNumber" : "",
-  "actNumber" : "fabricar cosas",
-  "intendedUse" : "",
+  "actNumber" : "",
+  "intendedUse" : "fabricar cosas",
   "methodUtilization" : "Manual",
   "reference" : "5848917790"
 } ]
