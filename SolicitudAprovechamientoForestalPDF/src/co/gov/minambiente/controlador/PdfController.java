@@ -7,8 +7,11 @@ package co.gov.minambiente.controlador;
 
 import co.gov.minambiente.modelo.CategoryBModel;
 import co.gov.minambiente.modelo.CategoryC1Model;
+import co.gov.minambiente.modelo.CategoryC2Model;
 import co.gov.minambiente.modelo.CategoryC3Model;
 import co.gov.minambiente.modelo.CategoryC4Model;
+import co.gov.minambiente.modelo.CategoryCModel;
+import co.gov.minambiente.modelo.CategoryDModel;
 import co.gov.minambiente.modelo.CategoryModel;
 import co.gov.minambiente.modelo.CoordinateModel;
 import co.gov.minambiente.modelo.InterestedModel;
@@ -277,9 +280,8 @@ public class PdfController {
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
 
             setUpParagraph(p, generatedDoc, 27, 10);
-
             generatedDoc.pasarPagina(3);
-
+            PdfController.generateCheckBoxes2(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -440,7 +442,7 @@ public class PdfController {
             // <- Lógica de llenado sección 5.2
 
             setUpParagraph(p, generatedDoc, 18, 10);
-
+            PdfController.generateCheckBoxes3(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -693,249 +695,460 @@ public class PdfController {
         CategoryBModel categoryB = solicitude.getCategoryB();
 
         int y = 817;
-        generatedDoc.createRectangle2(color, 230, y, 18, 10);
+
         if (solicitude.getTypeRequest() != null) {
             if (solicitude.getTypeRequest().equals("Nueva")) {
                 //first         
                 generatedDoc.createRectangle2(color, 165, y, 18, 10);
                 generatedDoc.createRectangle(color, 230, y, 18, 10);
-            } else {
+            } else if (solicitude.getTypeRequest().equals("Prórroga ")) {
                 generatedDoc.createRectangle(color, 165, y, 18, 10);
                 generatedDoc.createRectangle2(color, 230, y, 18, 10);
+            } else {
+                generatedDoc.createRectangle(color, 165, y, 18, 10);
+                generatedDoc.createRectangle(color, 230, y, 18, 10);
             }
+
             if (solicitude.getInterested() != null) {
                 if (solicitude.getInterested().equals("Natural")) {
                     //second
                     generatedDoc.createRectangle2(color, 149, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 244, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 339, y - 40, 18, 10);
-                } else if (solicitude.getInterested().equals("Jurídica pública,")) {
+
+                } else if (solicitude.getInterested().equals("Jurídica pública")) {
                     generatedDoc.createRectangle(color, 149, y - 40, 18, 10);
                     generatedDoc.createRectangle2(color, 244, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 339, y - 40, 18, 10);
+
+                } else if (solicitude.getInterested().equals("Jurídica Privada")) {
+                    generatedDoc.createRectangle(color, 149, y - 40, 18, 10);
+                    generatedDoc.createRectangle(color, 244, y - 40, 18, 10);
+                    generatedDoc.createRectangle2(color, 339, y - 40, 18, 10);
+                } else {
+                    //second
+                    generatedDoc.createRectangle(color, 149, y - 40, 18, 10);
+                    generatedDoc.createRectangle(color, 244, y - 40, 18, 10);
+                    generatedDoc.createRectangle(color, 339, y - 40, 18, 10);
                 }
-            } else {
-                generatedDoc.createRectangle(color, 149, y - 40, 18, 10);
-                generatedDoc.createRectangle(color, 244, y - 40, 18, 10);
-
-            }
-            if (person.getTypeId() != null) {
-                if (person.getTypeId().equals("CC")) {
-                    //thirth
-                    generatedDoc.createRectangle2(color, 146, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
-                } else if (person.getTypeId().equals("CE")) {
-                    //thirth
-                    generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
-                    generatedDoc.createRectangle2(color, 191, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
-                } else if (person.getTypeId().equals("PA")) {
-                    //thirth
-                    generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
-                    generatedDoc.createRectangle2(color, 236, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
-                } else if ((person.getTypeId().equals("NIT"))) {
-                    //thirth
-                    generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
-                    generatedDoc.createRectangle2(color, 283, y - 80, 18, 10);
-                }
-
-            }
-            if (person.getTypeId() != null) {
-                if (person.getTypeId().equals("CC")) {
-                    //Fourth
-                    generatedDoc.createRectangle2(color, 146, y - 140, 18, 10);
-                    generatedDoc.createRectangle(color, 191, y - 140, 18, 10);
-                    generatedDoc.createRectangle(color, 236, y - 140, 18, 10);
-                } else if (person.getTypeId().equals("CE")) {
-                    //Fourth
-                    generatedDoc.createRectangle(color, 146, y - 140, 18, 10);
-                    generatedDoc.createRectangle2(color, 191, y - 140, 18, 10);
-                    generatedDoc.createRectangle(color, 236, y - 140, 18, 10);
-                } else if (person.getTypeId().equals("PA")) {
-                    //Fourth
-                    generatedDoc.createRectangle(color, 146, y - 140, 18, 10);
-                    generatedDoc.createRectangle(color, 191, y - 140, 18, 10);
-                    generatedDoc.createRectangle2(color, 236, y - 140, 18, 10);
-                }
-                if (person.getInterestedQuality() != null) {
-                    if (person.getInterestedQuality().equals("Propietario")) {
-                        //Fifth
-                        generatedDoc.createRectangle2(color, 85, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-                    } else if (person.getInterestedQuality().equals("Poseedor")) {
-                        //Fifth
-                        generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
-                        generatedDoc.createRectangle2(color, 156, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-                    } else if (person.getInterestedQuality().equals("Tenedor")) {
-                        //Fifth
-                        generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
-                        generatedDoc.createRectangle2(color, 223, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-
-                    } else if (person.getInterestedQuality().equals("Ocupante")) {
-                        //Fifth
-                        generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
-                        generatedDoc.createRectangle2(color, 293, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-
-                    } else if (person.getInterestedQuality().equals("Autorizado")) {
-                        //Fifth
-                        generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
-                        generatedDoc.createRectangle2(color, 368, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-                    } else if (person.getInterestedQuality().equals("Ente territorial")) {
-                        //Fifth
-                        generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
-                        generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
-                        generatedDoc.createRectangle2(color, 456, y - 180, 18, 10);
-                    } else if (person.getInterestedQuality().equals("Consejo comunitario")) {
-                        //sixth
-                        generatedDoc.createRectangle2(color, 123, y - 200, 18, 10);
-                        generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
-                        generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
-                    } else if (person.getInterestedQuality().equals("Resguardo indígena")) {
-                        //sixth
-                        generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
-                        generatedDoc.createRectangle2(color, 236, y - 200, 18, 10);
-                        generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
-                    } else if (person.getInterestedQuality().equals("Otro")) {
-                        //sixth
-                        generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
-                        generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
-                        generatedDoc.createRectangle2(color, 286, y - 200, 18, 10);
+                if (person.getTypeId() != null) {
+                    if (person.getTypeId().equals("CC")) {
+                        //thirth
+                        generatedDoc.createRectangle2(color, 146, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
+                    } else if (person.getTypeId().equals("CE")) {
+                        //thirth
+                        generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
+                        generatedDoc.createRectangle2(color, 191, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
+                    } else if (person.getTypeId().equals("PA")) {
+                        //thirth
+                        generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
+                        generatedDoc.createRectangle2(color, 236, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
+                    } else if ((person.getTypeId().equals("NIT"))) {
+                        //thirth
+                        generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
+                        generatedDoc.createRectangle2(color, 283, y - 80, 18, 10);
+                    } else {
+                        //thirth
+                        generatedDoc.createRectangle(color, 146, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
+                        generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
                     }
 
                 }
-                if (properytyModel.getTypeProperty() != null) {
-                    if (properytyModel.getTypeProperty().equals("Público")) {
-                        //Seventh
-                        generatedDoc.createRectangle2(color, 143, y - 240, 18, 10);
-                        generatedDoc.createRectangle(color, 213, y - 240, 18, 10);
-                        generatedDoc.createRectangle(color, 276, y - 240, 18, 10);
-
-                    } else if (properytyModel.getTypeProperty().equals("Colectivo")) {
-                        generatedDoc.createRectangle(color, 143, y - 240, 18, 10);
-                        generatedDoc.createRectangle2(color, 213, y - 240, 18, 10);
-                        generatedDoc.createRectangle(color, 276, y - 240, 18, 10);
-                    } else if (properytyModel.getTypeProperty().equals("Privado")) {
-                        generatedDoc.createRectangle(color, 143, y - 240, 18, 10);
-                        generatedDoc.createRectangle(color, 213, y - 240, 18, 10);
-                        generatedDoc.createRectangle2(color, 276, y - 240, 18, 10);
+                if (person.getTypeId() != null) {
+                    if (person.getTypeId().equals("CC")) {
+                        //Fourth
+                        generatedDoc.createRectangle2(color, 146, y - 140, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 140, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 140, 18, 10);
+                    } else if (person.getTypeId().equals("CE")) {
+                        //Fourth
+                        generatedDoc.createRectangle(color, 146, y - 140, 18, 10);
+                        generatedDoc.createRectangle2(color, 191, y - 140, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 140, 18, 10);
+                    } else if (person.getTypeId().equals("PA")) {
+                        //Fourth
+                        generatedDoc.createRectangle(color, 146, y - 140, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 140, 18, 10);
+                        generatedDoc.createRectangle2(color, 236, y - 140, 18, 10);
+                    } else {
+                        //Fourth
+                        generatedDoc.createRectangle(color, 146, y - 140, 18, 10);
+                        generatedDoc.createRectangle(color, 191, y - 140, 18, 10);
+                        generatedDoc.createRectangle(color, 236, y - 140, 18, 10);
                     }
+                    if (person.getInterestedQuality() != null) {
+                        if (person.getInterestedQuality().equals("Propietario")) {
+                            //Fifth
+                            generatedDoc.createRectangle2(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Poseedor")) {
+                            //Fifth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle2(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Tenedor")) {
+                            //Fifth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle2(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
 
-                }
-                if (solicitude.getHowToAcquire() != null) {
-                    if (solicitude.getHowToAcquire().equals("Permiso")) {
-                        //Eight
-                        generatedDoc.createRectangle2(color, 151, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
-                    } else if (solicitude.getHowToAcquire().equals("Asociación")) {
-                        //Eight
-                        generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
-                        generatedDoc.createRectangle2(color, 207, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
-                    } else if (solicitude.getHowToAcquire().equals(" Concesión Forestal")) {
-                        generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
-                        generatedDoc.createRectangle2(color, 292, y - 483, 18, 10);
-                        generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Ocupante")) {
+                            //Fifth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle2(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+
+                        } else if (person.getInterestedQuality().equals("Autorizado")) {
+                            //Fifth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle2(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Ente territorial")) {
+                            //Fifth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle2(color, 456, y - 180, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Consejo comunitario")) {
+                            //sixth
+                            generatedDoc.createRectangle2(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Resguardo indígena")) {
+                            //sixth
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle2(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
+                        } else if (person.getInterestedQuality().equals("Otro")) {
+                            //sixth
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle2(color, 286, y - 200, 18, 10);
+                        } else {
+                            //Fifth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
+                            generatedDoc.createRectangle2(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
+                        }
+
                     }
+                    if (properytyModel.getTypeProperty() != null) {
+                        if (properytyModel.getTypeProperty().equals("Público")) {
+                            //Seventh
+                            generatedDoc.createRectangle2(color, 143, y - 240, 18, 10);
+                            generatedDoc.createRectangle(color, 213, y - 240, 18, 10);
+                            generatedDoc.createRectangle(color, 276, y - 240, 18, 10);
 
-                }
-                if (person.isAuthorization() != false) {
-                    //ninth
-                    generatedDoc.createRectangle(color, 262, y - 503, 18, 10);
-                }
-                if (category.getName() != null) {
-                    if (category.getName().equals("A. Productos forestales maderables")) {
-                        //Tenth
-                        generatedDoc.createRectangle(color, 180, y - 563, 18, 10);
-                        if (solicitude.getMethodUtilization() != null) {
-                            if (solicitude.getMethodUtilization().equals("Persistente")) {
-                                //Eleventh
-                                generatedDoc.createRectangle2(color, 292, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
-                            } else if (solicitude.getMethodUtilization().equals("Único")) {
-                                //Eleventh
-                                generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
-                                generatedDoc.createRectangle2(color, 348, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
-                            } else if (solicitude.getMethodUtilization().equals("Doméstico")) {
-                                //Eleventh
-                                generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
-                                generatedDoc.createRectangle2(color, 423, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
-                            } else if (solicitude.getMethodUtilization().equals("Manejo Forestal Unificado")) {
-                                //Eleventh
-                                generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
-                                generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
-                                generatedDoc.createRectangle2(color, 559, y - 583, 18, 10);
+                        } else if (properytyModel.getTypeProperty().equals("Colectivo")) {
+                            generatedDoc.createRectangle(color, 143, y - 240, 18, 10);
+                            generatedDoc.createRectangle2(color, 213, y - 240, 18, 10);
+                            generatedDoc.createRectangle(color, 276, y - 240, 18, 10);
+                        } else if (properytyModel.getTypeProperty().equals("Privado")) {
+                            generatedDoc.createRectangle(color, 143, y - 240, 18, 10);
+                            generatedDoc.createRectangle(color, 213, y - 240, 18, 10);
+                            generatedDoc.createRectangle2(color, 276, y - 240, 18, 10);
+                        } else {
+                            generatedDoc.createRectangle(color, 143, y - 240, 18, 10);
+                            generatedDoc.createRectangle(color, 213, y - 240, 18, 10);
+                            generatedDoc.createRectangle(color, 276, y - 240, 18, 10);
+                        }
+
+                    }
+                    if (solicitude.getHowToAcquire() != null) {
+                        if (solicitude.getHowToAcquire().equals("Permiso")) {
+                            //Eight
+                            generatedDoc.createRectangle2(color, 151, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
+                        } else if (solicitude.getHowToAcquire().equals("Asociación")) {
+                            //Eight
+                            generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
+                            generatedDoc.createRectangle2(color, 207, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
+                        } else if (solicitude.getHowToAcquire().equals(" Concesión Forestal")) {
+                            generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
+                            generatedDoc.createRectangle2(color, 292, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
+                        } else {
+                            generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
+                            generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
+                        }
+
+                    }
+                    if (person.isAuthorization() != false) {
+                        //ninth
+                        generatedDoc.createRectangle2(color, 262, y - 503, 18, 10);
+                    }
+                    if (category.getName() != null) {
+                        if (category.getName().equals("A. Productos forestales maderables")) {
+                            //Tenth
+                            generatedDoc.createRectangle2(color, 180, y - 563, 18, 10);
+                            if (solicitude.getMethodUtilization() != null) {
+                                if (solicitude.getMethodUtilization().equals("Persistente")) {
+                                    //Eleventh
+                                    generatedDoc.createRectangle2(color, 292, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
+                                } else if (solicitude.getMethodUtilization().equals("Único")) {
+                                    //Eleventh
+                                    generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
+                                    generatedDoc.createRectangle2(color, 348, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
+                                } else if (solicitude.getMethodUtilization().equals("Doméstico")) {
+                                    //Eleventh
+                                    generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
+                                    generatedDoc.createRectangle2(color, 423, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
+                                } else if (solicitude.getMethodUtilization().equals("Manejo Forestal Unificado")) {
+                                    //Eleventh
+                                    generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
+                                    generatedDoc.createRectangle2(color, 559, y - 583, 18, 10);
+                                } else {
+                                    //Eleventh
+                                    generatedDoc.createRectangle(color, 292, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 348, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 423, y - 583, 18, 10);
+                                    generatedDoc.createRectangle(color, 559, y - 583, 18, 10);
+                                }
+                            }
+
+                        }
+                        if (categoryB.getName().equals("B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables")) {
+                            //Twelft
+                            generatedDoc.createRectangle2(color, 363, y - 603, 18, 10);
+                            if (categoryB.getTypeOperation().equals("Doméstico")) {
+                                //Thirteenth
+                                generatedDoc.createRectangle2(color, 292, y - 623, 18, 10);
+                                generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
+                            } else if (categoryB.getTypeOperation().equals("Persistente ")) {
+                                //Thirteenth
+                                generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
+                                generatedDoc.createRectangle2(color, 368, y - 623, 18, 10);
+                            } else if (categoryB.getAssociatedCategory().equals("Pequeños")) {
+                                //Fourtheenth
+                                generatedDoc.createRectangle2(color, 89, y - 745, 18, 10);
+                                generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
+                                generatedDoc.createRectangle(color, 248, y - 745, 18, 10);
+                            } else if (categoryB.getAssociatedCategory().equals("Medianos")) {
+                                //Fourtheenth
+                                generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
+                                generatedDoc.createRectangle2(color, 173, y - 745, 18, 10);
+                                generatedDoc.createRectangle(color, 248, y - 745, 18, 10);
+                            } else if (categoryB.getAssociatedCategory().equals("Grandes")) {
+                                //Fourtheenth
+                                generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
+                                generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
+                                generatedDoc.createRectangle2(color, 248, y - 745, 18, 10);
+                            } else {
+                                //Fourtheenth
+                                generatedDoc.createRectangle(color, 363, y - 603, 18, 10);
+                                generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
+                                generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
+                                generatedDoc.createRectangle(color, 248, y - 745, 18, 10);
+                                //Thirteenth
+                                generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
+                                generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
                             }
                         }
-
-                    }
-                    if (category.getName().equals("B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables")) {
-
-                        if (categoryB.getTypeOperation().equals("Doméstico")) {
-                            //Twelft
-                            generatedDoc.createRectangle2(color, 292, y - 623, 18, 10);
-                            generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
-                        } else if (categoryB.getTypeOperation().equals("Persistente ")) {
-                            //Twelft
-                            generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
-                            generatedDoc.createRectangle2(color, 368, y - 623, 18, 10);
-                        }
-                        if (categoryB.getAssociatedCategory().equals("Pequeños")) {
-                            //Thirteenth
-                            generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
-                            generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
-                            //Fourtheenth
-                            generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
-                            generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
-                            generatedDoc.createRectangle(color, 249, y - 745, 18, 10);
-
+                        if (category.getName().equals("C. Árboles Aislados")) {
+                            //fitteen
+                            generatedDoc.createRectangle2(color, 120, y - 763, 18, 10);
+                        } else {
+                            //fitteen
+                            generatedDoc.createRectangle(color, 120, y - 763, 18, 10);
                         }
 
                     }
+                }
+
+            }
+
+        }
+    }
+
+    public static void generateCheckBoxes2(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
+        String addressTypeArea = solicitude.getProperties().get(0).getAdress().getTypeArea();
+        LinkedList<CoordinateModel> coordinate = solicitude.getProperties().get(0).getCoordiantes();
+        CategoryModel category = solicitude.getCategoryA();
+        CategoryDModel categoryD = solicitude.getCategoryD();
+
+        int y = 817;
+        generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
+        if (category.getName() != null) {
+
+            if (category.getName().equals("D. Guaduales y bambusales")) {
+                generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
+
+                if (categoryD.getTypeUtilization().equals("Tipo 1")) {
+                    generatedDoc.createRectangle2(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                } else if (categoryD.getTypeUtilization().equals("Tipo 2")) {
+                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle2(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                } else if (categoryD.getTypeUtilization().equals("Cambio definitivo de uso del suelo")) {
+                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle2(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                } else if (categoryD.getTypeUtilization().equals("Establecimiento y Manejo")) {
+                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle2(color, 431, y + 1, 18, 10);
+                } else if (addressTypeArea.equals("Urbano")) {
+                    generatedDoc.createRectangle2(color, 285, y - 80, 18, 10);
+                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+                } else if (addressTypeArea.equals("Rural")) {
+                    generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+                    generatedDoc.createRectangle2(color, 340, y - 80, 18, 10);
+                } else if (coordinate.equals("Coordenadas planas")) {
+                    generatedDoc.createRectangle2(color, 125, y - 240, 18, 10);
+                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
+                } else if (coordinate.equals("Coordenadas geográficas")) {
+
+                } else {
+                    generatedDoc.createRectangle(color, 150, y + 41, 18, 10);
+                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+                    generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+                    generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
+                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
+                }
+
+            }
+        }
+
+    }
+
+    public static void generateCheckBoxes3(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
+        CategoryCModel category = solicitude.getCategoryC();
+
+        int y = 817;
+        generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+        if (solicitude.getMethodUtilization().equals("Mecánico")) {
+            generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+            generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+            generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+        } else if (solicitude.getMethodUtilization().equals("Manual")) {
+            generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+            generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+            generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+        } else if (solicitude.getMethodUtilization().equals("Mecánico-Manual")) {
+            generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+            generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+            generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+        } else if (category instanceof CategoryC1Model) {
+            CategoryC1Model category1 = (CategoryC1Model) category;
+            if (category1.getIndividualStatus().equals("Caído por Causas Naturales")) {
+
+            } else if (category1.getIndividualStatus().equals("Muerto por Causas Naturales")) {
+
+            } else if (category1.getIndividualStatus().equals("Razones de Orden Fitosanitario")) {
+
+            } else if (category instanceof CategoryC2Model) {
+
+            } else if (category instanceof CategoryC3Model) {
+                CategoryC3Model category3 = (CategoryC3Model) category;
+
+                if (category3.getTipo().equals("Tala")) {
+
+                } else if (category3.getTipo().equals("Poda")) {
+
+                } else if (category3.getIndividualStatus().equals("Caído")) {
+
+                } else if (category3.getIndividualStatus().equals("Muerto")) {
+
+                } else if (category3.getIndividualStatus().equals("Enfermo")) {
+
+                } else if (category3.getCause().equals("Estabilidad de Suelos")) {
+
+                } else if (category3.getCause().equals("Canal de Agua")) {
+
+                } else if (category3.getCause().equals("Obras de Infraestructura/Edificaciones")) {
+
+                } else if (category instanceof CategoryC4Model) {
+                    CategoryC4Model category4 = (CategoryC4Model) category;
+                    if (category4.getTipo().equals("Tala")) {
+
+                    } else if (category4.getTipo().equals("Trasplante/Reubicación")) {
+
+                    } else if (category4.getActivity().equals("Construcción /Realización")) {
+
+                    } else if (category4.getActivity().equals("Remodelación")) {
+
+                    } else if (category4.getActivity().equals("Ampliación")) {
+
+                    } else if (category4.getActivity().equals("Instalación")) {
+
+                    } else if (category4.getActivity().equals("Similares")) {
+
+                    }
+
+                } else {
+                    generatedDoc.createRectangle(color, 285, y - 10, 18, 10);
+                    generatedDoc.createRectangle(color, 335, y - 10, 18, 10);
+                    generatedDoc.createRectangle(color, 430, y - 10, 18, 10);
+
+                }
+                if (solicitude.getInterested().isAuthorization()) {
 
                 }
             }
-
         }
     }
 
