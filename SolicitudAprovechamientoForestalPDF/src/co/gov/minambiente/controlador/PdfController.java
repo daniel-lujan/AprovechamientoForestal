@@ -5,12 +5,17 @@
  */
 package co.gov.minambiente.controlador;
 
-
 import co.gov.minambiente.modelo.CategoryBModel;
+import co.gov.minambiente.modelo.CategoryC1Model;
+import co.gov.minambiente.modelo.CategoryC3Model;
+import co.gov.minambiente.modelo.CategoryC4Model;
 import co.gov.minambiente.modelo.CategoryModel;
+import co.gov.minambiente.modelo.CoordinateModel;
 import co.gov.minambiente.modelo.InterestedModel;
+import co.gov.minambiente.modelo.PlaneCoordinateModel;
 import co.gov.minambiente.modelo.PropertyModel;
 import co.gov.minambiente.modelo.RequestModel;
+import co.gov.minambiente.modelo.SpecieModel;
 import com.itextpdf.kernel.colors.Color;
 import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.layout.borders.SolidBorder;
@@ -66,7 +71,7 @@ public class PdfController {
             lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 9);
 
             Paragraph p;
-            p = generatedDoc.nuevoParrafo(new Text(espacio + espacio), titleFont, 10f);
+            p = generatedDoc.nuevoParrafo(new Text(""), titleFont, 10f);
             lineCounter = addBodyTitleLine(p, generatedDoc, lineCounter);
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
@@ -125,11 +130,19 @@ public class PdfController {
             lineCounter = addSingleTitle(generatedDoc, lineCounter, blueBg, 27);
             Paragraph q;
 
-            q = generatedDoc.nuevoParrafo(new Text(espacio + espacio), titleFont, 10f);
-            lineCounter = addBodyLine(q, generatedDoc, lineCounter, solicitude.getFileNumber() + "\n");
-            lineCounter = addBodyLine(q, generatedDoc, lineCounter, String.valueOf(solicitude.getActNumber()) + "\n");
+            q = generatedDoc.nuevoParrafo(new Text(""), titleFont, 10f);
+
+            //Si es un prórroga...
+            if (solicitude.getTypeRequest().equalsIgnoreCase("prórroga")) {
+                lineCounter = addBodyLine(q, generatedDoc, lineCounter, solicitude.getFileNumber() + "\n");
+                lineCounter = addBodyLine(q, generatedDoc, lineCounter, String.valueOf(solicitude.getActNumber()) + "\n");
+            } else {
+                lineCounter = addBodyLine(q, generatedDoc, lineCounter, "" + "\n");
+                lineCounter = addBodyLine(q, generatedDoc, lineCounter, "" + "\n");
+            }
+
             lineCounter = addBodyTitleLine(q, generatedDoc, lineCounter);
-            
+
             q.setFixedLeading(20);
             q.setBorder(new SolidBorder(0.75f));
             q.setMarginLeft(-5);
@@ -141,7 +154,7 @@ public class PdfController {
 
             lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 45);
             Paragraph r;
-            r = generatedDoc.nuevoParrafo(new Text(espacio + espacio), titleFont, 10f);
+            r = generatedDoc.nuevoParrafo(new Text(""), titleFont, 10f);
             lineCounter = addBodyTitleLine(r, generatedDoc, lineCounter);
             lineCounter = addBodyLine(r, generatedDoc, lineCounter);
             lineCounter = addBodyLine(r, generatedDoc, lineCounter);
@@ -185,24 +198,24 @@ public class PdfController {
     }
 
     /**
-     * 
+     *
      * @param lineCounter
      * @param generatedDoc
      * @param solicitude
-     * @return 
+     * @return
      */
     public static int drawPage2(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
 
         try {
             addHeader(generatedDoc, texts);
             Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
-            
+
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter, 8);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             setUpParagraph(p, generatedDoc, 9, 20);
-            
+
             lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 18);
             p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
             p.add(new Text("\n"));
@@ -221,20 +234,20 @@ public class PdfController {
                     solicitude.getProperties().get(0).getAdress().getMunicipality(),
                     solicitude.getProperties().get(0).getAdress().getSidewalk() + "\n");
             p.add(new Text("\n"));
-            
+
             if (!solicitude.getProperties().get(0).getRealEstateRegistration().equals("")) {
                 lineCounter = addBodyLine(p, generatedDoc,
                         lineCounter, solicitude.getProperties().get(0).getRealEstateRegistration() + "\n");
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter);
                 p.add(new Text("\n"));
-            } else{
+            } else {
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, "\n");
                 p.add(new Text("\n"));
                 lineCounter = addBodyLine(p, generatedDoc,
                         lineCounter, solicitude.getProperties().get(0).getCadastralIdNumber() + "\n");
                 p.add(new Text("\n"));
             }
-            
+
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
             p.add(new Text("\n"));
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
@@ -247,21 +260,26 @@ public class PdfController {
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-            
+
             Table t = createTable1(generatedDoc);
-            p.add(t);      
-            p.add(new Text ("\n \n"));
-                
+
+            if (solicitude.getProperties().get(0).getCoordiantes().get(0) instanceof PlaneCoordinateModel) {
+                fillTable1(t, solicitude, generatedDoc);
+            }
+
+            p.add(t);
+            p.add(new Text("\n \n"));
+
             Table t2 = createTable2(generatedDoc);
             p.add(t2);
             p.add(new Text("\n \n"));
-            
+
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
-            
+
             setUpParagraph(p, generatedDoc, 27, 10);
-            
+
             generatedDoc.pasarPagina(3);
-            
+
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -270,25 +288,25 @@ public class PdfController {
 
     public static int drawPage3(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
         try {
-            
+
             addHeader(generatedDoc, texts);
             lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 9);
-            
+
             Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
-            
+
             p.add(new Text("\n"));
             lineCounter = addBodyTitleLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-            
+
             Table t = createTable3(generatedDoc);
             p.add(t);
             p.add(new Text("\n \n"));
-        
-            lineCounter = addTitleLine(p, generatedDoc, lineCounter,8);
-            lineCounter = addTitleLine(p, generatedDoc, lineCounter,8);
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
             p.add(new Text("\n \n"));
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter, solicitude.getMethodUtilization() + "\n");
@@ -305,73 +323,168 @@ public class PdfController {
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-   
-            switch (solicitude.getCategoryC().getName()) {
-                case ("i. Árboles aislados dentro de la cobertura del bosque natural"):
 
+            //  -> Lógica de llenado sección 5.1
+            switch (solicitude.getMethodUtilization()) {
+                case "Mecánico":
+                    // Casilla Mecánico marcada
                     break;
-                case ("ii. Árboles aislados fuera de la cobertura del bosque natural"):
-
+                case "Manual":
+                    // Casilla Manual marcada
                     break;
-                case ("iii Tala o poda de emergencia en centros urbano"):
-
-                    break;
-                case ("iv. Obra pública o privada en centros urbanos"):
-
+                case "Mecánico-Manual":
+                    // Casilla Mecánico-Manual marcada
                     break;
                 default:
+                    // Ninguna marcada
                     break;
             }
 
-            
-            
-            
+            // Tabla
+            for (SpecieModel e : solicitude.getProperties().get(0).getSpecies()) {
+                /*
+                Rellenar fila de tabla con e
+                    Cantidad -> e.getQuantity()
+                    Unidad de medida -> e.getUnit()
+                    Nombre común -> e.getCommonName()
+                    Nombre científico -> e.getScientificName()
+                    Parte Aprovechada -> No existe ahgas xddxd
+                    Hábito -> e.getHabit()
+                    Categoría de amenaza -> e.getThreatClassification()
+                 */
+            }
+
+            // Rellenar "Indique el uso que se pretende dar a los productos a obtener:" con solicitude.getIntendedUse()
+            // <- Lógica de llenado sección 5.1
+            // -> Lógica de llenado sección 5.2
+            switch (solicitude.getCategoryC().getLocationOrType()) {
+                case "i. Árboles aislados dentro de la cobertura del bosque natural":
+                    // Marcar casilla "i. Árboles aislados dentro de la cobertura del bosque natural"
+                    switch (((CategoryC1Model) solicitude.getCategoryC()).getIndividualStatus()) {
+                        case "Caído por Causas Naturales":
+                            // Marcar casilla "Caído por Causas Naturales"
+                            break;
+                        case "Muerto por Causas Naturales":
+                            // Marcar casilla "Muerto por Causas Naturales"
+                            break;
+                        default:
+                            // Marcar casilla "Razones de Orden Fitosanitario"
+                            // Rellenar "Especifique cuál" con ((CategoryC1Model)solicitude.getCategoryC()).getIndividualStatus()
+                            break;
+                    }
+                    break;
+                case "ii. Árboles aislados fuera de la cobertura del bosque natural":
+                    // Marcar casilla "ii. Árboles aislados fuera de la cobertura del bosque natural"
+                    break;
+                case "iii Tala o poda de emergencia en centros urbano":
+                    // Marcar casilla "iii Tala o poda de emergencia en centros urbano"
+                    if (((CategoryC3Model) solicitude.getCategoryC()).getTipo().equals("Tala")) {
+                        // Marcar casilla "Tala"
+                    } else {
+                        // Marcar casilla "Poda"
+                    }
+                    switch (((CategoryC3Model) solicitude.getCategoryC()).getIndividualStatus()) {
+                        case "Muerto":
+                            // Marcar casilla "Muerto"
+                            break;
+                        case "Enfermo":
+                            // Marcar casilla "Enfermo"
+                            break;
+                        default:
+                            // Marcar casilla "Caído"
+                            break;
+                    }
+                    switch (((CategoryC3Model) solicitude.getCategoryC()).getCause()) {
+                        case "Estabilidad de suelos":
+                            // Marcar casilla "Estabilidad de suelos
+                            break;
+                        case "Canal de agua":
+                            // Marcar casilla "Canal de agua"
+                            break;
+                        case "Obras de infraestructura":
+                            // Marcar casilla "Obras de infraestructura"
+                            break;
+                        default:
+                            // Marcar casilla "Otro"
+                            // Rellenar "Especifique cual" con ((CategoryC3Model) solicitude.getCategoryC()).getCause()
+                            break;
+                    }
+                    break;
+                case "iv. Obra pública o privada en centros urbanos":
+                    // Marcar casilla "iv. Obra pública o privada en centros urbanos"
+                    if (((CategoryC4Model) solicitude.getCategoryC()).getTipo().equals("Tala")) {
+                        // Marcar casilla "Tala"
+                    }
+                    switch (((CategoryC4Model) solicitude.getCategoryC()).getActivity()) {
+                        case "Construcción/Realización":
+                            // Marcar casilla "Construcción/Realización"
+                            break;
+                        case "Remodelación":
+                            // Marcar casilla "Remodelación"
+                            break;
+                        case "Ampliación":
+                            // Marcar casilla "Ampliación"
+                            break;
+                        case "Instalación":
+                            // Marcar casilla "Instalación"
+                            break;
+                        default:
+                            // Marcar casilla "Similar"
+                            // Rellenar "Especifique cuál" con ((CategoryC4Model)solicitude.getCategoryC()).getActivity()
+                            break;
+                    }
+                    break;
+                default:
+                // Ninguna marcada
+            }
+            // <- Lógica de llenado sección 5.2
+
             setUpParagraph(p, generatedDoc, 18, 10);
-        
+
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
     }
-    
-    private static Table createTable3(PdfWorkspace generatedDoc) throws IOException{
-        
+
+    private static Table createTable3(PdfWorkspace generatedDoc) throws IOException {
+
         Table table = new Table(UnitValue.createPercentArray(8)).setWidth(530).setRelativePosition(10, 0, 0, 0);
-        
+
         Paragraph q = new Paragraph();
         generatedDoc.pushText(q, new Text("Cantidad"), titleFont, 8);
-        Cell cell = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        Cell cell = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addHeaderCell(cell);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Unidad de medida*"), titleFont, 8);
-        Cell cell12 = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        Cell cell12 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addHeaderCell(cell12);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Nombre común"), titleFont, 8);
-        Cell cell13 = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        Cell cell13 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addHeaderCell(cell13);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Nombre científico"), titleFont, 8);
-        Cell cell14 = new Cell (2,1).add(q.setTextAlignment(TextAlignment.CENTER));
+        Cell cell14 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addHeaderCell(cell14);
-   
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Aplica para únicamente para manejo\n"
                 + "sostenible de flora silvestre y los productos\n"
                 + "forestales no maderables"), titleFont, 8);
         Cell cell15 = new Cell(1, 2).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
         table.addHeaderCell(cell15);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Veda nacional\n"
                 + "o regional\n"
                 + "(si aplica) **"), titleFont, 8);
         Cell cell17 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addHeaderCell(cell17);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Categoría\n"
                 + "de\n"
@@ -379,7 +492,7 @@ public class PdfController {
                 + "(si aplica)"), titleFont, 8);
         Cell cell18 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addHeaderCell(cell18);
-    
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Parte aprovechada"
                 + "(Raíz, Fruto, Semilla,"
@@ -388,7 +501,7 @@ public class PdfController {
                 + "Tallos, Ramas, etc.)"), titleFont, 8);
         Cell cell25 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
         table.addHeaderCell(cell25);
-     
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Hábito"
                 + "(Árbol, Arbusto,"
@@ -398,57 +511,57 @@ public class PdfController {
                 + "etc.)"), titleFont, 8f);
         Cell cell26 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
         table.addHeaderCell(cell26);
-        
+
         for (int i = 0; i < 80; i++) {
             q = new Paragraph();
             generatedDoc.pushText(q, new Text(""), titleFont, 8f);
             Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setMinHeight(10);
             table.addCell(temporal);
         }
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Cantidad \n Total"), titleFont, 8f);
         Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
         table.addFooterCell(temporal);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text(""), titleFont, 8f);
-        Cell cellFinal = new Cell (1,7).add(q.setTextAlignment(TextAlignment.CENTER));
+        Cell cellFinal = new Cell(1, 7).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addFooterCell(cellFinal);
 
         return table;
     }
 
     /**
-     * 
+     *
      * @param generatedDoc
      * @return
-     * @throws IOException 
+     * @throws IOException
      */
-    private static Table createTable2(PdfWorkspace generatedDoc) throws IOException{
-        
+    private static Table createTable2(PdfWorkspace generatedDoc) throws IOException {
+
         Table table = new Table(UnitValue.createPercentArray(8)).setWidth(450).setRelativePosition(50, 0, 0, 0);
-        
+
         Paragraph q = new Paragraph();
         generatedDoc.pushText(q, new Text("Coordenadas geograficas"), titleFont, 8.5f);
-        Cell cell = new Cell (1,8).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        Cell cell = new Cell(1, 8).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
         table.addHeaderCell(cell);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Punto"), titleFont, 8.5f);
-        Cell cell21 = new Cell(2,1).add(q).setBackgroundColor(greenBg);
+        Cell cell21 = new Cell(2, 1).add(q).setBackgroundColor(greenBg);
         table.addHeaderCell(cell21).setTextAlignment(TextAlignment.CENTER);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Latitud"), titleFont, 8.5f);
-        Cell cell22 = new Cell(1,3).add(q).setBackgroundColor(greenBg);
+        Cell cell22 = new Cell(1, 3).add(q).setBackgroundColor(greenBg);
         table.addHeaderCell(cell22).setTextAlignment(TextAlignment.CENTER);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Longitud"), titleFont, 8.5f);
-        Cell cell25 = new Cell(1,3).add(q).setBackgroundColor(greenBg);
+        Cell cell25 = new Cell(1, 3).add(q).setBackgroundColor(greenBg);
         table.addHeaderCell(cell25).setTextAlignment(TextAlignment.CENTER);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Punto"), titleFont, 8.5f);
         Cell cell28 = new Cell(2, 1).add(q).setBackgroundColor(greenBg);
@@ -461,42 +574,40 @@ public class PdfController {
             Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
             table.addHeaderCell(temporal);
         }
-        
+
         for (int i = 0; i < 96; i++) {
             q = new Paragraph();
             generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
             Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER);
             table.addCell(temporal).setMinHeight(175);
         }
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Origen"), titleFont, 8.5f);
         Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
         table.addFooterCell(temporal).setMinHeight(175);
-        
+
         q = new Paragraph();
         generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
-        Cell cellFinal = new Cell (1,7).add(q.setTextAlignment(TextAlignment.CENTER));
+        Cell cellFinal = new Cell(1, 7).add(q.setTextAlignment(TextAlignment.CENTER));
         table.addFooterCell(cellFinal).setMinHeight(175);
 
         return table;
     }
-    
+
     /**
-     * 
+     *
      * @param generatedDoc
-     * @return 
+     * @return
      */
-    public static Table createTable1(PdfWorkspace generatedDoc){
-        
+    public static Table createTable1(PdfWorkspace generatedDoc) {
         Table table = new Table(UnitValue.createPercentArray(3)).setWidth(450).setRelativePosition(50, 0, 0, 0);
-        
         try {
+
             Paragraph q = new Paragraph();
             generatedDoc.pushText(q, new Text("Coordenadas planas"), titleFont, 8.5f);
-            Cell cell = new Cell(1,3).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+            Cell cell = new Cell(1, 3).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
             table.addHeaderCell(cell);
-            
             Paragraph c = new Paragraph();
             generatedDoc.pushText(c, new Text("Punto"), titleFont, 8.5f);
             Cell cell21 = new Cell().add(c.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
@@ -506,24 +617,52 @@ public class PdfController {
             Paragraph y = new Paragraph();
             generatedDoc.pushText(y, new Text("Y"), titleFont, 8.5f);
             Cell cell23 = new Cell().add(y.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
-            
             table.addHeaderCell(cell21).setTextAlignment(TextAlignment.CENTER);
             table.addHeaderCell(cell22).setTextAlignment(TextAlignment.CENTER);
             table.addHeaderCell(cell23).setTextAlignment(TextAlignment.CENTER);
-
             for (int i = 0; i < 36; i++) {
-                q = new Paragraph();
-                generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
-                Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER);
+                Cell temporal = new Cell().setTextAlignment(TextAlignment.CENTER);
                 table.addCell(temporal).setMinHeight(175);
             }
-            
+
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return table;  
-    } 
-    
+        return table;
+    }
+
+    public static void fillTable1(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
+
+        PlaneCoordinateModel a = new PlaneCoordinateModel(0, 0, Short.parseShort("0"));
+
+        int counterRow = 0;
+        int counter2 = 0;
+
+        for (CoordinateModel coordiante : solicitude.getProperties().get(0).getCoordiantes()) {
+
+            try {
+                a = (PlaneCoordinateModel) coordiante;
+
+                Paragraph p = new Paragraph();
+                Cell cell = new Cell().add(p.setTextAlignment(TextAlignment.CENTER));
+                generatedDoc.pushText(p, new Text("a"), titleFont, 8.5f);
+                table.getCell(counterRow, 0).add(p);
+
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(String.valueOf(a.getX())), titleFont, 8.5f);
+                table.getCell(counterRow, 1).add(p);
+
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(String.valueOf(a.getY())), titleFont, 8.5f);
+                table.getCell(counterRow, 2).add(p);
+
+                counterRow++;
+            } catch (IOException ex) {
+                Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
     /**
      *
      * @param p
@@ -547,7 +686,7 @@ public class PdfController {
      * @param generatedDoc
      * @param color
      */
-     public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
+    public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
         InterestedModel person = solicitude.getInterested();
         PropertyModel properytyModel = solicitude.getProperties().get(0);
         CategoryModel category = solicitude.getCategoryA();
@@ -769,7 +908,6 @@ public class PdfController {
                             }
                         }
 
-                       
                     }
                     if (category.getName().equals("B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables")) {
 
@@ -782,16 +920,16 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
                             generatedDoc.createRectangle2(color, 368, y - 623, 18, 10);
                         }
-                        if(categoryB.getAssociatedCategory().equals("Pequeños")) {
-                         //Thirteenth
-                        generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
-                        generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
-                        //Fourtheenth
-                        generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
-                        generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
-                        generatedDoc.createRectangle(color, 249, y - 745, 18, 10);
+                        if (categoryB.getAssociatedCategory().equals("Pequeños")) {
+                            //Thirteenth
+                            generatedDoc.createRectangle(color, 292, y - 623, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 623, 18, 10);
+                            //Fourtheenth
+                            generatedDoc.createRectangle(color, 89, y - 745, 18, 10);
+                            generatedDoc.createRectangle(color, 173, y - 745, 18, 10);
+                            generatedDoc.createRectangle(color, 249, y - 745, 18, 10);
 
-                    }
+                        }
 
                     }
 

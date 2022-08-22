@@ -6,12 +6,14 @@
 package co.gov.minambiente.controlador;
 
 import static co.gov.minambiente.controlador.Utils.loadMunicipalities;
-import co.gov.minambiente.controlador.database.RequestsDatabase;
 import co.gov.minambiente.modelo.AddressModel;
 import co.gov.minambiente.modelo.AttorneyModel;
 import co.gov.minambiente.modelo.CategoryBModel;
+import co.gov.minambiente.modelo.CoordinateModel;
+import co.gov.minambiente.modelo.DateModel;
 import co.gov.minambiente.modelo.DepartmentModel;
 import co.gov.minambiente.modelo.InterestedModel;
+import co.gov.minambiente.modelo.PlaneCoordinateModel;
 import co.gov.minambiente.modelo.PropertyModel;
 import co.gov.minambiente.modelo.RequestModel;
 import com.itextpdf.kernel.colors.Color;
@@ -40,7 +42,7 @@ public class Controlador {
     public static void main(String[] args) throws FileNotFoundException, IOException, FontFormatException {
         PdfWorkspace generatedDoc = new PdfWorkspace("Prueba.pdf", 10, "src\\co\\gov\\minambiente\\fonts\\");
         
-        RequestModel form1 = new RequestModel(RequestsDatabase.getNewReference(),RequestsDatabase.getCurrentDate());
+        RequestModel form1 = new RequestModel("1", new DateModel());
         ArrayList<String> a = new ArrayList<>();
         a.add("1200000");
         a.add("Doce millones de pesos");
@@ -53,6 +55,20 @@ public class Controlador {
         
         interested.setAttorney(attorney);
         
+        LinkedList<CoordinateModel> sddd = new LinkedList<>();
+        sddd.add(new PlaneCoordinateModel(1,1,Short.valueOf("1")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
+        
         form1.setTypeRequest("nueva");
         form1.setInterested(interested);
         form1.setCategoryB(new CategoryBModel());
@@ -60,6 +76,7 @@ public class Controlador {
         miCasita.setName("Casa de Andrés");
         miCasita.setSurface("101");
         miCasita.setCadastralIdNumber("55965-41UD4");
+        miCasita.setCoordiantes(sddd);
         AddressModel miDireccion = new AddressModel();
         miDireccion.setStreet("Calle de Patricio salvaje");
         miDireccion.setMunicipality("Municipio de la soledad");
@@ -77,7 +94,9 @@ public class Controlador {
                 + "Nullam a ultricies felis. Nullam eu augue nibh. Morbi rutrum "
                 + " tortor id auctor.");
         
-         PdfController.generateCheckBoxes1(generatedDoc,new DeviceRgb(212,216,210),form1);
+      
+        
+        PdfController.generateCheckBoxes1(generatedDoc,new DeviceRgb(212,216,210),form1);
         PdfController.fillDocument(generatedDoc, form1);
         
     }
