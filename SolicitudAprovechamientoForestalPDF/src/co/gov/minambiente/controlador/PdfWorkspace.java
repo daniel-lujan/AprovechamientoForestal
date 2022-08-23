@@ -71,17 +71,16 @@ public class PdfWorkspace {
     private PdfAcroForm form;
     private PdfButtonFormField check;
 
-    public PdfWorkspace(String nombre, int numeroPaginas, String rutaFuente)
+    public PdfWorkspace(String nombre, String rutaFuente, String destino)
             throws FileNotFoundException, IOException, FontFormatException {
 
         this.actualPage = 0;
         this.nombre = nombre;
         this.rutaFuente = rutaFuente;
-
-        this.destino = new File("pdfOutput");
+        this.destino = new File(destino);
         this.destinoImagen = new File("resources\\images");
 
-        this.inicializarDocumento(numeroPaginas);
+        this.inicializarDocumento();
     }
 
     //Métodos
@@ -90,7 +89,7 @@ public class PdfWorkspace {
      * @param numeroPaginas El número de páginas que contendrá el documento
      * final (se pueden sumar en el futuro)
      */
-    private void inicializarDocumento(int numeroPaginas) throws FileNotFoundException, IOException {
+    private void inicializarDocumento() throws FileNotFoundException, IOException {
           
         this.validarDirectorio();
         // Seteo de PdfDocument
@@ -317,7 +316,5 @@ public class PdfWorkspace {
     public void setDocument(Document document) {
         this.document = document;
     }
-
-    
 
 }
