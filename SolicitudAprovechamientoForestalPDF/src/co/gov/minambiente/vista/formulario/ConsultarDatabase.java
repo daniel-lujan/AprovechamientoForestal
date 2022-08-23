@@ -7,10 +7,11 @@ package co.gov.minambiente.vista.formulario;
 
 import co.gov.minambiente.controlador.database.RequestsDatabase;
 import co.gov.minambiente.controlador.Utils;
+import co.gov.minambiente.controlador.PdfWorkspace;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
-import javax.swing.JFileChooser;
+
 
 /**
  *
@@ -220,9 +221,13 @@ public class ConsultarDatabase extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        String path = new FileChooser().getPath();
+        String[] path = Utils.splitPath(new FileChooser().getPath());
         if (path != null){
-            // Enviar Utils.modifyExtension(path,"pdf") a PDF controller
+            try{
+                new PdfWorkspace(path[1],path[0]);
+            } catch (Exception e){
+                System.out.println("Error al guardar PDF");
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 

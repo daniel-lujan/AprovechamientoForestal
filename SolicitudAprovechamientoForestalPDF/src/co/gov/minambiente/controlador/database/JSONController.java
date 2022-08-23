@@ -28,7 +28,8 @@ public class JSONController {
     public void createFile(String path) {
         try{
             FileWriter writer = new FileWriter(path);
-            writer.write("{}");
+            writer.write("[]");
+            writer.close();
         } catch (java.io.IOException e){
         }
     }

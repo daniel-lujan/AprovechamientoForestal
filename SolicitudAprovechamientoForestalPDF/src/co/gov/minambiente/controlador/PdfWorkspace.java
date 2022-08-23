@@ -76,7 +76,7 @@ public class PdfWorkspace {
 
         this.actualPage = 0;
         this.nombre = nombre;
-        this.rutaFuente = rutaFuente;
+        this.rutaFuente = "src\\co\\gov\\minambiente\\fonts\\";
         this.destino = new File(destino);
         this.destinoImagen = new File("resources\\images");
         this.rutaFuente = "src\\co\\gov\\minambiente\\fonts\\";
