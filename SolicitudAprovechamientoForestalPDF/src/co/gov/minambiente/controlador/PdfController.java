@@ -639,7 +639,7 @@ public class PdfController {
         return table;
     }
 
-        public static void fillTable1(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
+    public static void fillTable1(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
 
         PlaneCoordinateModel a = new PlaneCoordinateModel(0, 0, 0);
 
@@ -671,7 +671,7 @@ public class PdfController {
     }
 
     public static void fillTable2(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
-        
+
         GeographicCoordinateModel aux = new GeographicCoordinateModel(0);
         int counterRow = 0;
 
@@ -685,16 +685,16 @@ public class PdfController {
                 Cell cell = new Cell().add(p.setTextAlignment(TextAlignment.CENTER));
                 generatedDoc.pushText(p, new Text(String.valueOf(aux.getPOINT())), titleFont, 8.5f);
                 table.getCell(counterRow, 0).add(p);
-                
+
                 for (Object latitude : aux.getLATITUDE()) {
-                    counter++;           
+                    counter++;
                     p = new Paragraph();
                     generatedDoc.pushText(p, new Text(String.valueOf(latitude)), titleFont, 8.5f);
-                    table.getCell(counterRow, counter ).add(p);
+                    table.getCell(counterRow, counter).add(p);
                 }
-                
+
                 for (Object longitude : aux.getLONGITUDE()) {
-                    counter++; 
+                    counter++;
                     p = new Paragraph();
                     generatedDoc.pushText(p, new Text(String.valueOf(longitude)), titleFont, 8.5f);
                     table.getCell(counterRow, counter).add(p);
@@ -703,18 +703,23 @@ public class PdfController {
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(String.valueOf(aux.getALTITUDE())), titleFont, 8.5f);
                 table.getCell(counterRow, counter).add(p);
-                
-                counterRow++;
-                
-               // table.getFooter().set
 
+                counter++;
+
+                 p = new Paragraph();
+                generatedDoc.pushText(p, new Text(aux.getORIGIN()), titleFont, 8.5f);
+                table.getCell(0, 1).add(p);
             } catch (IOException ex) {
                 Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
     }
 
+    public static void fillTable3(Table table, RequestModel solicitude, PdfWorkspace generatedDoc){
+        
+    }
+    
     /**
      *
      * @param p

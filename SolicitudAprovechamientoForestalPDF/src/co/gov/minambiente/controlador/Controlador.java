@@ -42,7 +42,7 @@ import java.util.LinkedList;
 public class Controlador {
     
     public static void main(String[] args) throws FileNotFoundException, IOException, FontFormatException {
-        PdfWorkspace generatedDoc = new PdfWorkspace("Prueba.pdf", "src\\co\\gov\\minambiente\\fonts\\", "pdfOutput");
+        PdfWorkspace generatedDoc = new PdfWorkspace("Prueba.pdf", "pdfOutput");
         
         RequestModel form1 = new RequestModel("1", new DateModel());
         ArrayList<String> a = new ArrayList<>();

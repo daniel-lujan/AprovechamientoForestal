@@ -71,7 +71,7 @@ public class PdfWorkspace {
     private PdfAcroForm form;
     private PdfButtonFormField check;
 
-    public PdfWorkspace(String nombre, String rutaFuente, String destino)
+    public PdfWorkspace(String nombre, String destino)
             throws FileNotFoundException, IOException, FontFormatException {
 
         this.actualPage = 0;
@@ -79,6 +79,7 @@ public class PdfWorkspace {
         this.rutaFuente = rutaFuente;
         this.destino = new File(destino);
         this.destinoImagen = new File("resources\\images");
+        this.rutaFuente = "src\\co\\gov\\minambiente\\fonts\\";
         this.inicializarDocumento();
     }
 
