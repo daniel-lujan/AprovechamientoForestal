@@ -79,7 +79,6 @@ public class PdfWorkspace {
         this.rutaFuente = rutaFuente;
         this.destino = new File(destino);
         this.destinoImagen = new File("resources\\images");
-
         this.inicializarDocumento();
     }
 

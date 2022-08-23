@@ -29,7 +29,16 @@ public class GeographicCoordinateModel extends CoordinateModel {
         this.ALTITUDE = ALTITUDE;
         this.ORIGIN = ORIGIN;
     }
-    
+
+    public GeographicCoordinateModel(int point) {
+        super(point);
+        this.LATITUDE = new ArrayList<>();
+        this.LONGITUDE = new ArrayList<>();
+        this.ALTITUDE = 0;
+        this.ORIGIN = "";
+    }
+
+   
     /**
      * Retorna la latitud
      * @return Latitud

@@ -14,6 +14,7 @@ import co.gov.minambiente.modelo.CategoryCModel;
 import co.gov.minambiente.modelo.CategoryDModel;
 import co.gov.minambiente.modelo.CategoryModel;
 import co.gov.minambiente.modelo.CoordinateModel;
+import co.gov.minambiente.modelo.GeographicCoordinateModel;
 import co.gov.minambiente.modelo.InterestedModel;
 import co.gov.minambiente.modelo.PlaneCoordinateModel;
 import co.gov.minambiente.modelo.PropertyModel;
@@ -31,6 +32,7 @@ import com.itextpdf.layout.property.UnitValue;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -265,15 +267,18 @@ public class PdfController {
             p.add(new Text("\n"));
 
             Table t = createTable1(generatedDoc);
+            Table t2 = createTable2(generatedDoc);
 
             if (solicitude.getProperties().get(0).getCoordiantes().get(0) instanceof PlaneCoordinateModel) {
                 fillTable1(t, solicitude, generatedDoc);
+            }else{
+                fillTable2(t2, solicitude, generatedDoc);
             }
 
             p.add(t);
             p.add(new Text("\n \n"));
 
-            Table t2 = createTable2(generatedDoc);
+            
             p.add(t2);
             p.add(new Text("\n \n"));
 
@@ -566,7 +571,7 @@ public class PdfController {
         table.addHeaderCell(cell25).setTextAlignment(TextAlignment.CENTER);
 
         q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Punto"), titleFont, 8.5f);
+        generatedDoc.pushText(q, new Text("Altitud"), titleFont, 8.5f);
         Cell cell28 = new Cell(2, 1).add(q).setBackgroundColor(greenBg);
         table.addHeaderCell(cell28).setTextAlignment(TextAlignment.CENTER);
 
@@ -593,7 +598,7 @@ public class PdfController {
         q = new Paragraph();
         generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
         Cell cellFinal = new Cell(1, 7).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addFooterCell(cellFinal).setMinHeight(175);
+        table.addCell(cellFinal).setMinHeight(175);
 
         return table;
     }
@@ -634,12 +639,11 @@ public class PdfController {
         return table;
     }
 
-    public static void fillTable1(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
+        public static void fillTable1(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
 
-        PlaneCoordinateModel a = new PlaneCoordinateModel(0, 0, Short.parseShort("0"));
+        PlaneCoordinateModel a = new PlaneCoordinateModel(0, 0, 0);
 
         int counterRow = 0;
-        int counter2 = 0;
 
         for (CoordinateModel coordiante : solicitude.getProperties().get(0).getCoordiantes()) {
 
@@ -648,7 +652,7 @@ public class PdfController {
 
                 Paragraph p = new Paragraph();
                 Cell cell = new Cell().add(p.setTextAlignment(TextAlignment.CENTER));
-                generatedDoc.pushText(p, new Text("a"), titleFont, 8.5f);
+                generatedDoc.pushText(p, new Text(String.valueOf(a.getPOINT())), titleFont, 8.5f);
                 table.getCell(counterRow, 0).add(p);
 
                 p = new Paragraph();
@@ -663,6 +667,51 @@ public class PdfController {
             } catch (IOException ex) {
                 Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }
+    }
+
+    public static void fillTable2(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
+        
+        GeographicCoordinateModel aux = new GeographicCoordinateModel(0);
+        int counterRow = 0;
+
+        for (CoordinateModel coordiante : solicitude.getProperties().get(0).getCoordiantes()) {
+            int counter = 0;
+            try {
+
+                aux = (GeographicCoordinateModel) coordiante;
+
+                Paragraph p = new Paragraph();
+                Cell cell = new Cell().add(p.setTextAlignment(TextAlignment.CENTER));
+                generatedDoc.pushText(p, new Text(String.valueOf(aux.getPOINT())), titleFont, 8.5f);
+                table.getCell(counterRow, 0).add(p);
+                
+                for (Object latitude : aux.getLATITUDE()) {
+                    counter++;           
+                    p = new Paragraph();
+                    generatedDoc.pushText(p, new Text(String.valueOf(latitude)), titleFont, 8.5f);
+                    table.getCell(counterRow, counter ).add(p);
+                }
+                
+                for (Object longitude : aux.getLONGITUDE()) {
+                    counter++; 
+                    p = new Paragraph();
+                    generatedDoc.pushText(p, new Text(String.valueOf(longitude)), titleFont, 8.5f);
+                    table.getCell(counterRow, counter).add(p);
+                }
+                counter++;
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(String.valueOf(aux.getALTITUDE())), titleFont, 8.5f);
+                table.getCell(counterRow, counter).add(p);
+                
+                counterRow++;
+                
+               // table.getFooter().set
+
+            } catch (IOException ex) {
+                Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
     }
 

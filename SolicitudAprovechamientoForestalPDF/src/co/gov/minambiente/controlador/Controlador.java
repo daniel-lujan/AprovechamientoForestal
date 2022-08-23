@@ -5,6 +5,7 @@
  */
 package co.gov.minambiente.controlador;
 
+import static co.gov.minambiente.controlador.PdfController.espacio;
 import static co.gov.minambiente.controlador.Utils.loadMunicipalities;
 import co.gov.minambiente.modelo.AddressModel;
 import co.gov.minambiente.modelo.AttorneyModel;
@@ -12,6 +13,7 @@ import co.gov.minambiente.modelo.CategoryBModel;
 import co.gov.minambiente.modelo.CoordinateModel;
 import co.gov.minambiente.modelo.DateModel;
 import co.gov.minambiente.modelo.DepartmentModel;
+import co.gov.minambiente.modelo.GeographicCoordinateModel;
 import co.gov.minambiente.modelo.InterestedModel;
 import co.gov.minambiente.modelo.PlaneCoordinateModel;
 import co.gov.minambiente.modelo.PropertyModel;
@@ -40,7 +42,7 @@ import java.util.LinkedList;
 public class Controlador {
     
     public static void main(String[] args) throws FileNotFoundException, IOException, FontFormatException {
-        PdfWorkspace generatedDoc = new PdfWorkspace("Prueba.pdf", 10, "src\\co\\gov\\minambiente\\fonts\\");
+        PdfWorkspace generatedDoc = new PdfWorkspace("Prueba.pdf", "src\\co\\gov\\minambiente\\fonts\\", "pdfOutput");
         
         RequestModel form1 = new RequestModel("1", new DateModel());
         ArrayList<String> a = new ArrayList<>();
@@ -56,19 +58,37 @@ public class Controlador {
         interested.setAttorney(attorney);
         
         LinkedList<CoordinateModel> sddd = new LinkedList<>();
-        sddd.add(new PlaneCoordinateModel(1,1,Short.valueOf("1")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        sddd.add(new PlaneCoordinateModel(1,2,Short.valueOf("5")));
-        
+       /* sddd.add(new PlaneCoordinateModel(1,1, 2));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1,2,5));
+        sddd.add(new PlaneCoordinateModel(1, 2, 5));
+        sddd.add(new PlaneCoordinateModel(1, 2, 5));
+        sddd.add(new PlaneCoordinateModel(1, 2, 5));*/
+
+        ArrayList<Object> latitud = new ArrayList<>();
+        latitud.add(58);
+        latitud.add(20);
+        latitud.add(15);
+
+        ArrayList<Object> longitud = new ArrayList<>();
+        longitud.add(58);
+        longitud.add(12);
+        longitud.add(63);
+
+        for (int i = 0; i < 6; i++) {
+            sddd.add(new GeographicCoordinateModel(latitud, longitud, 2350, "as", 2));
+        }
+
+        GeographicCoordinateModel s = new GeographicCoordinateModel(latitud, longitud, 1200, espacio, 5);
+        LinkedList<CoordinateModel> f = new LinkedList<>();
+        f.add(s);
+
         form1.setTypeRequest("nueva");
         form1.setInterested(interested);
         form1.setCategoryB(new CategoryBModel());
@@ -76,7 +96,8 @@ public class Controlador {
         miCasita.setName("Casa de Andrés");
         miCasita.setSurface("101");
         miCasita.setCadastralIdNumber("55965-41UD4");
-        miCasita.setCoordiantes(sddd);
+        miCasita.setCoordiantes(f);
+
         AddressModel miDireccion = new AddressModel();
         miDireccion.setStreet("Calle de Patricio salvaje");
         miDireccion.setMunicipality("Municipio de la soledad");
