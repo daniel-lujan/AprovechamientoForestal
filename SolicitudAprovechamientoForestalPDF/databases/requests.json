@@ -83,9 +83,9 @@
     "day" : 2022,
     "dateWithFormat" : "2022/8/21"
   },
-  "fileNumber" : "fabricar cosas",
+  "fileNumber" : "",
   "actNumber" : "",
-  "intendedUse" : "",
+  "intendedUse" : "fabricar cosas",
   "methodUtilization" : "Manual",
   "reference" : "5848917790"
 } ]

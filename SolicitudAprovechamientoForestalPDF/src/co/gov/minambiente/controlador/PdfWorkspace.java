@@ -71,8 +71,7 @@ public class PdfWorkspace {
     private PdfAcroForm form;
     private PdfButtonFormField check;
 
-    public PdfWorkspace(String nombre, String destino)
-            throws FileNotFoundException, IOException, FontFormatException {
+    public PdfWorkspace(String nombre, String destino) {
 
         this.actualPage = 0;
         this.nombre = nombre;
@@ -89,13 +88,18 @@ public class PdfWorkspace {
      * @param numeroPaginas El número de páginas que contendrá el documento
      * final (se pueden sumar en el futuro)
      */
-    private void inicializarDocumento() throws FileNotFoundException, IOException {
+    private void inicializarDocumento() {
           
         this.validarDirectorio();
         // Seteo de PdfDocument
-        PdfWriter writer;
+        PdfWriter writer = null;
+        try{
         writer = new PdfWriter(new File(this.destino.getPath() + "\\"
                 + this.nombre)).setSmartMode(true);
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            return;
+        }
         this.pdf = new PdfDocument(writer);
         this.pdf.setDefaultPageSize(new PageSize(612.0f, 1008.0f));
        /* for (int i = 0; i < numeroPaginas; i++) {

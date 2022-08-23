@@ -52,7 +52,7 @@ public class PdfController {
     public static Color whiteBg = new DeviceRgb(0, 0, 0);
     public static Color blueBg = new DeviceRgb(152, 228, 235);
 
-    public static void fillDocument(PdfWorkspace generatedDoc, RequestModel solicitude) throws MalformedURLException, IOException {
+    public static void fillDocument(PdfWorkspace generatedDoc, RequestModel solicitude) {
 
         int lineCounter = drawPage1(generatedDoc, solicitude);
         lineCounter = drawPage2(lineCounter, generatedDoc, solicitude);
