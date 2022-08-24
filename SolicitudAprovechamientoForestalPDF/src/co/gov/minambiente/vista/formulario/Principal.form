@@ -120,6 +120,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ver estad&#xed;sticas"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstadisticasActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

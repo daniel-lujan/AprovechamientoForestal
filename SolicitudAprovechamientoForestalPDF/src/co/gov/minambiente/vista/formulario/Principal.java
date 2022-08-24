@@ -82,6 +82,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btnEstadisticas.setText("Ver estadísticas");
+        btnEstadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadisticasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,6 +156,11 @@ public class Principal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         salir();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed
+        this.dispose();
+        new GraficoPorRango().setVisible(true);
+    }//GEN-LAST:event_btnEstadisticasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
