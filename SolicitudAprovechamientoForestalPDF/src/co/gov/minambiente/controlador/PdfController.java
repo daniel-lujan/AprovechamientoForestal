@@ -271,15 +271,14 @@ public class PdfController {
 
             Table t = createTable1(generatedDoc);
             Table t2 = createTable2(generatedDoc);
-            
-            if (solicitude.getProperties().get(0).getCoordiantes().size() > 0){
+
+            if (solicitude.getProperties().get(0).getCoordiantes().size() > 0) {
                 if (solicitude.getProperties().get(0).getCoordiantes().get(0) instanceof PlaneCoordinateModel) {
-                fillTable1(t, solicitude, generatedDoc);
-            } else {
-                fillTable2(t2, solicitude, generatedDoc);
+                    fillTable1(t, solicitude, generatedDoc);
+                } else {
+                    fillTable2(t2, solicitude, generatedDoc);
+                }
             }
-            }
-            
 
             p.add(t);
             p.add(new Text("\n \n"));
@@ -321,20 +320,6 @@ public class PdfController {
 
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
-            p.add(new Text("\n \n"));
-            lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
-            lineCounter = addBodyLine(p, generatedDoc, lineCounter, solicitude.getMethodUtilization() + "\n");
-            p.add(new Text("\n"));
-            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
-            p.add(new Text("\n"));
-            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
-            p.add(new Text("\n"));
-            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-            p.add(new Text("\n"));
-            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-            p.add(new Text("\n"));
-            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-            p.add(new Text("\n"));
 
             //  -> Lógica de llenado sección 5.1
             switch (solicitude.getMethodUtilization()) {
@@ -353,7 +338,6 @@ public class PdfController {
             }
 
             // Tabla
-            
             // Rellenar "Indique el uso que se pretende dar a los productos a obtener:" con solicitude.getIntendedUse()
             // <- Lógica de llenado sección 5.1
             // -> Lógica de llenado sección 5.2
@@ -452,97 +436,60 @@ public class PdfController {
 
         try {
             addHeader(generatedDoc, texts);
-            
-            
+
+            Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter, solicitude.getMethodUtilization() + "\n");
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+            lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text(""));
+            p.add(new Text("\n"));
+            setUpParagraph(p, generatedDoc, 9, 10);
+
+            lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 18);
+
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
-    }
 
-    private static Table createTable3(PdfWorkspace generatedDoc) throws IOException {
-
-        Table table = new Table(UnitValue.createPercentArray(8)).setWidth(530).setRelativePosition(10, 0, 0, 0);
-
-        Paragraph q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Cantidad"), titleFont, 8);
-        Cell cell = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addHeaderCell(cell);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Unidad de medida*"), titleFont, 8);
-        Cell cell12 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addHeaderCell(cell12);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Nombre común"), titleFont, 8);
-        Cell cell13 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addHeaderCell(cell13);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Nombre científico"), titleFont, 8);
-        Cell cell14 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addHeaderCell(cell14);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Aplica para únicamente para manejo\n"
-                + "sostenible de flora silvestre y los productos\n"
-                + "forestales no maderables"), titleFont, 8);
-        Cell cell15 = new Cell(1, 2).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
-        table.addHeaderCell(cell15);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Veda nacional\n"
-                + "o regional\n"
-                + "(si aplica) **"), titleFont, 8);
-        Cell cell17 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addHeaderCell(cell17);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Categoría\n"
-                + "de\n"
-                + "amenaza\n"
-                + "(si aplica)"), titleFont, 8);
-        Cell cell18 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addHeaderCell(cell18);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Parte aprovechada"
-                + "(Raíz, Fruto, Semilla,"
-                + "Flor, Corteza,"
-                + "Exudado, Yema, Hojas,"
-                + "Tallos, Ramas, etc.)"), titleFont, 8);
-        Cell cell25 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
-        table.addHeaderCell(cell25);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Hábito"
-                + "(Árbol, Arbusto,"
-                + "Hierba terrestre,"
-                + "Epífita, Bejuco/liana,"
-                + "Hemiepífita, Palma,"
-                + "etc.)"), titleFont, 8f);
-        Cell cell26 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
-        table.addHeaderCell(cell26);
-
-        for (int i = 0; i < 80; i++) {
-            q = new Paragraph();
-            generatedDoc.pushText(q, new Text(""), titleFont, 8f);
-            Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setMinHeight(10);
-            table.addCell(temporal);
-        }
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text("Cantidad \n Total"), titleFont, 8f);
-        Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
-        table.addFooterCell(temporal);
-
-        q = new Paragraph();
-        generatedDoc.pushText(q, new Text(""), titleFont, 8f);
-        Cell cellFinal = new Cell(1, 7).add(q.setTextAlignment(TextAlignment.CENTER));
-        table.addFooterCell(cellFinal);
-
-        return table;
     }
 
     /**
@@ -724,50 +671,49 @@ public class PdfController {
     }
 
     public static Table fillTable3(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
-        
+
         int counterRow = 0;
         Paragraph p = new Paragraph("");
         SpecieModel aux = new SpecieModel();
-        
+
         for (SpecieModel specie : solicitude.getProperties().get(0).getSpecies()) {
-            
-            
+
             try {
-                
+
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(String.valueOf(specie.getQuantity())), titleFont, 8.5f);
                 table.getCell(counterRow, 0).add(p);
-                
-                 p = new Paragraph();
+
+                p = new Paragraph();
                 generatedDoc.pushText(p, new Text(specie.getUnit()), titleFont, 8.5f);
                 table.getCell(counterRow, 1).add(p);
-                
+
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(specie.getCommonName()), titleFont, 8.5f);
                 table.getCell(counterRow, 2).add(p);
-                
-                 p = new Paragraph();
+
+                p = new Paragraph();
                 generatedDoc.pushText(p, new Text(specie.getScientificName()), titleFont, 8.5f);
                 table.getCell(counterRow, 3).add(p);
-                
+
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(specie.getHabit()), titleFont, 8.5f);
                 table.getCell(counterRow, 4).add(p);
-                
+
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(specie.getClosure()), titleFont, 8.5f);
                 table.getCell(counterRow, 5).add(p);
-                
+
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(specie.getThreatClassification()), titleFont, 8.5f);
                 table.getCell(counterRow, 6).add(p);
-                
+
             } catch (IOException ex) {
                 Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             counterRow++;
-            
+
         }
         return table;
     }
@@ -795,12 +741,13 @@ public class PdfController {
      * @param generatedDoc
      * @param color
      */
-   public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
+    public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
         InterestedModel person = solicitude.getInterested();
         PropertyModel properytyModel = solicitude.getProperties().get(0);
         CategoryModel category = solicitude.getCategoryA();
         CategoryBModel categoryB = solicitude.getCategoryB();
         int y = 817;
+
         if (solicitude.getTypeRequest() != null) {
             switch (solicitude.getTypeRequest()) {
                 case "Nueva":
@@ -1005,7 +952,7 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
-                            generatedDoc.createRectangle2(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         }
