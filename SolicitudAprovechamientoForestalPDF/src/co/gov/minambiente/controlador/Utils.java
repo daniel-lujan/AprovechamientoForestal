@@ -160,6 +160,9 @@ public class Utils {
     }
     
     public static String[] splitPath(String path){
+        if (path == null){
+            return null;
+        }
         String[] array = new String[2];
         array[0] = path.substring(0,path.lastIndexOf("\\")+1);
         array[1] = path.substring(path.lastIndexOf("\\")+1,path.length());

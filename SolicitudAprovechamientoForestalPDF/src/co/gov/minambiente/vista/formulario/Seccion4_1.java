@@ -371,7 +371,7 @@ public class Seccion4_1 extends javax.swing.JFrame {
         String vereda = txtVereda.getText().trim();
         String matriculaInmobiliaria = txtMatriculaInmobiliaria.getText().trim();
         String cedulaCatastral = txtCedulaCatastral.getText().trim();
-
+        System.out.println("MAT INM: "+matriculaInmobiliaria);
         if (!nombre.equals("") && !superficie.equals("") && !direccion.equals("") && !tipo.equals("Seleccione")
                 && !departamento.equals("Seleccione") && !municipio.equals("") && !vereda.equals("")) {
             if (rbSi.isSelected()) {

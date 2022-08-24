@@ -76,6 +76,7 @@ class ObjectInstantiator {
     }
 
     private PropertyModel getPropertyInstance(LinkedHashMap info) {
+        
         return new PropertyModel(
                 (String) info.get("typeProperty"),
                 (String) info.get("name"),
@@ -144,7 +145,7 @@ class ObjectInstantiator {
         return new PlaneCoordinateModel(
                 (double) info.get("x"),
                 (double) info.get("y"),
-                (short) info.get("point")
+                new Integer((int)info.get("point")).shortValue()
         );
     }
 
@@ -154,7 +155,7 @@ class ObjectInstantiator {
                 (ArrayList) info.get("LONGITUDE"),
                 (double) info.get("ALTITUDE"),
                 (String) info.get("ORIGIN"),
-                (short) info.get("point")
+                new Integer((int)info.get("point")).shortValue()
         );
     }
 
