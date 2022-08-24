@@ -479,7 +479,7 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
-            p.add(new Text(""));
+            p.add(new Text("\n"));
             p.add(new Text("\n"));
             lineCounter++;
             setUpParagraph(p, generatedDoc, 9, 10);
