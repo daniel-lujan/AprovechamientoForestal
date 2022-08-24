@@ -32,7 +32,6 @@ public class RequestModel {
         this.typeRequest = "";
         this.interested = new InterestedModel();
         this.properties = new LinkedList<>();
-        this.properties.add(new PropertyModel("Colectivo"));
         this.howToAcquire = "";
         this.fileNumber = "";
         this.actNumber = "";
