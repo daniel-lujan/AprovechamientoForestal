@@ -439,10 +439,10 @@ public class Seccion6 extends javax.swing.JFrame {
 
     private void btnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnteriorActionPerformed
         this.setVisible(false);
-        if (controlador.isNueva()){
-            if (controlador.esCategoriaC()){
+        if (controlador.isNueva()) {
+            if (controlador.esCategoriaC()) {
                 controlador.mostrarSeccion5_2();
-            }else {
+            } else {
                 controlador.mostrarSeccion5_1();
             }
         } else {
@@ -465,17 +465,21 @@ public class Seccion6 extends javax.swing.JFrame {
             if (!Utils.isEmail(correo)) {
                 JOptionPane.showMessageDialog(null, "El correo electrónico no es válido.");
                 return;
+            } else {
+                if (!(correo.equals("") || direccion.equals("") || vereda.equals("") || municipio.equals("") || departamento.equals(""))) {
+                    controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio);
+                    controlador.guardarSolicitudEnBaseDeDatos();
+                    JOptionPane.showMessageDialog(null, "Solicitud registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    this.dispose();
+                    controlador.mostrarPrincipal();
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
+                }
             }
-            if (!(correo.equals("") || direccion.equals("") || vereda.equals("") || municipio.equals("") || departamento.equals(""))) {
-                controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio);
-                controlador.guardarSolicitudEnBaseDeDatos();
-                JOptionPane.showMessageDialog(null, "Solicitud registrada correctamente.", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
-                this.dispose();
-                controlador.mostrarPrincipal();
-                return;
-            }
+        } else {
+            controlador.guardarInformacionSeccion6(correo, telefono, direccion, departamento, vereda, municipio);
         }
-        JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.");
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
