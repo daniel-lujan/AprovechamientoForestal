@@ -33,12 +33,12 @@
     "realEstateRegistration" : "31413443",
     "cadastralIdNumber" : "",
     "coordiantes" : [ {
-      "y" : 13413.0,
       "point" : 1,
+      "y" : 13413.0,
       "x" : 13413.0
     }, {
-      "y" : 3443.0,
       "point" : 2,
+      "y" : 3443.0,
       "x" : 1343.0
     } ],
     "species" : [ ]
@@ -68,9 +68,9 @@
     "day" : 2022,
     "dateWithFormat" : "2022/8/23"
   },
-  "fileNumber" : "",
+  "fileNumber" : "USO",
   "actNumber" : "",
-  "intendedUse" : "USO",
+  "intendedUse" : "",
   "methodUtilization" : "Mecánico",
   "reference" : "7551391095"
 } ]

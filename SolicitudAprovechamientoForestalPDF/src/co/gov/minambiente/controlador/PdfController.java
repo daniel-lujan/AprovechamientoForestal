@@ -433,12 +433,12 @@ public class PdfController {
     }
 
     public static int drawPage4(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
-
+        
         try {
             addHeader(generatedDoc, texts);
-
+            
             Paragraph p = generatedDoc.nuevoParrafo(new Text(""), titleFont, lineCounter);
-
+            
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter, solicitude.getMethodUtilization() + "\n");
             p.add(new Text("\n"));
@@ -455,7 +455,7 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-
+            
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
@@ -464,12 +464,14 @@ public class PdfController {
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
+            p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-
+            
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
@@ -482,18 +484,51 @@ public class PdfController {
             p.add(new Text("\n"));
             p.add(new Text("\n"));
             lineCounter++;
-            setUpParagraph(p, generatedDoc, 9, 10);
+            setUpParagraph(p, generatedDoc, 0, 10);
             
             p = new Paragraph();
             lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 9);
             p.add(new Text("\n"));
-            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
 
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
+            p.add(new Text("\n"));
+
+            if (solicitude.getInterested().isAuthorization()) {
+
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                        solicitude.getInterested().getEmailAddress(), solicitude.getInterested().getTelephone() + "\n");
+                p.add(new Text("\n"));
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                        solicitude.getInterested().getAddress().getStreet(),
+                        solicitude.getInterested().getAddress().getMunicipality() + "\n");
+                p.add(new Text("\n"));
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                        solicitude.getInterested().getAddress().getSidewalk(),
+                        solicitude.getInterested().getAddress().getDepartment() + "\n");
+                p.add(new Text("\n"));
+            } else {
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                        "", "" + "\n");
+                p.add(new Text("\n"));
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                        "", "" + "\n");
+                p.add(new Text("\n"));
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter,
+                        "", "" + "\n");
+                p.add(new Text("\n"));
+            }
+
+            setUpParagraph(p, generatedDoc, 18, 10);
+            lineCounter = addSingleTitle(generatedDoc, lineCounter, grayBg, 27);
+            p= new Paragraph();
+            
+            
+            
+          
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
-
     }
 
     private static Table createTable3(PdfWorkspace generatedDoc) throws IOException {

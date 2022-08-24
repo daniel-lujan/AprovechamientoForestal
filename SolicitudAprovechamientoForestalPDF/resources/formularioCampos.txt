@@ -83,18 +83,18 @@ de 2019, Decreto 690 de 2021,
 -ii.	Árboles aislados fuera de la cobertura del bosque natural
 -iii.	Tala o poda de emergencia en centros urbanos
 -Tala			 Poda			 
--Estado del Individuo:-Caído			 Muerto			 Enfermo
+-Estado del Individuo:	Caído			 Muerto			 Enfermo
 -Causa o Perjuicio: Estabilidad de Suelos			 Canal de Agua			 Obras de Infraestructura/Edificaciones			 
--Otro (especifique cuál)
+-Otro (especifique cuál)-
 -iv.	Obra pública o privada en centros urbanos
 -Tala			 Trasplante/Reubicación			
 -Actividad dentro de obras de infraestructura:- 
 -Construcción /Realización			 Remodelación			 Ampliación			 Instalación			 Similares * (especificar cuál):-
 -6.		Notificación
 -6.1. Tipo de notificación autorizada por los interesados
--¿Autoriza la notificación electrónica? Si			 Correo electrónico:Teléfono(s):-			 
--No			 Dirección de Notificación:-			 Municipio:-			 
--Nombre centro poblado, vereda o corregimiento:-			 Departamento:-
+-¿Autoriza la notificación electrónica? Si		Correo electrónico:	--Teléfono(s):-			 
+-No		Dirección de Notificación:		--Municipio:-			 
+-Nombre centro poblado, vereda o corregimiento:		--Departamento:-
 -FIRMA DEL INTERESADO
 
  			 
