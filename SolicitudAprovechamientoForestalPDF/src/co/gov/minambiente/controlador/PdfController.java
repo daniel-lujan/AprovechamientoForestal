@@ -61,7 +61,7 @@ public class PdfController {
         generatedDoc.crearPdf();
     }
 
-    public static int drawPage1(PdfWorkspace generatedDoc, RequestModel solicitude) {
+    public static int drawPage1(PdfWorkspace generatedDoc, RequestModel solicitude) throws MalformedURLException {
 
         try {
             texts = cargarBD();
@@ -200,6 +200,7 @@ public class PdfController {
         } catch (IOException ex) {
             System.out.println("Error de entrada y salida de datos" + espacio + ex);
         }
+        PdfController.generateCheckBoxes1(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
         generatedDoc.pasarPagina(2);
         return lineCounter;
     }
