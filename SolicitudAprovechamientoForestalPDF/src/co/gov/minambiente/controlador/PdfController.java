@@ -432,7 +432,7 @@ public class PdfController {
         return lineCounter;
     }
 
-    public static int drawPage4(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
+    public static int drawPage4(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) throws MalformedURLException {
         
         try {
             addHeader(generatedDoc, texts);
@@ -524,8 +524,9 @@ public class PdfController {
             
             
             
-          
+         PdfController.generateCheckBoxes4(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
         } catch (IOException ex) {
+           
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
@@ -1349,26 +1350,26 @@ public class PdfController {
         int y = 817;
         if (category.getName().equals("C. Árboles Aislados")) {
             //fitteen
-            generatedDoc.createRectangle2(color, 285, y - 43, 18, 10);
+            generatedDoc.createRectangle2(color, 285, y - 63, 18, 10);
         } else {
             //fitteen
-            generatedDoc.createRectangle(color, 285, y - 43, 18, 10);
+            generatedDoc.createRectangle(color, 285, y - 63, 18, 10);
         }
 
         
         if (category instanceof CategoryC1Model) {
             CategoryC1Model category1 = (CategoryC1Model) category;
             if (category1.getIndividualStatus().equals("Caído por Causas Naturales")) {
-                generatedDoc.createRectangle2(color, 160, y - 63, 18, 10);
-            } else if (category1.getIndividualStatus().equals("Muerto por Causas Naturales")) {
                 generatedDoc.createRectangle2(color, 160, y - 83, 18, 10);
-            } else if (category1.getIndividualStatus().equals("Razones de Orden Fitosanitario")) {
+            } else if (category1.getIndividualStatus().equals("Muerto por Causas Naturales")) {
                 generatedDoc.createRectangle2(color, 160, y - 103, 18, 10);
-            }
+            } else if (category1.getIndividualStatus().equals("Razones de Orden Fitosanitario")) {
+                generatedDoc.createRectangle2(color, 160, y - 123, 18, 10);
+            
         } else {
-            generatedDoc.createRectangle(color, 160, y - 63, 18, 10);
-            generatedDoc.createRectangle(color, 160, y - 83, 18, 10);
-            generatedDoc.createRectangle(color, 160, y - 103, 18, 10);
+            generatedDoc.createRectangle(color, 160, y - 73, 18, 10);
+            generatedDoc.createRectangle(color, 160, y - 93, 18, 10);
+            generatedDoc.createRectangle(color, 160, y - 113, 18, 10);
         }
         if (category instanceof CategoryC2Model) {
             generatedDoc.createRectangle2(color, 285, y - 143, 18, 10);
@@ -1377,72 +1378,76 @@ public class PdfController {
         }
         if (category instanceof CategoryC3Model) {
             CategoryC3Model category3 = (CategoryC3Model) category;
-            generatedDoc.createRectangle2(color, 250, y - 163, 18, 10);
+            generatedDoc.createRectangle2(color, 250, y - 173, 18, 10);
             if (category3.getTipo().equals("Tala")) {
                 generatedDoc.createRectangle2(color, 60, y - 183, 18, 10);
             } else if (category3.getTipo().equals("Poda")) {
-                generatedDoc.createRectangle2(color, 120, y - 183, 18, 10);
+                generatedDoc.createRectangle2(color, 120, y - 193, 18, 10);
             } else if (category3.getIndividualStatus().equals("Caído")) {
-                generatedDoc.createRectangle2(color, 60, y - 213, 18, 10);
+                generatedDoc.createRectangle2(color, 60, y - 223, 18, 10);
             } else if (category3.getIndividualStatus().equals("Muerto")) {
-                generatedDoc.createRectangle2(color, 120, y - 213, 18, 10);
+                generatedDoc.createRectangle2(color, 120, y - 223, 18, 10);
             } else if (category3.getIndividualStatus().equals("Enfermo")) {
-                generatedDoc.createRectangle2(color, 200, y - 213, 18, 10);
+                generatedDoc.createRectangle2(color, 200, y - 223, 18, 10);
             } else if (category3.getCause().equals("Estabilidad de Suelos")) {
-                generatedDoc.createRectangle2(color, 200, y - 233, 18, 10);
+                generatedDoc.createRectangle2(color, 200, y - 243, 18, 10);
             } else if (category3.getCause().equals("Canal de Agua")) {
-                generatedDoc.createRectangle2(color, 295, y - 233, 18, 10);
+                generatedDoc.createRectangle2(color, 295, y - 243, 18, 10);
             } else if (category3.getCause().equals("Obras de Infraestructura/Edificaciones")) {
-                generatedDoc.createRectangle2(color, 485, y - 233, 18, 10);
+                generatedDoc.createRectangle2(color, 485, y - 243, 18, 10);
             } else if (category3.getCause().equals("Otro (especifique cuál)")) {
                 generatedDoc.createRectangle2(color, 130, y - 243, 18, 10);
             }
 
         } else {
-            generatedDoc.createRectangle(color, 250, y - 163, 18, 10);
-            generatedDoc.createRectangle(color, 60, y - 183, 18, 10);
-            generatedDoc.createRectangle(color, 120, y - 183, 18, 10);
-            generatedDoc.createRectangle(color, 60, y - 213, 18, 10);
-            generatedDoc.createRectangle(color, 120, y - 213, 18, 10);
-            generatedDoc.createRectangle(color, 200, y - 213, 18, 10);
-            generatedDoc.createRectangle(color, 200, y - 233, 18, 10);
-            generatedDoc.createRectangle(color, 295, y - 233, 18, 10);
-            generatedDoc.createRectangle(color, 485, y - 233, 18, 10);
-            generatedDoc.createRectangle(color, 130, y - 243, 18, 10);
+            generatedDoc.createRectangle(color, 160, y - 173, 18, 10);
+            generatedDoc.createRectangle(color, 60, y - 193, 18, 10);
+            generatedDoc.createRectangle(color, 120, y - 193, 18, 10);
+            generatedDoc.createRectangle(color, 60, y - 223, 18, 10);
+            generatedDoc.createRectangle(color, 120, y - 223, 18, 10);
+            generatedDoc.createRectangle(color, 200, y - 223, 18, 10);
+            generatedDoc.createRectangle(color, 200, y - 243, 18, 10);
+            generatedDoc.createRectangle(color, 295, y - 243, 18, 10);
+            generatedDoc.createRectangle(color, 485, y - 243, 18, 10);
+            generatedDoc.createRectangle(color, 140, y - 253, 18, 10);
         }
         if (category instanceof CategoryC4Model) {
             CategoryC4Model category4 = (CategoryC4Model) category;
             generatedDoc.createRectangle2(color, 230, y - 263, 18, 10);
             if (category4.getTipo().equals("Tala")) {
-                generatedDoc.createRectangle2(color, 60, y - 283, 18, 10);
+                generatedDoc.createRectangle2(color, 60, y - 293, 18, 10);
             } else if (category4.getTipo().equals("Trasplante/Reubicación")) {
-                generatedDoc.createRectangle2(color, 200, y - 283, 18, 10);
+                generatedDoc.createRectangle2(color, 200, y - 313, 18, 10);
             } else if (category4.getActivity().equals("Construcción /Realización")) {
-                generatedDoc.createRectangle2(color, 145, y - 335, 18, 10);
+                generatedDoc.createRectangle2(color, 145, y - 365, 18, 10);
             } else if (category4.getActivity().equals("Remodelación")) {
-                generatedDoc.createRectangle2(color, 245, y - 335, 18, 10);
+                generatedDoc.createRectangle2(color, 245, y - 365, 18, 10);
             } else if (category4.getActivity().equals("Ampliación")) {
-                generatedDoc.createRectangle2(color, 315, y - 335, 18, 10);
+                generatedDoc.createRectangle2(color, 315, y - 365, 18, 10);
             } else if (category4.getActivity().equals("Instalación")) {
-                generatedDoc.createRectangle2(color, 390, y - 335, 18, 10);
+                generatedDoc.createRectangle2(color, 390, y - 365, 18, 10);
             } else if (category4.getActivity().equals("Similares")) {
-                generatedDoc.createRectangle2(color, 535, y - 335, 18, 10);
+                generatedDoc.createRectangle2(color, 535, y - 365, 18, 10);
             }
 
         } else {
-            generatedDoc.createRectangle(color, 230, y - 263, 18, 10);
-            generatedDoc.createRectangle(color, 60, y - 283, 18, 10);
-            generatedDoc.createRectangle(color, 200, y - 283, 18, 10);
-            generatedDoc.createRectangle(color, 145, y - 335, 18, 10);
-            generatedDoc.createRectangle(color, 245, y - 335, 18, 10);
-            generatedDoc.createRectangle(color, 315, y - 335, 18, 10);
-            generatedDoc.createRectangle(color, 390, y - 335, 18, 10);
-            generatedDoc.createRectangle(color, 535, y - 335, 18, 10);
+            generatedDoc.createRectangle(color, 230, y - 293, 18, 10);
+            generatedDoc.createRectangle(color, 60, y - 313, 18, 10);
+            generatedDoc.createRectangle(color, 200, y - 313, 18, 10);
+            generatedDoc.createRectangle(color, 145, y - 365, 18, 10);
+            generatedDoc.createRectangle(color, 245, y - 365, 18, 10);
+            generatedDoc.createRectangle(color, 315, y - 365, 18, 10);
+            generatedDoc.createRectangle(color, 390, y - 365, 18, 10);
+            generatedDoc.createRectangle(color, 535, y - 365, 18, 10);
         }
 
-        //if (solicitude.getInterested().isAuthorization()) { 
+        if (solicitude.getInterested().isAuthorization()) { 
+            generatedDoc.createRectangle2(color, 195, y - 430, 18, 10);
+        }else{
+            generatedDoc.createRectangle(color, 195, y - 430, 18, 10);
+        }
     }
-
+    }
     public static int addBodyTitleLine(Paragraph p, PdfWorkspace generatedDoc, int lineCounter) throws IOException {
 
         try {
