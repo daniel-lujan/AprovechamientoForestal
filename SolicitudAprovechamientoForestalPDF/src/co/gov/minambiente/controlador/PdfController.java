@@ -84,7 +84,7 @@ public class PdfController {
             lineCounter = addBodyTitleLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getId()) + "\n");
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
 
-            if (solicitude.getInterested().getAttorney().getName() != null) {
+            if (solicitude.getInterested().getAttorney() != null) {
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, solicitude.getInterested().getAttorney().getName() + "\n");
                 lineCounter = addBodyTitleLine(p, generatedDoc, lineCounter,
                         String.valueOf(solicitude.getInterested().getAttorney().getId()),
@@ -117,7 +117,7 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
 
-            if (solicitude.getInterested().getProjectCost() != null) {
+            if (solicitude.getInterested().getProjectCost().size() > 0) {
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getProjectCost().get(0)) + "\n");
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getProjectCost().get(1)) + "\n");
             } else {
@@ -268,7 +268,9 @@ public class PdfController {
 
             Table t = createTable1(generatedDoc);
             Table t2 = createTable2(generatedDoc);
-
+            System.out.println("-----");
+            System.out.println(solicitude.getProperties());
+            System.out.println(solicitude.getProperties().get(0).getCoordiantes());
             if (solicitude.getProperties().get(0).getCoordiantes().get(0) instanceof PlaneCoordinateModel) {
                 fillTable1(t, solicitude, generatedDoc);
             }else{

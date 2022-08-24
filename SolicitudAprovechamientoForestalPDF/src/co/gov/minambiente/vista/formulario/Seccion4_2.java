@@ -91,6 +91,7 @@ public class Seccion4_2 extends javax.swing.JFrame {
                 }
             }
         }
+        System.out.println("LIST: "+list);
         return list;
     }
    
@@ -586,16 +587,12 @@ public class Seccion4_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_cblCoordenadasPlanasActionPerformed
 
     private void btnAnteriorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnteriorMouseClicked
-        if (this.controlador.guardarInformacionSeccion4_2(getInfoList())){
-            this.setVisible(false);
-            this.controlador.mostrarSeccion4_1();
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese todos los datos solicitados.","INFO", JOptionPane.INFORMATION_MESSAGE);
-        }
+        this.setVisible(false);
+        this.controlador.mostrarSeccion4_1();
     }//GEN-LAST:event_btnAnteriorMouseClicked
 
     private void btnSiguienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSiguienteMouseClicked
-        if (this.controlador.guardarInformacionSeccion4_2(getInfoList())){
+         if (this.controlador.guardarInformacionSeccion4_2(getInfoList())){
             this.setVisible(false);
             this.controlador.mostrarSeccion5_1();
         } else {

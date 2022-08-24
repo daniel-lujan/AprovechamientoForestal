@@ -30,11 +30,6 @@ public class RequestsDatabase{
             new JSONController().loadRequestsDatabase();
             initialized = true;
         }
-        try{
-            System.out.println(get("5848917790").getCategoryA().getTypeUtilization());
-        } catch (Exception e){
-            e.printStackTrace();
-        }
     }
     
     /**

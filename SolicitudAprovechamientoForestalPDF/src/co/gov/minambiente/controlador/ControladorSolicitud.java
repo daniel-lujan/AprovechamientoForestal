@@ -271,6 +271,7 @@ public class ControladorSolicitud {
                             (short) arr[4]));
                 }
             }
+            request.getProperties().get(0).setCoordiantes(lista);
             return true;
         } else {
             return false;

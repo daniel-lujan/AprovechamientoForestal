@@ -42,6 +42,7 @@ class ObjectInstantiator {
     }
 
     private InterestedModel getInterestedInstance(LinkedHashMap info) {
+        System.out.println("ProjectCost: "+(ArrayList)info.get("projectCost"));
         return new InterestedModel(
                 (String) info.get("typePerson"),
                 getAttorney((LinkedHashMap) info.get("attorney")),
