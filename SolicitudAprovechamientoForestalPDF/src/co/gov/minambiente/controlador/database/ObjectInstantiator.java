@@ -82,7 +82,7 @@ class ObjectInstantiator {
                 (String) info.get("name"),
                 (String) info.get("surface"),
                 getAddressInstance((LinkedHashMap) info.get("adress")),
-                (String) info.get("realStateRegistration"),
+                (String) info.get("realEstateRegistration"),
                 (String) info.get("cadastralIdNumber"),
                 getCoordinatesList((ArrayList) info.get("coordiantes")),
                 getSpeciesList((ArrayList) info.get("species"))
@@ -114,10 +114,10 @@ class ObjectInstantiator {
                 (String) info.get("unit"),
                 (String) info.get("commonName"),
                 (String) info.get("scientificName"),
+                (String) info.get("partUsed"),
                 (String) info.get("habit"),
                 (String) info.get("closure"),
-                (String) info.get("threatClassification"),
-                (String) info.get("partUsed")
+                (String) info.get("threatClassification")
         );
     }
 

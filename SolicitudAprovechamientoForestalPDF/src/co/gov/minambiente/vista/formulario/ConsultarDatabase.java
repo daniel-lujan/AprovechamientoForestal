@@ -226,7 +226,13 @@ public class ConsultarDatabase extends javax.swing.JFrame {
         System.out.println(RequestsDatabase.get(getSelectedReference()));
         String[] path = Utils.splitPath(new FileChooser().getPath());
         if (path != null){
-            PdfController.fillDocument(new PdfWorkspace(path[1],path[0]),RequestsDatabase.get(getSelectedReference()));
+            try{
+            PdfController.fillDocument(new PdfWorkspace(path[1],path[0]),
+                    RequestsDatabase.get(getSelectedReference()));
+            } catch(Exception e){
+                e.printStackTrace();
+                System.out.println("Error al generar PDF");
+            }
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
