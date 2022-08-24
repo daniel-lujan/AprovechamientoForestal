@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 /**
- *
+ * Sección 5.2
  * @author Natalia García
  */
 public class Seccion5_2 extends javax.swing.JFrame {

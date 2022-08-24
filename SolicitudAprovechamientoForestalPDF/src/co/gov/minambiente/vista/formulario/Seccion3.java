@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Sección 3
  * @author Natalia García
  */
 public class Seccion3 extends javax.swing.JFrame {

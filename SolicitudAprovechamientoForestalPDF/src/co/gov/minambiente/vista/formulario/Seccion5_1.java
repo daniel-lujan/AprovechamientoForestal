@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Sección 5.1
  * @author Natalia García
  */
 public class Seccion5_1 extends javax.swing.JFrame {

@@ -6,7 +6,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Sección 1
  * @author Natalia García
  */
 public class Seccion1 extends javax.swing.JFrame {

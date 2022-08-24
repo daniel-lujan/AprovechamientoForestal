@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Sección 4.1
  * @author Natalia García
  */
 public class Seccion4_1 extends javax.swing.JFrame {

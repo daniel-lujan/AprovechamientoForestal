@@ -13,7 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Sección 6
  * @author Natalia García
  */
 public class Seccion6 extends javax.swing.JFrame {

@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Sección 4.2
  * @author Natalia García
  */
 public class Seccion4_2 extends javax.swing.JFrame {
