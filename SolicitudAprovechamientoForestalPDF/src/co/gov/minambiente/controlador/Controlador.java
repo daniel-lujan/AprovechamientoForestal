@@ -116,7 +116,6 @@ public class Controlador {
                 + "Nullam a ultricies felis. Nullam eu augue nibh. Morbi rutrum "
                 + " tortor id auctor.");
 
-        PdfController.generateCheckBoxes1(generatedDoc, new DeviceRgb(212, 216, 210), form1);
         PdfController.fillDocument(generatedDoc, form1);
 
     }

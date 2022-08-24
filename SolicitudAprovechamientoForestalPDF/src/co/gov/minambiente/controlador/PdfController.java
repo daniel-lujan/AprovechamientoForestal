@@ -481,15 +481,104 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text(""));
             p.add(new Text("\n"));
+            lineCounter++;
             setUpParagraph(p, generatedDoc, 9, 10);
-
-            lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 18);
+            
+            p = new Paragraph();
+            lineCounter = addSingleTitle(generatedDoc, lineCounter, greenBg, 9);
+            p.add(new Text("\n"));
+            lineCounter = addTitleLine(p, generatedDoc, lineCounter);
 
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return lineCounter;
 
+    }
+
+    private static Table createTable3(PdfWorkspace generatedDoc) throws IOException {
+
+        Table table = new Table(UnitValue.createPercentArray(8)).setWidth(530).setRelativePosition(10, 0, 0, 0);
+
+        Paragraph q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Cantidad"), titleFont, 8);
+        Cell cell = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Unidad de medida*"), titleFont, 8);
+        Cell cell12 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell12);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Nombre común"), titleFont, 8);
+        Cell cell13 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell13);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Nombre científico"), titleFont, 8);
+        Cell cell14 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell14);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Aplica para únicamente para manejo\n"
+                + "sostenible de flora silvestre y los productos\n"
+                + "forestales no maderables"), titleFont, 8);
+        Cell cell15 = new Cell(1, 2).add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell15);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Veda nacional\n"
+                + "o regional\n"
+                + "(si aplica) **"), titleFont, 8);
+        Cell cell17 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell17);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Categoría\n"
+                + "de\n"
+                + "amenaza\n"
+                + "(si aplica)"), titleFont, 8);
+        Cell cell18 = new Cell(2, 1).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addHeaderCell(cell18);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Parte aprovechada"
+                + "(Raíz, Fruto, Semilla,"
+                + "Flor, Corteza,"
+                + "Exudado, Yema, Hojas,"
+                + "Tallos, Ramas, etc.)"), titleFont, 8);
+        Cell cell25 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell25);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Hábito"
+                + "(Árbol, Arbusto,"
+                + "Hierba terrestre,"
+                + "Epífita, Bejuco/liana,"
+                + "Hemiepífita, Palma,"
+                + "etc.)"), titleFont, 8f);
+        Cell cell26 = new Cell().add(q.setTextAlignment(TextAlignment.CENTER)).setBackgroundColor(greenBg);
+        table.addHeaderCell(cell26);
+
+        for (int i = 0; i < 80; i++) {
+            q = new Paragraph();
+            generatedDoc.pushText(q, new Text(""), titleFont, 8f);
+            Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setMinHeight(10);
+            table.addCell(temporal);
+        }
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text("Cantidad \n Total"), titleFont, 8f);
+        Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
+        table.addFooterCell(temporal);
+
+        q = new Paragraph();
+        generatedDoc.pushText(q, new Text(""), titleFont, 8f);
+        Cell cellFinal = new Cell(1, 7).add(q.setTextAlignment(TextAlignment.CENTER));
+        table.addFooterCell(cellFinal);
+        
+        return table;
     }
 
     /**
