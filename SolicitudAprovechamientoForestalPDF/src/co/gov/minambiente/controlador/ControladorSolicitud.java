@@ -349,6 +349,7 @@ public class ControladorSolicitud {
      * @param municipio Municipio
      */
     public void guardarInformacionSeccion6(String correo, String telefono, String direccion, String departamento, String vereda, String municipio) {
+        request.getInterested().setAuthorization(true);
         request.getInterested().setEmailAddress(correo);
         request.getInterested().setTelephone(telefono);
         request.getInterested().setAdress(new AddressModel(direccion, "", departamento, municipio, vereda));
