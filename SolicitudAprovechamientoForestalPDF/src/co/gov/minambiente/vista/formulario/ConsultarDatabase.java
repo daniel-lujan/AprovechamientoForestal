@@ -222,13 +222,17 @@ public class ConsultarDatabase extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        System.out.println(getSelectedReference());
-        System.out.println(RequestsDatabase.get(getSelectedReference()));
+        String ref = getSelectedReference();
+        if (ref == null){
+            JOptionPane.showMessageDialog(null, "Selecciona una solicitud","Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String[] path = Utils.splitPath(new FileChooser().getPath());
         if (path != null){
             try{
             PdfController.fillDocument(new PdfWorkspace(path[1],path[0]),
-                    RequestsDatabase.get(getSelectedReference()));
+                    RequestsDatabase.get(ref));
             } catch(Exception e){
                 e.printStackTrace();
                 System.out.println("Error al generar PDF");

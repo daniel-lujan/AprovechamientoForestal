@@ -27,13 +27,13 @@ public class Principal extends javax.swing.JFrame {
 
     public void salir(){
         if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere salir del programa?") == 0) {
-//            if (!RequestsDatabase.save()) {
-//                if (JOptionPane.showConfirmDialog(null,
-//                        "Hubo un error al guardar la base de datos, ¿seguro que desea salir?") != 0) {
-//                    return;
-//                }
-//
-//            }
+            if (!RequestsDatabase.save()) {
+                if (JOptionPane.showConfirmDialog(null,
+                        "Hubo un error al guardar la base de datos, ¿seguro que desea salir?") != 0) {
+                    return;
+                }
+
+            }
             System.exit(0);
         }
     }

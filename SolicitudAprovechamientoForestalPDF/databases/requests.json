@@ -3,161 +3,44 @@
   "interested" : {
     "name" : "Daniel",
     "typeId" : "CC",
-    "id" : "13467513",
+    "id" : "13413431",
     "typePerson" : "Natural",
     "attorney" : null,
     "interestedQuality" : "Propietario",
-    "projectCost" : [ "174651", "Cantidad" ],
-    "authorization" : false,
-    "emailAddress" : null,
-    "telephone" : "31746513",
-    "address" : {
-      "street" : "calle2",
-      "typeArea" : "",
-      "department" : "Arauca",
-      "municipality" : "Tame",
-      "sidewalk" : "barrio"
-    }
-  },
-  "properties" : [ {
-    "typeProperty" : "Privado",
-    "name" : "Terreno",
-    "surface" : "3147",
-    "adress" : {
-      "street" : "Calle1",
-      "typeArea" : "Urbano",
-      "department" : "Antioquia",
-      "municipality" : "Alejandría",
-      "sidewalk" : "vereda"
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ {
-      "x" : 34113.0,
-      "y" : 143341.0,
-      "point" : 1
-    }, {
-      "x" : 443.0,
-      "y" : 5454.0,
-      "point" : 2
-    } ],
-    "species" : [ {
-      "quantity" : 3141.0,
-      "unit" : "kj",
-      "commonName" : "hgfe",
-      "scientificName" : "fehj",
-      "habit" : null,
-      "closure" : null,
-      "threatClassification" : null
-    } ]
-  }, {
-    "typeProperty" : "Colectivo",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : null,
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
-    "species" : [ ]
-  } ],
-  "howToAcquire" : "Autorización",
-  "categoryA" : {
-    "name" : "A. Productos forestales maderables",
-    "typeUtilization" : "Persistente"
-  },
-  "categoryB" : {
-    "name" : "B. Manejo Sostenible de Flora Silvestre y los Productos Forestales No Maderables",
-    "typeOperation" : "",
-    "revenuesExpected" : [ ],
-    "associatedCategory" : ""
-  },
-  "categoryC" : {
-    "name" : "C. Árboles Aislados",
-    "locationOrType" : ""
-  },
-  "categoryD" : {
-    "name" : "D. Guaduales y bambusales",
-    "typeUtilization" : ""
-  },
-  "creationDate" : {
-    "year" : 23,
-    "month" : 8,
-    "day" : 2022,
-    "dateWithFormat" : "2022/8/23"
-  },
-  "fileNumber" : "",
-  "actNumber" : "",
-  "intendedUse" : "usooo",
-  "methodUtilization" : "Mecánico",
-  "reference" : "7015046443"
-}, {
-  "typeRequest" : "Nueva",
-  "interested" : {
-    "name" : "juanito",
-    "typeId" : "CC",
-    "id" : "3413413",
-    "typePerson" : "Natural",
-    "attorney" : null,
-    "interestedQuality" : "Poseedor",
     "projectCost" : [ ],
     "authorization" : false,
-    "emailAddress" : "daniel@mail.com",
-    "telephone" : "3141334",
+    "emailAddress" : null,
+    "telephone" : "3174613",
     "address" : {
-      "street" : "calle12",
+      "street" : "calle1",
       "typeArea" : "",
-      "department" : "Antioquia",
-      "municipality" : "Andes",
-      "sidewalk" : "jkhfgsb"
+      "department" : "Amazonas",
+      "municipality" : "El Encanto",
+      "sidewalk" : "aeur"
     }
   },
   "properties" : [ {
     "typeProperty" : "Privado",
-    "name" : "tuerq",
-    "surface" : "31431",
+    "name" : "Pred",
+    "surface" : "3143",
     "adress" : {
-      "street" : "calle1",
+      "street" : "Calle1",
       "typeArea" : "Rural",
-      "department" : "Antioquia",
-      "municipality" : "Amagá",
-      "sidewalk" : "feq"
+      "department" : "Amazonas",
+      "municipality" : "La Chorrera",
+      "sidewalk" : "vcahge"
     },
-    "realEstateRegistration" : "31413431",
+    "realEstateRegistration" : "31413443",
     "cadastralIdNumber" : "",
     "coordiantes" : [ {
-      "x" : 41313.0,
-      "y" : 134314.0,
-      "point" : 1
+      "y" : 13413.0,
+      "point" : 1,
+      "x" : 13413.0
+    }, {
+      "y" : 3443.0,
+      "point" : 2,
+      "x" : 1343.0
     } ],
-    "species" : [ {
-      "quantity" : 31413.0,
-      "unit" : "jh",
-      "commonName" : "j",
-      "scientificName" : "hu",
-      "habit" : "hjk",
-      "closure" : "h",
-      "threatClassification" : "jk"
-    } ]
-  }, {
-    "typeProperty" : "Colectivo",
-    "name" : "",
-    "surface" : "",
-    "adress" : {
-      "street" : "",
-      "typeArea" : "",
-      "department" : "",
-      "municipality" : "",
-      "sidewalk" : ""
-    },
-    "realEstateRegistration" : "",
-    "cadastralIdNumber" : "",
-    "coordiantes" : [ ],
     "species" : [ ]
   } ],
   "howToAcquire" : "Autorización",
@@ -187,7 +70,7 @@
   },
   "fileNumber" : "",
   "actNumber" : "",
-  "intendedUse" : "usoo",
+  "intendedUse" : "USO",
   "methodUtilization" : "Mecánico",
-  "reference" : "9069773703"
+  "reference" : "7551391095"
 } ]
