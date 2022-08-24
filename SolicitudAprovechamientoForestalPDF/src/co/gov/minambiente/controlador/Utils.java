@@ -153,11 +153,6 @@ public class Utils {
         return array;
     }
     
-    public static void main(String[] args) {
-        String[] a= splitPath("C:\\path\\to\\somewhere.txt");
-        System.out.println(a[0]);
-        System.out.println(a[1]);
-    }
     
     public static String[] splitPath(String path){
         if (path == null){
