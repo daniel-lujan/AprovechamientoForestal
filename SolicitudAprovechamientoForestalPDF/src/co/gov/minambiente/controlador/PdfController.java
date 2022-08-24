@@ -118,11 +118,12 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
 
-            if (solicitude.getInterested().getProjectCost() != null) {
+            if (solicitude.getInterested().getProjectCost().size() > 0) {
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getProjectCost().get(0)) + "\n");
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getProjectCost().get(1)) + "\n");
             } else {
-                p.add(new Text("No aplica").setFontSize(9.5f));
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter, "No aplica" + "\n");
+                lineCounter = addBodyLine(p, generatedDoc, lineCounter, "No aplica" + "\n");
             }
 
             p.setFixedLeading(20);

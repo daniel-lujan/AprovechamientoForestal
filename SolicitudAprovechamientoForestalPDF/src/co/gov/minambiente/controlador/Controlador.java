@@ -40,25 +40,25 @@ import java.util.LinkedList;
  * @author Andrés Güiza
  */
 public class Controlador {
-    
+
     public static void main(String[] args) throws FileNotFoundException, IOException, FontFormatException {
         PdfWorkspace generatedDoc = new PdfWorkspace("Prueba.pdf", "pdfOutput");
-        
+
         RequestModel form1 = new RequestModel("1", new DateModel());
         ArrayList<String> a = new ArrayList<>();
-        a.add("1200000");
-        a.add("Doce millones de pesos");
-        
+       // a.add("1200000");
+       // a.add("Doce millones de pesos");
+
         InterestedModel interested = new InterestedModel("Natural",
                 "Propietario", a, false, "bob_esponja@gmail.com", "304446985", "Bob Esponja", "cc", "1101760080");
-        
+
         AttorneyModel attorney = new AttorneyModel("856413T", "Patricio Estrella",
                 "CC", "552116447");
-        
+
         interested.setAttorney(attorney);
-        
+
         LinkedList<CoordinateModel> sddd = new LinkedList<>();
-       /* sddd.add(new PlaneCoordinateModel(1,1, 2));
+        /* sddd.add(new PlaneCoordinateModel(1,1, 2));
         sddd.add(new PlaneCoordinateModel(1,2,5));
         sddd.add(new PlaneCoordinateModel(1,2,5));
         sddd.add(new PlaneCoordinateModel(1,2,5));
@@ -80,13 +80,14 @@ public class Controlador {
         longitud.add(58);
         longitud.add(12);
         longitud.add(63);
-
-        for (int i = 0; i < 6; i++) {
-            sddd.add(new GeographicCoordinateModel(latitud, longitud, 2350, "as", 2));
-        }
-
         GeographicCoordinateModel s = new GeographicCoordinateModel(latitud, longitud, 1200, espacio, 5);
         LinkedList<CoordinateModel> f = new LinkedList<>();
+
+        for (int i = 0; i < 6; i++) {
+            f.add(new GeographicCoordinateModel(latitud, longitud, 2350, "as", 2));
+
+        }
+
         f.add(s);
 
         form1.setTypeRequest("nueva");
@@ -114,11 +115,9 @@ public class Controlador {
                 + " tincidunt massa a diam mattis, sit amet luctus quam cursus. "
                 + "Nullam a ultricies felis. Nullam eu augue nibh. Morbi rutrum "
                 + " tortor id auctor.");
-        
-      
-        
-        PdfController.generateCheckBoxes1(generatedDoc,new DeviceRgb(212,216,210),form1);
+
+        PdfController.generateCheckBoxes1(generatedDoc, new DeviceRgb(212, 216, 210), form1);
         PdfController.fillDocument(generatedDoc, form1);
-        
+
     }
 }
