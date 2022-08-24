@@ -87,4 +87,12 @@ public class DateModel {
         result = String.valueOf(day)+"/"+String.valueOf(month)+"/"+String.valueOf(year);
         return result; 
     }
+
+    public boolean afterDate(DateModel fechaInicial) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean beforeDate(DateModel fechaFinal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

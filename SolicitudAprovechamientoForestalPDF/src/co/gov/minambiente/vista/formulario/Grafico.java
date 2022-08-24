@@ -12,9 +12,14 @@ import co.gov.minambiente.modelo.AddressModel;
 import co.gov.minambiente.modelo.DateModel;
 import co.gov.minambiente.modelo.InterestedModel;
 import co.gov.minambiente.modelo.RequestModel;
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
 
 /**
  *
@@ -33,7 +38,7 @@ public class Grafico extends javax.swing.JFrame {
         initComponents();
         controladorEstadisticas = new ControlStatistics();
         this.setLocationRelativeTo(null);
-        this.setTitle("Grafico");
+        this.setTitle("Estadísticas");
     }
 
     /**
@@ -45,6 +50,7 @@ public class Grafico extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         Grafico = new javax.swing.JLabel();
         CrearGrafico = new javax.swing.JButton();
         Day = new javax.swing.JLabel();
@@ -55,8 +61,13 @@ public class Grafico extends javax.swing.JFrame {
         MonthInfo = new javax.swing.JSpinner();
         txtInfo = new javax.swing.JLabel();
         BackButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        IrGraficoPorRango = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(java.awt.Color.white);
+
+        jPanel2.setBackground(java.awt.Color.white);
 
         Grafico.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         Grafico.setText("GRAFICO");
@@ -86,6 +97,7 @@ public class Grafico extends javax.swing.JFrame {
         MonthInfo.setModel(new javax.swing.SpinnerNumberModel(1, 1, 12, 1));
         MonthInfo.setToolTipText("");
 
+        txtInfo.setBackground(java.awt.Color.white);
         txtInfo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         txtInfo.setText("  ");
@@ -97,50 +109,77 @@ public class Grafico extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BackButton)
-                                .addGap(298, 298, 298)
-                                .addComponent(Grafico))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(Day)
-                                .addGap(18, 18, 18)
-                                .addComponent(DayInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(160, 160, 160)
-                                .addComponent(Month)
-                                .addGap(18, 18, 18)
-                                .addComponent(MonthInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                                .addComponent(jLabel3)))
-                        .addGap(18, 18, 18)
-                        .addComponent(YearInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(CrearGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(341, 341, 341))
-                    .addComponent(txtInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
+        jPanel1.setBackground(java.awt.Color.white);
+        jPanel1.setPreferredSize(new java.awt.Dimension(748, 400));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 748, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Grafico)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+
+        IrGraficoPorRango.setText("Buscar por rango");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(Day)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(DayInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(126, 126, 126)
+                                        .addComponent(Month)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(MonthInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(126, 126, 126)
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(YearInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(323, 323, 323)
+                                .addComponent(CrearGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(BackButton)
-                        .addGap(14, 14, 14)))
+                        .addGap(298, 298, 298)
+                        .addComponent(Grafico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(IrGraficoPorRango)
+                        .addGap(34, 34, 34))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(BackButton))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Grafico))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(IrGraficoPorRango)))
                 .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Month)
                     .addComponent(jLabel3)
                     .addComponent(Day)
@@ -149,9 +188,25 @@ public class Grafico extends javax.swing.JFrame {
                     .addComponent(YearInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(txtInfo)
-                .addGap(15, 15, 15)
+                .addGap(33, 33, 33)
                 .addComponent(CrearGrafico, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(600, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -163,8 +218,7 @@ public class Grafico extends javax.swing.JFrame {
     }//GEN-LAST:event_CrearGraficoActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-       this.dispose();
-       new Principal().setVisible(true);
+       
     }//GEN-LAST:event_BackButtonActionPerformed
 
     /**
@@ -193,6 +247,9 @@ public class Grafico extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Grafico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -208,10 +265,13 @@ public class Grafico extends javax.swing.JFrame {
     private javax.swing.JLabel Day;
     private javax.swing.JSpinner DayInfo;
     private javax.swing.JLabel Grafico;
+    private javax.swing.JButton IrGraficoPorRango;
     private javax.swing.JLabel Month;
     private javax.swing.JSpinner MonthInfo;
     private javax.swing.JSpinner YearInfo;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel txtInfo;
     // End of variables declaration//GEN-END:variables
 
@@ -227,52 +287,66 @@ public class Grafico extends javax.swing.JFrame {
                 int daySelected =  (int) DayInfo.getValue();
                 int monthSelected =  (int) MonthInfo.getValue();
                 int yearSelected =  (int) YearInfo.getValue();
-              //ArrayList<RequestModel> datos = RequestsDatabase.getDatabase();
+                ArrayList<RequestModel> datos = RequestsDatabase.getDatabase();
               //para probar
-                ArrayList<RequestModel> datos = new ArrayList <>();
-                RequestModel modeloForm = new RequestModel("");  
-                InterestedModel interested = new InterestedModel();
-                AddressModel direc = new AddressModel();
-                direc.setDepartment("Antioquia");
-                RequestModel modeloForm1 = new RequestModel("");  
-                InterestedModel interested1= new InterestedModel();
-                AddressModel direc1 = new AddressModel();
-                direc1.setDepartment("Cundinamarca");
-                RequestModel modeloForm2 = new RequestModel("");  
-                InterestedModel interested2= new InterestedModel();
-                AddressModel direc2 = new AddressModel();
-                direc2.setDepartment("Quindio");
-
-                modeloForm.setCreationDate(new DateModel(2000, 1, 1));
-                interested.setAdress(direc);
-                modeloForm.setInterested(interested);
-                modeloForm1.setCreationDate(new DateModel(2000, 1, 1));
-                interested1.setAdress(direc1);
-                modeloForm1.setInterested(interested1);
-                modeloForm2.setCreationDate(new DateModel(2022, 1, 1));
-                interested2.setAdress(direc2);
-                modeloForm2.setInterested(interested2);
-                datos.add (modeloForm);
-                datos.add (modeloForm);
-                datos.add (modeloForm);
-                datos.add (modeloForm2);
-                datos.add (modeloForm2);
-                datos.add (modeloForm1);
-                datos.add (modeloForm1);
-                datos.add (modeloForm1);
-                datos.add (modeloForm1);
-                datos.add (modeloForm1);
-                datos.add (modeloForm1);
-                datos.add (modeloForm1);
+//                ArrayList<RequestModel> datos = new ArrayList <>();
+//                RequestModel modeloForm = new RequestModel("");  
+//                InterestedModel interested = new InterestedModel();
+//                AddressModel direc = new AddressModel();
+//                direc.setDepartment("Antioquia");
+//                RequestModel modeloForm1 = new RequestModel("");  
+//                InterestedModel interested1= new InterestedModel();
+//                AddressModel direc1 = new AddressModel();
+//                direc1.setDepartment("Cundinamarca");
+//                RequestModel modeloForm2 = new RequestModel("");  
+//                InterestedModel interested2= new InterestedModel();
+//                AddressModel direc2 = new AddressModel();
+//                direc2.setDepartment("Quindio");
+//
+//                modeloForm.setCreationDate(new DateModel(2000, 1, 1));
+//                interested.setAdress(direc);
+//                modeloForm.setInterested(interested);
+//                modeloForm1.setCreationDate(new DateModel(2000, 1, 1));
+//                interested1.setAdress(direc1);
+//                modeloForm1.setInterested(interested1);
+//                modeloForm2.setCreationDate(new DateModel(2022, 1, 1));
+//                interested2.setAdress(direc2);
+//                modeloForm2.setInterested(interested2);
+//                datos.add (modeloForm);
+//                datos.add (modeloForm);
+//                datos.add (modeloForm);
+//                datos.add (modeloForm2);
+//                datos.add (modeloForm2);
+//                datos.add (modeloForm1);
+//                datos.add (modeloForm1);
+//                datos.add (modeloForm1);
+//                datos.add (modeloForm1);
+//                datos.add (modeloForm1);
+//                datos.add (modeloForm1);
+//                datos.add (modeloForm1);
               //finaliza los datos de prueba 
                 ArrayList<RequestModel> datosFiltradosPorFecha = controladorEstadisticas.filterDataByDate(datos, new DateModel(yearSelected, monthSelected, daySelected));
+                jPanel1.removeAll();
+                jPanel1.setPreferredSize(new Dimension(748, 400));
                 if(!datosFiltradosPorFecha.isEmpty()){
                     txtInfo.setText(" ");
                     ArrayList<RequestFrequency> frecuenciasPorDepartamento = controladorEstadisticas.frequencyByDeparmet(datosFiltradosPorFecha);
-                    frecuenciasPorDepartamento = controladorEstadisticas.setFrequencyWidths(frecuenciasPorDepartamento, 500);
-
-                    controladorEstadisticas.paintBars(grafico, frecuenciasPorDepartamento, 200, 250, 36, 50, new Color(51, 208, 153));
-                 
+                    
+                    JFreeChart graficoDeBarras = ChartFactory.createBarChart3D(
+                            "Solicitudes por departamento", "Departamentos",
+                            "Solicitudes", controladorEstadisticas.crearDataset(frecuenciasPorDepartamento),
+                            PlotOrientation.VERTICAL, false, false, false);
+                    
+                    ChartPanel panelDelGrafico = new ChartPanel(graficoDeBarras);
+                    panelDelGrafico.setMouseWheelEnabled(true);
+                    panelDelGrafico.setPreferredSize(new Dimension(748, 400));
+                    
+                    jPanel1.setLayout(new BorderLayout());
+                    jPanel1.add(panelDelGrafico, BorderLayout.NORTH);
+                    
+                    pack();
+                    repaint();
+                    
                 }else{
                     txtInfo.setText("No se encontraron registros para la fecha ingresada.");
                 }
@@ -286,5 +360,3 @@ public class Grafico extends javax.swing.JFrame {
 }
 
 }
-
-
