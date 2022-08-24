@@ -52,11 +52,12 @@ public class PdfController {
     public static Color whiteBg = new DeviceRgb(0, 0, 0);
     public static Color blueBg = new DeviceRgb(152, 228, 235);
 
-    public static void fillDocument(PdfWorkspace generatedDoc, RequestModel solicitude) {
+    public static void fillDocument(PdfWorkspace generatedDoc, RequestModel solicitude) throws MalformedURLException, IOException {
 
         int lineCounter = drawPage1(generatedDoc, solicitude);
         lineCounter = drawPage2(lineCounter, generatedDoc, solicitude);
         lineCounter = drawPage3(lineCounter, generatedDoc, solicitude);
+        lineCounter = drawPage4(lineCounter, generatedDoc, solicitude);
         generatedDoc.crearPdf();
     }
 
@@ -117,7 +118,7 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
 
-            if (solicitude.getInterested().getProjectCost().size() > 0) {
+            if (solicitude.getInterested().getProjectCost() != null) {
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getProjectCost().get(0)) + "\n");
                 lineCounter = addBodyLine(p, generatedDoc, lineCounter, String.valueOf(solicitude.getInterested().getProjectCost().get(1)) + "\n");
             } else {
@@ -268,28 +269,28 @@ public class PdfController {
 
             Table t = createTable1(generatedDoc);
             Table t2 = createTable2(generatedDoc);
-            System.out.println("-----");
-            System.out.println(solicitude.getProperties());
-            System.out.println(solicitude.getProperties().get(0).getCoordiantes());
-            if (solicitude.getProperties().get(0).getCoordiantes().get(0) instanceof PlaneCoordinateModel) {
+            
+            if (solicitude.getProperties().get(0).getCoordiantes().size() > 0){
+                if (solicitude.getProperties().get(0).getCoordiantes().get(0) instanceof PlaneCoordinateModel) {
                 fillTable1(t, solicitude, generatedDoc);
-            }else{
+            } else {
                 fillTable2(t2, solicitude, generatedDoc);
             }
+            }
+            
 
             p.add(t);
             p.add(new Text("\n \n"));
 
-            
             p.add(t2);
             p.add(new Text("\n \n"));
 
             lineCounter = addTitleLine(p, generatedDoc, lineCounter, 8);
 
             setUpParagraph(p, generatedDoc, 27, 10);
-             PdfController.generateCheckBoxes2(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
+            PdfController.generateCheckBoxes2(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
             generatedDoc.pasarPagina(3);
-           
+
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -312,6 +313,7 @@ public class PdfController {
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
 
             Table t = createTable3(generatedDoc);
+            fillTable3(t, solicitude, generatedDoc);
             p.add(t);
             p.add(new Text("\n \n"));
 
@@ -323,10 +325,8 @@ public class PdfController {
             p.add(new Text("\n"));
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-
             lineCounter = addTitleLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
-
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
             p.add(new Text("\n"));
             lineCounter = addBodyLine(p, generatedDoc, lineCounter);
@@ -351,19 +351,7 @@ public class PdfController {
             }
 
             // Tabla
-            for (SpecieModel e : solicitude.getProperties().get(0).getSpecies()) {
-                /*
-                Rellenar fila de tabla con e
-                    Cantidad -> e.getQuantity()
-                    Unidad de medida -> e.getUnit()
-                    Nombre común -> e.getCommonName()
-                    Nombre científico -> e.getScientificName()
-                    Parte Aprovechada -> No existe ahgas xddxd
-                    Hábito -> e.getHabit()
-                    Categoría de amenaza -> e.getThreatClassification()
-                 */
-            }
-
+            
             // Rellenar "Indique el uso que se pretende dar a los productos a obtener:" con solicitude.getIntendedUse()
             // <- Lógica de llenado sección 5.1
             // -> Lógica de llenado sección 5.2
@@ -451,6 +439,19 @@ public class PdfController {
 
             setUpParagraph(p, generatedDoc, 18, 10);
             PdfController.generateCheckBoxes3(generatedDoc, new DeviceRgb(212, 216, 210), solicitude);
+        } catch (IOException ex) {
+            Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        generatedDoc.pasarPagina(4);
+        return lineCounter;
+    }
+
+    public static int drawPage4(int lineCounter, PdfWorkspace generatedDoc, RequestModel solicitude) {
+
+        try {
+            addHeader(generatedDoc, texts);
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -595,7 +596,7 @@ public class PdfController {
         q = new Paragraph();
         generatedDoc.pushText(q, new Text("Origen"), titleFont, 8.5f);
         Cell temporal = new Cell().add(q).setTextAlignment(TextAlignment.CENTER).setBackgroundColor(greenBg);
-        table.addFooterCell(temporal).setMinHeight(175);
+        table.addCell(temporal).setMinHeight(175);
 
         q = new Paragraph();
         generatedDoc.pushText(q, new Text(""), titleFont, 8.5f);
@@ -674,18 +675,18 @@ public class PdfController {
 
     public static void fillTable2(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
 
-        GeographicCoordinateModel aux = new GeographicCoordinateModel(0);
-        int counterRow = 0;
+        try {
+            GeographicCoordinateModel aux = new GeographicCoordinateModel(0);
+            int counterRow = 0;
+            Paragraph p = new Paragraph();
 
-        for (CoordinateModel coordiante : solicitude.getProperties().get(0).getCoordiantes()) {
-            int counter = 0;
-            try {
+            for (CoordinateModel coordiante : solicitude.getProperties().get(0).getCoordiantes()) {
+                int counter = 0;
 
+                p = new Paragraph();
                 aux = (GeographicCoordinateModel) coordiante;
-
-                Paragraph p = new Paragraph();
-                Cell cell = new Cell().add(p.setTextAlignment(TextAlignment.CENTER));
                 generatedDoc.pushText(p, new Text(String.valueOf(aux.getPOINT())), titleFont, 8.5f);
+
                 table.getCell(counterRow, 0).add(p);
 
                 for (Object latitude : aux.getLATITUDE()) {
@@ -701,27 +702,74 @@ public class PdfController {
                     generatedDoc.pushText(p, new Text(String.valueOf(longitude)), titleFont, 8.5f);
                     table.getCell(counterRow, counter).add(p);
                 }
+
                 counter++;
                 p = new Paragraph();
                 generatedDoc.pushText(p, new Text(String.valueOf(aux.getALTITUDE())), titleFont, 8.5f);
                 table.getCell(counterRow, counter).add(p);
 
+                counterRow++;
                 counter++;
 
-                 p = new Paragraph();
-                generatedDoc.pushText(p, new Text(aux.getORIGIN()), titleFont, 8.5f);
-                table.getCell(0, 1).add(p);
-            } catch (IOException ex) {
-                Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            p = new Paragraph();
+            generatedDoc.pushText(p, new Text(aux.getORIGIN()), titleFont, 8.5f);
+            table.getCell(counterRow, 1).add(p);
+        } catch (IOException ex) {
+            Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void fillTable3(Table table, RequestModel solicitude, PdfWorkspace generatedDoc){
+    public static Table fillTable3(Table table, RequestModel solicitude, PdfWorkspace generatedDoc) {
         
+        int counterRow = 0;
+        Paragraph p = new Paragraph("");
+        SpecieModel aux = new SpecieModel();
+        
+        for (SpecieModel specie : solicitude.getProperties().get(0).getSpecies()) {
+            
+            
+            try {
+                
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(String.valueOf(specie.getQuantity())), titleFont, 8.5f);
+                table.getCell(counterRow, 0).add(p);
+                
+                 p = new Paragraph();
+                generatedDoc.pushText(p, new Text(specie.getUnit()), titleFont, 8.5f);
+                table.getCell(counterRow, 1).add(p);
+                
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(specie.getCommonName()), titleFont, 8.5f);
+                table.getCell(counterRow, 2).add(p);
+                
+                 p = new Paragraph();
+                generatedDoc.pushText(p, new Text(specie.getScientificName()), titleFont, 8.5f);
+                table.getCell(counterRow, 3).add(p);
+                
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(specie.getHabit()), titleFont, 8.5f);
+                table.getCell(counterRow, 4).add(p);
+                
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(specie.getClosure()), titleFont, 8.5f);
+                table.getCell(counterRow, 5).add(p);
+                
+                p = new Paragraph();
+                generatedDoc.pushText(p, new Text(specie.getThreatClassification()), titleFont, 8.5f);
+                table.getCell(counterRow, 6).add(p);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(PdfController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            counterRow++;
+            
+        }
+        return table;
     }
-    
+
     /**
      *
      * @param p
@@ -1079,91 +1127,86 @@ public class PdfController {
 
         int y = 817;
         generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
-        
 
-            if (category.getName().equals("D. Guaduales y bambusales")) {
-                generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
-            }else{
-                generatedDoc.createRectangle(color, 150, y + 41, 18, 10);
-            }
-                if (categoryD.getTypeUtilization().equals("Tipo 1")) {
-                    generatedDoc.createRectangle2(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                } else{
-                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                }
-                if (categoryD.getTypeUtilization().equals("Tipo 2")) {
-                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle2(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                } else{
-                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                }
-                if (categoryD.getTypeUtilization().equals("Cambio definitivo de uso del suelo")) {
-                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle2(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                } else{
-                     generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-                }
-               if (categoryD.getTypeUtilization().equals("Establecimiento y Manejo")) {
-                    generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle2(color, 431, y + 1, 18, 10);
-                }else{
-                   generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
-                    generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
-               }
-               if (addressTypeArea.equals("Urbano")) {
-                    generatedDoc.createRectangle2(color, 285, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
-                } else{
-                     generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
-               }
-               if (addressTypeArea.equals("Rural")) {
-                    generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
-                    generatedDoc.createRectangle2(color, 340, y - 80, 18, 10);
-                } else{
-                   generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
-                    generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
-               }
-               if (coordinate.equals("Coordenadas planas")) {
-                    generatedDoc.createRectangle2(color, 125, y - 240, 18, 10);
-                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
-                } else{
-                   generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
-                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
-               }
-               if (coordinate.equals("Coordenadas geográficas")) {
- generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
-                    generatedDoc.createRectangle2(color, 260, y - 240, 18, 10);
-                } else{
-                    generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
-                    generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
-               }
-                
-
-            
+        if (category.getName().equals("D. Guaduales y bambusales")) {
+            generatedDoc.createRectangle2(color, 150, y + 41, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 150, y + 41, 18, 10);
+        }
+        if (categoryD.getTypeUtilization().equals("Tipo 1")) {
+            generatedDoc.createRectangle2(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        }
+        if (categoryD.getTypeUtilization().equals("Tipo 2")) {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle2(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        }
+        if (categoryD.getTypeUtilization().equals("Cambio definitivo de uso del suelo")) {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle2(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        }
+        if (categoryD.getTypeUtilization().equals("Establecimiento y Manejo")) {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle2(color, 431, y + 1, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 65, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 125, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 292, y + 1, 18, 10);
+            generatedDoc.createRectangle(color, 431, y + 1, 18, 10);
+        }
+        if (addressTypeArea.equals("Urbano")) {
+            generatedDoc.createRectangle2(color, 285, y - 80, 18, 10);
+            generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+            generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+        }
+        if (addressTypeArea.equals("Rural")) {
+            generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+            generatedDoc.createRectangle2(color, 340, y - 80, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 285, y - 80, 18, 10);
+            generatedDoc.createRectangle(color, 340, y - 80, 18, 10);
+        }
+        if (coordinate.equals("Coordenadas planas")) {
+            generatedDoc.createRectangle2(color, 125, y - 240, 18, 10);
+            generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
+            generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
+        }
+        if (coordinate.equals("Coordenadas geográficas")) {
+            generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
+            generatedDoc.createRectangle2(color, 260, y - 240, 18, 10);
+        } else {
+            generatedDoc.createRectangle(color, 125, y - 240, 18, 10);
+            generatedDoc.createRectangle(color, 260, y - 240, 18, 10);
         }
 
-    
+    }
 
     public static void generateCheckBoxes3(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
         CategoryCModel category = solicitude.getCategoryC();
@@ -1198,10 +1241,10 @@ public class PdfController {
                 } else if (category1.getIndividualStatus().equals("Razones de Orden Fitosanitario")) {
                     generatedDoc.createRectangle(color, 160, y - 530, 18, 10);
                 }
-            }else{
+            } else {
                 generatedDoc.createRectangle(color, 285, y - 470, 18, 10);
-                 generatedDoc.createRectangle(color, 160, y - 510, 18, 10);
-                  generatedDoc.createRectangle(color, 160, y - 530, 18, 10);
+                generatedDoc.createRectangle(color, 160, y - 510, 18, 10);
+                generatedDoc.createRectangle(color, 160, y - 530, 18, 10);
             }
             if (category instanceof CategoryC2Model) {
 
