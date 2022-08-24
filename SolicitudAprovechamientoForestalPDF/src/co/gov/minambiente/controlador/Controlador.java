@@ -50,7 +50,7 @@ public class Controlador {
        // a.add("Doce millones de pesos");
 
         InterestedModel interested = new InterestedModel("Natural",
-                "Propietario", a, false, "bob_esponja@gmail.com", "304446985", "Bob Esponja", "cc", "1101760080");
+                "Propietario", a, false, "bob_esponja@gmail.com", "304446985", "Bob Esponja", "CC", "1101760080");
 
         AttorneyModel attorney = new AttorneyModel("856413T", "Patricio Estrella",
                 "CC", "552116447");

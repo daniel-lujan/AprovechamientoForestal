@@ -794,40 +794,41 @@ public class PdfController {
      * @param generatedDoc
      * @param color
      */
-    public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
+   public static void generateCheckBoxes1(PdfWorkspace generatedDoc, Color color, RequestModel solicitude) throws MalformedURLException {
         InterestedModel person = solicitude.getInterested();
         PropertyModel properytyModel = solicitude.getProperties().get(0);
         CategoryModel category = solicitude.getCategoryA();
         CategoryBModel categoryB = solicitude.getCategoryB();
-
         int y = 817;
-
         if (solicitude.getTypeRequest() != null) {
-            if (solicitude.getTypeRequest().equals("Nueva")) {
-                //first         
-                generatedDoc.createRectangle2(color, 165, y, 18, 10);
-                generatedDoc.createRectangle(color, 230, y, 18, 10);
-            } else if (solicitude.getTypeRequest().equals("Prórroga ")) {
-                generatedDoc.createRectangle(color, 165, y, 18, 10);
-                generatedDoc.createRectangle2(color, 230, y, 18, 10);
-            } else {
-                generatedDoc.createRectangle(color, 165, y, 18, 10);
-                generatedDoc.createRectangle(color, 230, y, 18, 10);
+            switch (solicitude.getTypeRequest()) {
+                case "Nueva":
+                    //first
+                    generatedDoc.createRectangle2(color, 165, y, 18, 10);
+                    generatedDoc.createRectangle(color, 230, y, 18, 10);
+                    break;
+                case "Prórroga":
+                    generatedDoc.createRectangle(color, 165, y, 18, 10);
+                    generatedDoc.createRectangle2(color, 230, y, 18, 10);
+                    break;
+                default:
+                    generatedDoc.createRectangle(color, 165, y, 18, 10);
+                    generatedDoc.createRectangle(color, 230, y, 18, 10);
+                    break;
             }
-
-            if (solicitude.getInterested() != null) {
-                if (solicitude.getInterested().equals("Natural")) {
+            if (person.getTypePerson() != null) {
+                if (person.getTypePerson().equals("Natural")) {
                     //second
                     generatedDoc.createRectangle2(color, 149, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 244, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 339, y - 40, 18, 10);
 
-                } else if (solicitude.getInterested().equals("Jurídica pública")) {
+                } else if (person.getTypePerson().equals("Jurídica pública")) {
                     generatedDoc.createRectangle(color, 149, y - 40, 18, 10);
                     generatedDoc.createRectangle2(color, 244, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 339, y - 40, 18, 10);
 
-                } else if (solicitude.getInterested().equals("Jurídica Privada")) {
+                } else if (person.getTypePerson().equals("Jurídica Privada")) {
                     generatedDoc.createRectangle(color, 149, y - 40, 18, 10);
                     generatedDoc.createRectangle(color, 244, y - 40, 18, 10);
                     generatedDoc.createRectangle2(color, 339, y - 40, 18, 10);
@@ -869,7 +870,6 @@ public class PdfController {
                         generatedDoc.createRectangle(color, 236, y - 80, 18, 10);
                         generatedDoc.createRectangle(color, 283, y - 80, 18, 10);
                     }
-
                 }
                 if (person.getTypeId() != null) {
                     if (person.getTypeId().equals("CC")) {
@@ -902,6 +902,9 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Poseedor")) {
                             //Fifth
                             generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
@@ -910,6 +913,9 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Tenedor")) {
                             //Fifth
                             generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
@@ -918,7 +924,9 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-
+                            generatedDoc.createRectangle2(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Ocupante")) {
                             //Fifth
                             generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
@@ -927,7 +935,9 @@ public class PdfController {
                             generatedDoc.createRectangle2(color, 293, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
-
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Autorizado")) {
                             //Fifth
                             generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
@@ -936,6 +946,9 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
                             generatedDoc.createRectangle2(color, 368, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Ente territorial")) {
                             //Fifth
                             generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
@@ -944,17 +957,38 @@ public class PdfController {
                             generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
                             generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
                             generatedDoc.createRectangle2(color, 456, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
+                            generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Consejo comunitario")) {
-                            //sixth
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
+//sixth
                             generatedDoc.createRectangle2(color, 123, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Resguardo indígena")) {
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
                             //sixth
                             generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
                             generatedDoc.createRectangle2(color, 236, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 286, y - 200, 18, 10);
                         } else if (person.getInterestedQuality().equals("Otro")) {
+                            generatedDoc.createRectangle(color, 85, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 156, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 223, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 293, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 368, y - 180, 18, 10);
+                            generatedDoc.createRectangle(color, 456, y - 180, 18, 10);
                             //sixth
                             generatedDoc.createRectangle(color, 123, y - 200, 18, 10);
                             generatedDoc.createRectangle(color, 236, y - 200, 18, 10);
@@ -1011,7 +1045,7 @@ public class PdfController {
                             generatedDoc.createRectangle2(color, 207, y - 483, 18, 10);
                             generatedDoc.createRectangle(color, 292, y - 483, 18, 10);
                             generatedDoc.createRectangle(color, 402, y - 483, 18, 10);
-                        } else if (solicitude.getHowToAcquire().equals(" Concesión Forestal")) {
+                        } else if (solicitude.getHowToAcquire().equals("Concesión Forestal")) {
                             generatedDoc.createRectangle(color, 151, y - 483, 18, 10);
                             generatedDoc.createRectangle(color, 207, y - 483, 18, 10);
                             generatedDoc.createRectangle2(color, 292, y - 483, 18, 10);
